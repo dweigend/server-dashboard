@@ -22,6 +22,17 @@ Implementierungspilot. Rückwärtskompatibilität ist erst nach Freigabe garanti
   409 ist fachlicher Konflikt, 412 Revisionskonflikt, 413 zu groß, 422 ungültiger
   Inhalt, 428 fehlende Revision, 429 Rate-Limit, 503 nicht verfügbar.
 
+`Issue`, `Article` und `AudioStatus` können zusätzlich `delivery` mit letzter
+erfolgreicher Zustands-/Rechteprüfung, Veraltetheit und Kopieherkunft liefern.
+Bei privater Lesekopie ist `accessValidUntil` Pflicht; abgelaufene oder bekannt
+widerrufene Inhalte werden gar nicht ausgeliefert. Das JSON-Schema ergänzt die
+Regeln aus [hybrid-backend.md](../docs/hybrid-backend.md), ersetzt sie aber nicht.
+
+Bei unklarer Auftragsannahme liefert `createTask` einen 503-Problembeleg mit
+`acceptance_uncertain` und stabiler Request-ID. Derselbe Idempotenzschlüssel
+löst zuerst einen Abgleich aus. Die UI bewahrt den Entwurf und zeigt „Annahme
+wird geprüft“; sie erzeugt dafür keinen zweiten Forschungsjob.
+
 Lesende Listen sind nach `updatedAt` absteigend und als stabiler Snapshot zu
 paginieren. Artikel einer Ausgabe folgen deren redaktioneller Reihenfolge.
 Jobfilter verwenden die technischen Statuswerte; die UI übersetzt sie.

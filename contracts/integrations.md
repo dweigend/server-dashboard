@@ -4,6 +4,11 @@ Status: zu vereinbarende Ports; keine bestätigten Implementierungen. Öffentlic
 Hub-Routen dürfen stabil bleiben, während ein Adapter auf den tatsächlich
 installierten Dienst abgebildet wird. Niemals URLs aus Vorschlägen erraten.
 
+Transportziel ist jetzt die [private HTTPS-Strecke](../docs/hybrid-backend.md)
+von Hetzner zum MS-A2. Die read-only Inspektion hat keinen laufenden Research-
+API-Dienst nachgewiesen. Die hier genannten Operationen sind weiterhin
+Fachverträge, keine ausgerollten URL-Pfade.
+
 ## ResearchPort
 
 | Operation | Eingabe | Ausgabe / Pflichtnachweis |
@@ -17,6 +22,7 @@ installierten Dienst abgebildet wird. Niemals URLs aus Vorschlägen erraten.
 | research.retry | alter Job, neue requestId | neuer Job mit retryOf |
 | publication.list/read | Ausgabe/Artikel und Revision | zitierter Text, Review, Quellen, Paketreferenz |
 | publication.release | exakte Ausgabe-Revision | geprüfte Freigabe oder Begründung |
+| publication.checkAccess | PackageRef, Actor, letzte bekannte Revision | aktuelle Berechtigung, Freigabestatus, Prüfzeit oder expliziter Widerruf |
 
 Jeder schreibende Aufruf führt `contractVersion`, `requestId`, `idempotencyKey`,
 authentifizierten Actor/Scope, Payload und erwartete Revisionen mit. Actor/Scope
@@ -32,6 +38,17 @@ Authentifizierung, Annahme, Status, Events, Rückfragen und Stop nachweisen;
 keine internen Datenbanktabellen oder undokumentierten Python-Interna anzapfen.
 Quelle: [Hermes API Server](https://hermes-agent.nousresearch.com/docs/user-guide/features/api-server).
 
+Die Research-API authentifiziert den Diensttoken und ordnet ihn serverseitig
+einem erlaubten Konto-/Operationsumfang zu. Ein vom Browser angelieferter Actor
+oder ein Tailscale-Identity-Header allein erteilt keine Schreibrechte. Staging
+und Produktion erhalten getrennte Tokens und Datenbereiche. Research-Tokens
+dürfen weder freie Shellbefehle noch allgemeine Hermes-Administration erlauben.
+
+Ein Capability-Nachweis muss fachliche Unterstützung belegen: Capture-Übernahme,
+Jobannahme/Abgleich und später Publikation können zu unterschiedlichen Zeitpunkten
+bereitstehen. Die native Hermes-Capability-Antwort beweist keine implementierten
+Wissens- oder Review-Operationen.
+
 ## MediaPort
 
 `media.request` erhält eine immutable PackageRef aus Research: `packageId`,
@@ -44,6 +61,11 @@ Idempotenz, Sprache/Stimme und Kostengrenze. `media.status` liefert PackageRef,
 eigenen Jobstatus, Audiorevision, Dauer, sichere Artefaktreferenz, optionale
 Alignment-Segmente, Warnungen und Fehler. Paket-ID/Revision/Hash müssen zur
 Anforderung passen; andernfalls keine Wiedergabe als Audio dieses Artikels.
+
+Für eine private Audiokopie muss zusätzlich der aktuelle Auslieferungsstatus
+der Audiorevision prüfbar sein. Sowohl Research-Freigabe als auch Media-Rechte
+müssen gültig sein; eine Sperre an einer der Grenzen verhindert Auslieferung.
+Es gibt keinen Rückschluss von einem vorhandenen Dateihash auf aktuelle Rechte.
 
 Ein Audio-Fehler ändert niemals den Research-Jobstatus. Medienjobs werden nicht
 in der Research-Queue gespeichert. Keine Medienprozesse im Hub-Webrequest.

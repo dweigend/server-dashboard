@@ -1,6 +1,8 @@
 # Prüfstand des Konzeptpakets
 
-Datum: 14. September 2026. Lokal geprüft, nicht auf einem produktiven Server.
+Datum: 14. September 2026. Konzeptprüfungen lokal ausgeführt. Zusätzlich wurden
+die bestehenden Server read-only per SSH und Coolify geprüft; es wurde dort
+keine Hub-Anwendung gestartet oder getestet.
 
 ## Inhalt und Struktur
 
@@ -33,6 +35,10 @@ und die ursprüngliche Galerie mobil sowie am Desktop geprüft; der Umzug
 Dashboard-Oberfläche implementiert oder pixelgenau abgenommen.
 
 ## Grenzen
+
+Die [Deployment-Prüfung](deployment-audit.md) belegt bestehende Zugänge und
+benennt fehlende Netzwerk-/Betriebsnachweise. Private Messwerte liegen nur lokal.
+Der aktualisierte Backend-Entwurf ist weiterhin eine Spezifikation.
 
 Schema-Validität ist kein Nachweis einer funktionierenden API, sicherer Sessions
 oder vollständiger Integration. Auth-Spike, Research-/Media-Adaptertests,

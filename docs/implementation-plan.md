@@ -32,6 +32,10 @@ Abnahme: P01/P02/P09; nach Timeout kein Datenverlust oder doppelter Capture.
 
 ## 3 · Research-Vertragspilot
 
+Zuvor den begrenzten Netzwerkpilot aus [deployment.md](deployment.md) durchführen.
+Die vorhandene Wissenskonzeption ist noch keine Research-API. Mit Capture-
+Übernahme beginnen; weitergehende Job-/Publikationsfähigkeiten einzeln nachweisen.
+
 Installierte Dienste inventarisieren, Ports aus `contracts/integrations.md`
 zuordnen und schriftlich bestätigen. Ein Capture übernehmen und einen einzigen
 kleinen Auftrag auslösen, Rückfrage beantworten, Ergebnis mit Quellen abrufen.
@@ -50,12 +54,18 @@ Abnahme: P06/P07; Audioausfall beschädigt weder Ausgabe noch Research-Status.
 
 ## 5 · Betrieb und Coolify-Pilot
 
-Statusadapter, Budget/Annahmepause, reproduzierbarer Container, Staging, minimale
-private Netzverbindung, Backup-/Restoretest und Rollback. Erst dann Subdomain
+Statusadapter, Budget/Annahmepause, reproduzierbarer Container, Staging,
+Produktionsprüfung der privaten Netzverbindung, Backup-/Restoretest und Rollback. Erst dann Subdomain
 und produktiven Zugang bereitstellen.
 
 Abnahme: P08/P09 und sämtliche Produktionskriterien aus
 [acceptance.md](acceptance.md). GitHub-Push und Deployment sind getrennte Schritte.
+
+Zusätzliche Hybrid-Abnahme: Nach Unterbrechung der Heimverbindung funktionieren
+Login und Capture-Speicherung; explizite Transfers bleiben nachvollziehbar.
+Timeout nach Research-Annahme erzeugt keine Doppelarbeit. Unberechtigte Container
+erreichen die lokale API nicht. Lesekopien beachten Freigabe und Frist auch nach
+Restore. Bestehende Matrix-/Website-Funktionen bleiben im Deploymenttest intakt.
 
 ## Später
 

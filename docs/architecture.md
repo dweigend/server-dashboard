@@ -3,6 +3,11 @@
 Status: Zielbild, keine bereitgestellten Dienste. Hub ist ein eigenständiges
 Projekt und ein Client der bestehenden Forschungsarchitektur.
 
+Die Web-App läuft künftig auf Hetzner, Research auf dem MS-A2. Der
+[Hybrid-Backend-Entwurf](hybrid-backend.md) konkretisiert private HTTPS-Verbindung,
+Containergrenzen, dauerhafte Zustellung und Verfügbarkeit bei Heimserverausfall.
+Der [Deployment-Audit](deployment-audit.md) trennt Livebefunde von diesem Zielbild.
+
 ```mermaid
 flowchart TD
     Browser[Browser: mobile UI] -->|HTTPS / Sitzung| Proxy[Coolify Reverse Proxy]
@@ -59,9 +64,16 @@ dann nur den expliziten Mockbetrieb verwenden.
 
 Capture-Speicherung und spätere Research-Übernahme sind getrennte Schritte.
 Eine kleine transaktionale Outbox in Hub ist ausschließlich Zustellmechanik,
-kein Scheduler und keine zweite Agentensteuerung. Neue Aufträge werden bei
+kein Forschungs-Scheduler und keine zweite Agentensteuerung. Ein eigener
+Delivery-Prozess aus demselben Image verarbeitet sie unabhängig von Webrequests
+und aktualisiert berechtigte Lesekopien. Neue Aufträge werden bei
 nicht erreichbarem Research nicht heimlich auf spätere Ausführung gesetzt.
 Unklare Annahmen werden über Request-ID und Idempotenz abgeglichen.
+
+Freigegebene Artikel-/Audiorevisionen dürfen als private, unveränderliche
+Auslieferungskopien auf Hetzner liegen. Eigentum, Frist und Widerruf bleiben
+im [Verfügbarkeitsvertrag](hybrid-backend.md) definiert. Die Kopie ist keine
+zweite Wissensautorität und kein umfassender Datenbankspiegel.
 
 Zu Beginn pollt die UI sichtbare aktive Jobs alle fünf Sekunden, inaktiven
 Status höchstens alle 30 Sekunden. Versteckte Tabs stoppen; nach Wiederaufnahme

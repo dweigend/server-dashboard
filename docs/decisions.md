@@ -8,7 +8,7 @@ Konzepts, keine nachträglich behauptete Zustimmung des Nutzers.
 | ID | Entscheidung |
 | --- | --- |
 | D01 | Eigenständiges Projekt in der lokalen GitBase, später GitHub |
-| D02 | Lokal entwickeln, später über eigenen Server mit Coolify bereitstellen |
+| D02 | Lokal entwickeln; Web-App über Coolify bei Hetzner, Backend mit Heimserver verbinden |
 | D03 | Browserzugang von überall, passwortgeschützt, bevorzugt eigene Subdomain |
 | D04 | Mobile First, schwarz/weiß, eckig, ruhig und textarm |
 | D05 | Hauptnavigation oben; keine Marke, Seitentitelzeile oder Zahnradleiste |
@@ -32,12 +32,15 @@ Konzepts, keine nachträglich behauptete Zustimmung des Nutzers.
 | A08 | Passwort + TOTP; Better Auth als Kandidat | keine eigene Kryptografie |
 | A09 | Forschungs- und Medienbudget getrennt | unabhängige Ausführung und Kostenautorität |
 | A10 | Originalreferenzen lokal; 30 neue Mockups im Repo | vollständige lokale Grundlage, nachvollziehbare Veröffentlichung |
+| A11 | Private HTTPS-API über Tailscale zwischen Hetzner und MS-A2 | vorhandenes Heimserver-Netz nutzen, kein öffentlicher Research-Port |
+| A12 | Hub-Webprozess und kleiner Delivery-Prozess aus einem Image | Zustellung und Lesekopien unabhängig von Browser und HTTP-Laufzeit |
+| A13 | Nur freigegebene, revisionsgebundene Lesekopien auf Hetzner | begrenzte Lesbarkeit bei Heimserverausfall ohne Wissensspiegel |
 
 ## Noch zu entscheiden oder nachzuweisen
 
 | ID | Punkt | Blockiert |
 | --- | --- | --- |
-| O01 | bestehender Coolify-Host oder MS-A2 als Webhost; sichere Verbindung | Produktionsnetz/Deployment |
+| O01 | Hostaufteilung festgelegt; Tailnet-Policy, Container-Egress und private HTTPS-Strecke nachweisen | Produktionsnetz/Deployment |
 | O02 | finale Bildauswahl und Serif/Sans-Präferenz | visuelle Abnahme, nicht das Konzept |
 | O03 | tatsächliche Research-/Hermes-API, Dauerhaftigkeit und Stop-Verhalten | echte Rechercheintegration |
 | O04 | Audio-/Transkriptionsanbieter, Stimme, Datenverarbeitung | echte Audio-/Sprachverarbeitung |
@@ -45,6 +48,8 @@ Konzepts, keine nachträglich behauptete Zustimmung des Nutzers.
 | O06 | Lizenz und GitHub-Sichtbarkeit | Veröffentlichung |
 | O07 | Auth-Spike inklusive Recovery und 2FA | Produktivzugang |
 | O08 | Backupziel, Kapazität und getestete RPO/RTO | Produktionsfreigabe |
+| O09 | 24-Stunden-Rechtefenster für Lesekopien und Grenzen der Cloud-Ablage bestätigen | Magazin-Auslieferung bei Heimserverausfall |
+| O10 | Hetzner-Wartung, Managementports, Provider-Firewall und IPv6 prüfen | Produktionsfreigabe |
 
 Routineannahmen: 07:00 Europe/Berlin, Themen Design/Technik/Forschung, täglicher
 Entwurf. Budgetwerte in Bildern sind synthetisch, kein beschlossenes Ausgabenlimit.

@@ -15,9 +15,14 @@ nicht den erfolgreichen Betrieb der zukünftigen Hub-Anwendung.
   Übernommen: Hermes-Harness, PostgreSQL-Wissensautorität, Zotero, getrennte
   Audioproduktion, gemeinsame versionierte Verträge. Diese Docs sind Zielarchitektur;
   daraus folgt keine vorhandene Knowledge-API.
-- Separates Domainprojekt: älteres Coolify-Inventar weist bestehenden externen
-  Server und DNS-Zuständigkeit aus. Nicht als aktuelle Bestätigung übernommen;
-  kein privater Inventarexport wird in dieses Repository kopiert.
+- Separates Domainprojekt: älteres Coolify-Inventar als Ausgangspunkt für die
+  read-only Prüfung von CLI, SSH und DNS verwendet. Die aktuelle Prüfung und
+  ihre Grenzen stehen im [Deployment-Audit](deployment-audit.md); detaillierte
+  private Inventardaten bleiben ausschließlich in `.local/`.
+- Die Codex-Tasks „Plan MS-A2 Home AI Server“, „Hermes Agent einrichten“ und
+  „Konzept für Hermes Wissensdatenbank“ wurden gelesen. Letzterer begrenzt den
+  nächsten Backend-MVP auf Erfassen, Vorschlagen, Prüfen, Verknüpfen und Suchen.
+  Hub darf weitergehende Research-/Magazinfähigkeiten nicht als vorhanden annehmen.
 - 30 GPT-Image-Mockups und zehn zugelieferte Referenzen:
   [Abgleich](../design/portfolio/reference-review.md). Bildvarianten wurden vom
   Portfolio-Subagenten geprüft, aber noch nicht als finale Designs ausgewählt.
@@ -47,9 +52,17 @@ festschreiben. Kein Context7-Werkzeug war in dieser Sitzung verfügbar.
   Mindestzielgrößen; das Produkt wählt ausdrücklich größere 44px-Touchziele.
 - [OpenAPI 3.1.1](https://spec.openapis.org/oas/v3.1.1.html):
   Struktur des beschriebenen HTTP-Zielvertrags.
+- [Tailscale Serve](https://tailscale.com/docs/features/tailscale-serve):
+  private HTTPS-Freigabe einer lokalen Anwendung.
+- [Tailscale Grants](https://tailscale.com/docs/reference/syntax/grants):
+  Quell-/Zielrechte und additive Wirkung bestehender Freigaben.
+- [Docker Networking](https://docs.docker.com/engine/network/):
+  Container-Netze, DNS und explizite Verbindungen.
+- [Coolify Firewall](https://coolify.io/docs/core/infrastructure/servers/firewall):
+  Management-/Proxy-Ports und Docker-bedingte Firewallgrenzen.
 
 ## Noch nicht verifiziert
 
-Keine SSH-/Coolify-Liveinspektion für dieses neue Projekt, keine DNS-Änderung,
-kein Auth-/Provider-/Research-Smoke-Test, kein Lasttest, kein produktiver Restore.
-Der nächste Implementierungsschritt beginnt an diesen dokumentierten Grenzen.
+SSH-/Coolify-Liveinspektion erfolgt; keine Hetzner-Firewall-/Tailnet-Policyprüfung,
+keine private Verbindung von Hetzner zum MS-A2, keine DNS-Änderung. Weiterhin kein
+Auth-/Provider-/Research-Smoke-Test, Lasttest oder produktiver Restore.

@@ -18,6 +18,11 @@ keine implementierte Dashboard-App, Anmeldung oder Serveranbindung.
 7. [Coolify und Betrieb](docs/deployment.md): geplanter Weg vom Mac zum Server.
 8. [Umsetzungsplan](docs/implementation-plan.md): Reihenfolge, Abnahme und offene Entscheidungen.
 
+Neu ergänzt: [Backend zwischen Hetzner und Heimserver](docs/hybrid-backend.md)
+mit Netzwerk- und Ausfallkonzept sowie der [Deployment-Audit](docs/deployment-audit.md).
+Bestehende Server wurden read-only geprüft; die private Verbindung und die App
+sind noch nicht eingerichtet.
+
 Die [Entscheidungsliste](docs/decisions.md) unterscheidet Nutzervorgaben,
 Arbeitsentscheidungen und noch zu prüfende Integrationen. Die
 [Quellenbasis](docs/sources.md) hält Herkunft und Verifikationsgrenzen fest.
@@ -67,8 +72,9 @@ Details im [Prüfstand](docs/verification.md).
 ## GitHub und Veröffentlichung
 
 Das Projekt ist ein eigenständiges lokales Git-Repository. Noch kein Remote,
-keine Veröffentlichung und kein Deployment. Die gewünschten Subdomain und
-Serverzuordnung werden vor der Bereitstellung verifiziert.
+keine Veröffentlichung und kein Deployment. Webhosting auf Hetzner und Research
+auf dem MS-A2 sind zugeordnet; Subdomain, private Verbindung und produktiver
+Zugang werden vor der Bereitstellung eingerichtet und geprüft.
 
 Die 30 neuen Mockups sind Teil des Repositorys. Die zehn vom Nutzer gelieferten
 Referenzbilder bleiben vollständig im lokalen Projektordner unter `.local/`;

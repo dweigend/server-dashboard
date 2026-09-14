@@ -3,6 +3,10 @@
 Status: erforderliches Sicherheitsdesign für eine persönliche Internet-App.
 Keine der Maßnahmen wird durch dieses Dokument als umgesetzt bezeichnet.
 
+Die [Hybrid-Architektur](hybrid-backend.md) ergänzt Dienstidentität, Tailnet-
+Rechte, Docker-Netzgrenzen und eingeschränkte Cloud-Ablage. Der
+[Deployment-Audit](deployment-audit.md) beschreibt tatsächlich beobachtete Lücken.
+
 ## Zugang
 
 Ein vorab eingerichtetes Konto, keine freie Registrierung. Passwort plus TOTP

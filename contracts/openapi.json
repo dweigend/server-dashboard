@@ -707,7 +707,7 @@
       "post": {
         "operationId": "createTask",
         "summary": "Accept a durable research request",
-        "description": "Accept a durable research request. Target contract; not an implemented endpoint.",
+        "description": "Accept a durable research request. Target contract; not an implemented endpoint. Return 202 only after durable upstream acceptance. When acceptance is uncertain, return 503 with Problem.code=acceptance_uncertain and the stable requestId. Repeating the same idempotency key must reconcile that request before any submission; it must not create a new execution.",
         "tags": [
           "Tasks"
         ],
@@ -3334,6 +3334,9 @@
           },
           "packageReference": {
             "$ref": "#/components/schemas/PackageReference"
+          },
+          "delivery": {
+            "$ref": "#/components/schemas/DeliveryFreshness"
           }
         },
         "required": [
@@ -3398,6 +3401,9 @@
           "createdAt": {
             "type": "string",
             "format": "date-time"
+          },
+          "delivery": {
+            "$ref": "#/components/schemas/DeliveryFreshness"
           }
         },
         "required": [
@@ -3481,6 +3487,9 @@
           "errorCode": {
             "type": "string",
             "maxLength": 80
+          },
+          "delivery": {
+            "$ref": "#/components/schemas/DeliveryFreshness"
           }
         },
         "required": [
@@ -4080,6 +4089,65 @@
         "required": [
           "issueDate",
           "scheduleRevision"
+        ]
+      },
+      "DeliveryFreshness": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "Server-side delivery metadata. A cached copy is a projection, never a new publication or permission grant.",
+        "required": [
+          "observedAt",
+          "stale",
+          "source"
+        ],
+        "properties": {
+          "observedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Last successful upstream state and authorization check."
+          },
+          "stale": {
+            "type": "boolean"
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "upstream",
+              "private_copy"
+            ]
+          },
+          "accessValidUntil": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Required for private_copy. Do not serve after this deadline or after a known revocation."
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "source": {
+                  "const": "private_copy"
+                }
+              },
+              "required": [
+                "source"
+              ]
+            },
+            "then": {
+              "required": [
+                "accessValidUntil"
+              ]
+            }
+          }
+        ],
+        "examples": [
+          {
+            "observedAt": "2026-09-14T07:00:00Z",
+            "stale": true,
+            "source": "private_copy",
+            "accessValidUntil": "2026-09-15T07:00:00Z"
+          }
         ]
       }
     },

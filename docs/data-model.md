@@ -16,10 +16,22 @@ RFC 3339, lokale Anzeige nach IANA-Zone `Europe/Berlin`. Geld: ganze Eurocent.
 | Preferences | Anzeige, Themen, Zeit, Budgetvorschlag | owner, revision; Scheduler-/Budgetautorität beachten |
 | ReadingPosition | Fortsetzen | articleId, articleRevision, Absatz/Audiozeit |
 | RequestReceipt | Schutz vor Doppelübermittlung | owner + operation + key + bodyHash |
+| PublicationCopy | private abgeleitete Artikel-/Audiokopie | owner, package/revision/hash, releaseReference, rightsCheckedAt, serveUntil |
 
 Job-/Ausgabeansichten sind Projektionen der jeweiligen Autorität. `observedAt`
 und `stale` werden mitgeführt. Cacheverlust darf keine Forschungsdaten löschen.
 Keine zweite editierbare Quellen-, Zitat- oder Notenbibliothek.
+
+Delivery enthält zusätzlich Versuchszahl, nächste Zustellzeit und Lease-Ende;
+die Zustellung bleibt an die unveränderliche Capture-Revision gebunden.
+RequestReceipt unterscheidet intern `pending`, `accepted`, `rejected` und
+`uncertain`. Diese Transportzustände sind keine Research-Jobzustände.
+Ein verlorenes HTTP-Ergebnis erzeugt niemals automatisch einen neuen Auftrag.
+
+PublicationCopy speichert ausschließlich freigegebene Auslieferungsartefakte.
+Rechtefrist, Abgleich und Verhalten bei Widerruf stehen im
+[Hybrid-Backend-Vertrag](hybrid-backend.md). Sicherungen solcher Kopien dürfen
+keine alte Freigabe wieder aktivieren; nach Restore zuerst Rechte abgleichen.
 
 ## Eingangslebenszyklus
 
