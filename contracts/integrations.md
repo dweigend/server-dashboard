@@ -11,9 +11,38 @@ Fachverträge, keine ausgerollten URL-Pfade.
 
 ## ResearchPort
 
+ResearchPort bezeichnet den Adapter zur modularen Wissensanwendung, nicht nur
+zur Agentenausführung. Der [Wissensabgleich](../docs/knowledge-integration.md)
+hat Vorrang für den ersten Pilot: Textübernahme und kanonische Wissensoperationen
+werden unabhängig von Recherchejobs, Publikation und Audio abgenommen.
+
+### Wissensoperationen des ersten Piloten
+
+Die Namen sind fachliche Arbeitsbezeichnungen, keine festgelegten API-Pfade.
+Schemas und Bewertungswerte werden auf Produzentenseite spezifiziert und danach
+in den Hub-Vertrag übernommen. Nicht jede Operation braucht eine eigene UI-Seite.
+
 | Operation | Eingabe | Ausgabe / Pflichtnachweis |
 | --- | --- | --- |
-| capture.register | requestId, Capture-Revision, Inhalt, geprüfte FileRefs | Input-ID und kanonische Revision |
+| capture.register | Text/Markdown oder ausgewählte Passage, Herkunft, Request-ID | kanonischer Eingang mit ID und Revision |
+| requests.find | ursprüngliche Request-ID im erlaubten Operations-/Kontoumfang | Annahmestand und vorhandene kanonische Referenzen; kein neuer Befehl |
+| notes.read/propose/edit | Notizreferenz oder Inhalt/Art, Urheberschaft, erwartete Revision | Zettel/Wiki mit Quellen-, Claim- und Linkreferenzen |
+| claims.read/propose | präzise Aussage, Geltungsbereich oder Claim-Referenz | Claim-ID/Revision; keine automatische Wahrheitsfeststellung |
+| evidence.read/link/appraise | Claim-/Quellenversion, Locator, Beziehung und Begründung | versionierte Belegbeziehung, Einzelbeurteilung und Abhängigkeiten |
+| assessments.read/propose | Claim-Revision, ausgewertete Belegrevisionen, begründetes Urteil | Evidenzlage, Belastbarkeit, Umfang und Bewertungsrevision |
+| review.record | genaue Ziel-/Bewertungsrevision, Abhängigkeitsstand, Entscheidung | attribuierte Entscheidung oder Revisionskonflikt |
+| retrieval.search | erlaubter Wissensbereich, Frage/Suchtext, Filter | revisionsgebundene Treffer, Gegenbelege und Abdeckungsgrenzen |
+
+Manuelle Fachbefehle und Hermes-Werkzeuge verwenden dieselben Regeln. Ein
+Notiz-Edit oder eine Prüfentscheidung löst nicht automatisch Agentenarbeit aus.
+Der erste Capture-Vertrag überträgt keine Fotos, Audio oder PDFs. Hub darf eine
+Übernahme mit Anhängen nicht als vollständig melden, wenn nur Text übernommen
+wurde. Auslieferungsrechte für konkrete Quellenstellen separat prüfen.
+
+### Spätere Aufträge und Publikation
+
+| Operation | Eingabe | Ausgabe / Pflichtnachweis |
+| --- | --- | --- |
 | research.submit | requestId, Operation, Frage, Referenzen, Grenzen | dauerhafte Job-ID und Annahmezeit |
 | research.findRequest | requestId | nicht angenommen, angenommen oder noch unklar |
 | research.get/list | Job-ID oder Cursor/Filter | versionierter Status, beobachtete Zeit, Hermes-Zuordnung |
@@ -26,10 +55,13 @@ Fachverträge, keine ausgerollten URL-Pfade.
 
 Jeder schreibende Aufruf führt `contractVersion`, `requestId`, `idempotencyKey`,
 authentifizierten Actor/Scope, Payload und erwartete Revisionen mit. Actor/Scope
-werden vom Adapter gesetzt. Ergebnisse enthalten Request-/Run-Korrelation,
-Execution-State und davon getrennt Review/Output-Revisionen. Ein Upstream-
-Request-ID-Suchweg ist Voraussetzung, bevor Wiederholungen nach Timeouts
-produktiv aktiviert werden.
+werden vom Adapter gesetzt und vom Produzenten autorisiert. Jede Antwort
+korreliert den Request mit ihrem Ergebnis beziehungsweise kanonischen Revisionen.
+Run-ID, Hermes-Zuordnung und Execution-State sind nur bei tatsächlicher
+Agentenausführung erforderlich; modellfreie Befehle benötigen keinen Dummy-Job.
+Review/Output-Revisionen bleiben davon unabhängig. `requests.find` muss bereits
+im ersten Wissenspilot verfügbar sein, bevor Wiederholungen nach Timeouts
+produktiv aktiviert werden; es hängt nicht vom späteren `research.findRequest` ab.
 
 Hermes bleibt der Forschungsharness. Seine aktuelle Dokumentation beschreibt
 HTTP-Integration und Capability-Discovery. Das beweist nicht, dass die lokal
@@ -112,3 +144,8 @@ Zustellung, falsche Revision, unerlaubter Scope und Dienstneustart nachweisen.
 Kein Dienst erhält Produktivzugriff allein deshalb, weil ein Mockadapter denselben
 TypeScript-Typ erfüllt. Verifizierte Zuordnungen werden hier mit Version und
 Datum ergänzt; offene Ports bleiben ausdrücklich offen.
+
+Der lokale Wissenspilot benötigt zunächst keinen HTTP-Transport. Der spätere
+Hub-Pilot prüft zuerst Textübernahme, Notiz-/Behauptungsansicht, Beleg-/Bewertungs-
+bezug und Suche. Jobannahme, Rückfragen, Stop, Budgets und Publikation bilden
+eigene spätere Abnahmen und blockieren den Aufbau der Wissensdatenbank nicht.

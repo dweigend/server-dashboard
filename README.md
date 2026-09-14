@@ -23,6 +23,10 @@ mit Netzwerk- und Ausfallkonzept sowie der [Deployment-Audit](docs/deployment-au
 Bestehende Server wurden read-only geprüft; die private Verbindung und die App
 sind noch nicht eingerichtet.
 
+Aktuelle Priorität: zuerst die lokale Wissensdatenbank. Der
+[Abgleich mit dem Wissens-MVP](docs/knowledge-integration.md) hält gemeinsame
+Zuständigkeiten, Behauptungs-/Evidenzdarstellung und getrennte Lieferstufen fest.
+
 Die [Entscheidungsliste](docs/decisions.md) unterscheidet Nutzervorgaben,
 Arbeitsentscheidungen und noch zu prüfende Integrationen. Die
 [Quellenbasis](docs/sources.md) hält Herkunft und Verifikationsgrenzen fest.

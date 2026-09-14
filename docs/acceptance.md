@@ -36,6 +36,24 @@ Dokumentationschecks ersetzen diese Tests nicht.
 | Budgetgleichzeitigkeit | Grenzen serverseitig eingehalten, klare Rückmeldung | P08/P09 |
 | DST / Neustart des Schedulers | höchstens eine Ausgabe je lokalem Datum | P06/P09 |
 
+## Wissensintegration
+
+- [ ] P10: kanonische Notiz und Behauptung mit denselben IDs/Revisionen wie im
+  lokalen Wissenssystem lesen; keine zweite editierbare Datenkopie.
+- [ ] Unterstützung, Widerspruch, Einschränkung und unklare Evidenz samt
+  Fundstellen, Begründung, Studienüberlappung und Abdeckungsgrenzen zugänglich.
+- [ ] Evidenzlage, Belastbarkeit, Review, Ausführung und Publikationsfreigabe
+  getrennt; keine Wahrheitsskala oder automatische Gleichsetzung.
+- [ ] Geänderte Abhängigkeiten und veraltete Prüfaktionen erzeugen den vereinbarten
+  Konflikt/Prüfbedarf; eigene Eingabe und historische Bewertung bleiben erhalten.
+- [ ] Ohne Quellenrecht keine geschützte Passage; begrenzte Einsicht sichtbar
+  machen, ohne eine vollständig geprüfte Evidenzbasis vorzutäuschen.
+- [ ] Textübernahme ohne Anhänge ist separat von späteren Medienimporten und
+  Recherchejobs abgenommen; fehlende Fähigkeiten bleiben erkennbar.
+
+Die fachlichen Fälle aus [knowledge-integration.md](knowledge-integration.md)
+werden mit dem Produzenten gegen identische Beispieldaten geprüft.
+
 ## Produktionsfreigabe
 
 - [ ] Keine öffentlichen Datenbank-/Agent-/Verwaltungsports neu exponiert.

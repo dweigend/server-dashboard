@@ -17,6 +17,7 @@ Konzepts, keine nachträglich behauptete Zustimmung des Nutzers.
 | D08 | Research nutzt Hermes; Wissensautorität PostgreSQL; Literatur Zotero |
 | D09 | Audioproduktion ist ein eigenständiges System |
 | D10 | Zuerst Specs, Designsystem und Verträge; noch keine App-Implementierung |
+| D11 | Als Nächstes lokales Wissensfundament; im separaten Task bestätigtes Behauptungs-/Evidenzregister berücksichtigen |
 
 ## Arbeitsentscheidungen dieses Konzepts
 
@@ -50,6 +51,7 @@ Konzepts, keine nachträglich behauptete Zustimmung des Nutzers.
 | O08 | Backupziel, Kapazität und getestete RPO/RTO | Produktionsfreigabe |
 | O09 | 24-Stunden-Rechtefenster für Lesekopien und Grenzen der Cloud-Ablage bestätigen | Magazin-Auslieferung bei Heimserverausfall |
 | O10 | Hetzner-Wartung, Managementports, Provider-Firewall und IPv6 prüfen | Produktionsfreigabe |
+| O11 | Gemeinsame Wissensschemas und Bewertungsrubrik: Notes, Claims, Evidence, Assessments, Review, Retrieval | echte Wissensansichten und Prüfaktionen |
 
 Routineannahmen: 07:00 Europe/Berlin, Themen Design/Technik/Forschung, täglicher
 Entwurf. Budgetwerte in Bildern sind synthetisch, kein beschlossenes Ausgabenlimit.

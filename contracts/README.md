@@ -5,6 +5,12 @@ Browser-API. Es beschreibt neue Hub-Endpunkte, **keine bereits existierenden
 Research-, Hermes- oder Coolify-APIs**. Vertragsstatus: Entwurf für den ersten
 Implementierungspilot. Rückwärtskompatibilität ist erst nach Freigabe garantiert.
 
+Der Vertrag enthält noch keine fertigen Endpunkte für kanonische Wissensnotizen,
+Behauptungen und Bewertungen. Die abgestimmten Operationsfamilien stehen in
+[integrations.md](integrations.md); verbindliche Produzentenschemas und Rubrik
+werden vor Erweiterung der Browser-OpenAPI festgelegt. Die bestehende
+Ergebnis-/Artikelprüfung ist kein Ersatz für Claim-Assessment-Review.
+
 ## Konventionen
 
 - Gleicher Ursprung wie die UI; Basis `/api/v1`. Keine Provider-Keys im Browser.

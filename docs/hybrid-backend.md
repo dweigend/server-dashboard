@@ -34,9 +34,16 @@ Agent. Hermes führt seine bestehenden Skills und Modell-/Toolschleifen aus.
 Der laufende Matrix-Gateway ist ein weiterer Zugang und ersetzt diese API nicht.
 
 Der aktuelle Wissens-MVP aus dem separaten Task umfasst zunächst Erfassen,
-Vorschlagen, Prüfen, Verknüpfen und Suchen. Automatische Recherche, Publikation
+Vorschlagen, Prüfen, Verknüpfen und Suchen einschließlich Behauptungen, Evidenz
+und begründeter Bewertungen. Der [Wissensabgleich](knowledge-integration.md)
+ergänzt den bestätigten Umfang. Automatische Recherche, Publikation
 und tägliches Magazin sind weitere Fähigkeiten. Hub aktiviert echte Funktionen
 erst nach deren Nachweis; die UI kann davor mit gekennzeichneten Fixtures entstehen.
+
+Die lokale Python-Anwendung und ihre Fachverträge werden zuerst aufgebaut.
+HTTP ist ein späterer Adapter derselben Operationen; ein Modellaufruf ist für
+manuelle Wissensbefehle nicht erforderlich. Die gezeichnete HTTPS-Strecke
+beschreibt die spätere Hub-Anbindung, keine Voraussetzung für den Wissens-MVP.
 
 Media bleibt ein eigenes System mit eigenen Jobs, Daten und Geheimnissen.
 Ein Betrieb auf dem MS-A2 ist möglich, seine endgültige Hostzuordnung bleibt

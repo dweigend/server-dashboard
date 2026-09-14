@@ -34,6 +34,15 @@ und die ursprüngliche Galerie mobil sowie am Desktop geprüft; der Umzug
 übernimmt dieselben UI-Dateien und Bildinhalte. Es wurde hier keine neue
 Dashboard-Oberfläche implementiert oder pixelgenau abgenommen.
 
+## Abstimmung mit dem Wissensprojekt
+
+Der aktuelle bestätigte Wissens-MVP und die jüngsten Task-Nachrichten wurden
+gelesen. Zwei direkte Abstimmungsrunden mit dem dortigen Agenten führten zu
+expliziten Wissensoperationen, getrennten Lieferstufen und einer eigenständigen
+Darstellung von Behauptungsbewertungen. Der Produzent bestätigte die konzeptionelle
+Übereinstimmung; Details stehen im [Wissensabgleich](knowledge-integration.md).
+Die Hub-OpenAPI wurde dabei nicht um spekulative Knowledge-Endpunkte erweitert.
+
 ## Grenzen
 
 Die [Deployment-Prüfung](deployment-audit.md) belegt bestehende Zugänge und

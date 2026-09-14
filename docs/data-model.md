@@ -22,6 +22,13 @@ Job-/Ausgabeansichten sind Projektionen der jeweiligen Autorität. `observedAt`
 und `stale` werden mitgeführt. Cacheverlust darf keine Forschungsdaten löschen.
 Keine zweite editierbare Quellen-, Zitat- oder Notenbibliothek.
 
+Kanonische Notes, Claims, Evidence und Assessments gehören vollständig dem
+Wissenssystem. Hub führt dafür Referenzen/Ansichten, keine editierbaren Kopien.
+`Result.reviewState` und `Article.reviewState` ersetzen weder Evidenzlage noch
+Belastbarkeit oder den Reviewstatus einer Behauptungsbewertung. Das Mapping wird
+im [Wissensabgleich](knowledge-integration.md) bewusst noch nicht auf feste
+API-Werte reduziert; die Produzentenschemas fehlen.
+
 Delivery enthält zusätzlich Versuchszahl, nächste Zustellzeit und Lease-Ende;
 die Zustellung bleibt an die unveränderliche Capture-Revision gebunden.
 RequestReceipt unterscheidet intern `pending`, `accepted`, `rejected` und

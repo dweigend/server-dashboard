@@ -3,6 +3,12 @@
 Aktueller Abschnitt: Konzept. Die folgenden Stufen sind noch nicht ausgeführt.
 Sie erzeugen jeweils einen prüfbaren Stand und keine große parallele Baustelle.
 
+**Aktuelle Priorität des Nutzers: zuerst das lokale Wissensfundament.** Dessen
+Reihenfolge ist Bewertungsregeln → Fachverträge → ein vollständiger lokaler
+Durchlauf mit Historie und Restore. Die nachfolgenden Nummern beschreiben den
+Hub-Ausbau; sie verlangen nicht, Hub vor der Wissensdatenbank zu implementieren.
+Der [gemeinsame Abgleich](knowledge-integration.md) definiert die Abhängigkeiten.
+
 ## 0 · Konzept festhalten
 
 - Repository, Specs, UI-Regeln und OpenAPI-Vertrag prüfen.
@@ -30,16 +36,28 @@ darf vorerst fehlen. Browser- und Serverneustart, fremde Objekt-IDs und Doppelta
 
 Abnahme: P01/P02/P09; nach Timeout kein Datenverlust oder doppelter Capture.
 
-## 3 · Research-Vertragspilot
+## 3a · Wissens-Vertragspilot
 
 Zuvor den begrenzten Netzwerkpilot aus [deployment.md](deployment.md) durchführen.
 Die vorhandene Wissenskonzeption ist noch keine Research-API. Mit Capture-
-Übernahme beginnen; weitergehende Job-/Publikationsfähigkeiten einzeln nachweisen.
+Übernahme beginnen. Der lokale Wissens-MVP selbst braucht diesen Netzwerkpilot
+nicht; er ist nur Voraussetzung für die spätere Hetzner-Anbindung.
 
 Installierte Dienste inventarisieren, Ports aus `contracts/integrations.md`
-zuordnen und schriftlich bestätigen. Ein Capture übernehmen und einen einzigen
-kleinen Auftrag auslösen, Rückfrage beantworten, Ergebnis mit Quellen abrufen.
-Stop, Fehler und Wiederholung nach unklarer Annahme nachweisen.
+zuordnen und schriftlich bestätigen. Einen Text-Capture ohne Anhänge übernehmen,
+kanonischen Zettel, Behauptung und Belege lesen, Bewertungsbegründung und
+Gegenbelege anzeigen und das Wissen wiederfinden. Modellfreie Änderung/Prüfung,
+Revisionskonflikt, doppelte Zustellung und fehlende Rechte prüfen.
+
+Abnahme: gleiche kanonische Referenzen über Hub, CLI und Hermes-Werkzeuge;
+keine zweite Wissensautorität, keine selbst berechneten Wahrheitswerte.
+
+## 3b · Spätere Research-Aufträge
+
+Erst nach eigener Backend-Bereitstellung einen kleinen Agentenauftrag auslösen,
+Rückfrage beantworten und Ergebnis mit Quellen abrufen. Stop, Fehler und
+Wiederholung nach unklarer Annahme nachweisen. Diese Fähigkeit ist nicht
+Voraussetzung für 3a und wird nicht allein aus einem installierten Hermes abgeleitet.
 
 Abnahme: gleiche Request-/Run-/Wissensreferenzen über Hub und bestehende Clients;
 kein zweiter Harness. P03/P04/P05.

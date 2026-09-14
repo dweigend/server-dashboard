@@ -40,6 +40,24 @@ Ein Capture ist zunächst ein Eingang, keine wissenschaftlich geprüfte Wissensn
 „Übernehmen“ registriert ihn über Research. Nach bestätigter Übernahme wird die
 kanonische Wissensreferenz angezeigt; Hub bearbeitet diese nicht als zweite Kopie.
 
+## Wissensreferenz und Belege
+
+Ein übernommener Eingang öffnet seine kanonische Notiz. Verlinkte Behauptungen
+zeigen zunächst die genaue Aussage und den kurzen Bewertungsstand; Begründung,
+Unterstützung, Gegenbelege, Einschränkungen und Quellenumfang werden bei Bedarf
+geöffnet. Kein zusätzlicher Hauptnavigationseintrag. Die Detailansicht folgt
+der vorhandenen Flächenregel und bewahrt Absatz, Fokus und Zurücknavigation.
+
+Evidenzlage, Belastbarkeit und Prüfstatus bleiben getrennt. „Geprüft“ bedeutet
+nicht „wahr“ und nicht „veröffentlicht“. Neue relevante Belege können erneute
+Prüfung erfordern; das frühere Urteil bleibt historisch erkennbar. Keine
+Prozentwerte, Stimmenzählung oder Tabellen. Details und gemeinsame Abnahmefälle
+stehen im [Wissensabgleich](../docs/knowledge-integration.md).
+
+Der erste Wissens-Transfer unterstützt nur Text-Captures ohne Anhänge. Fotos
+und Audio bleiben speicherbar, sobald Hub-Staging implementiert ist; die UI
+verspricht keine bereits vorhandene OCR-/Transkriptions-/Importfunktion.
+
 ## Auftrag und Rückfrage
 
 Text + Starten erstellt genau einen Auftrag. Doppeltap und ein Retry nach

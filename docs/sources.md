@@ -23,6 +23,10 @@ nicht den erfolgreichen Betrieb der zukünftigen Hub-Anwendung.
   „Konzept für Hermes Wissensdatenbank“ wurden gelesen. Letzterer begrenzt den
   nächsten Backend-MVP auf Erfassen, Vorschlagen, Prüfen, Verknüpfen und Suchen.
   Hub darf weitergehende Research-/Magazinfähigkeiten nicht als vorhanden annehmen.
+- Jüngster bestätigter Stand im Wissens-Task: Behauptungs-/Evidenzregister,
+  getrennte Evidenzlage, Belastbarkeit und Review; festgehalten in
+  `server_einstellungen/docs/knowledge-mvp.md`. Direkte Agentenabstimmung und
+  der [Hub-Abgleich](knowledge-integration.md) ergänzen die früheren Annahmen.
 - 30 GPT-Image-Mockups und zehn zugelieferte Referenzen:
   [Abgleich](../design/portfolio/reference-review.md). Bildvarianten wurden vom
   Portfolio-Subagenten geprüft, aber noch nicht als finale Designs ausgewählt.

@@ -15,6 +15,11 @@ relevante Aufgaben. Kein Begrüßungsbanner, kein Logo und kein Kennzahlendashbo
 
 ## Erste Version
 
+Dies ist der Funktionsumfang der angestrebten Dashboard-Version, nicht der
+Umfang des unmittelbar nächsten Wissens-MVP. Dieser wird jetzt zuerst lokal
+aufgebaut; Hub übernimmt später dessen Text-, Zettel-, Behauptungs- und
+Bewertungsverträge. [Gemeinsame Lieferstufen](knowledge-integration.md).
+
 | ID | Fähigkeit | Erkennbares Ergebnis |
 | --- | --- | --- |
 | P01 | Privater Zugang | Passwort und zweiter Faktor; keine öffentliche Registrierung |
@@ -26,11 +31,17 @@ relevante Aufgaben. Kein Begrüßungsbanner, kein Logo und kein Kennzahlendashbo
 | P07 | Hören | Verfügbares Audio abspielen, pausieren und später fortsetzen |
 | P08 | Betrieb | Verfügbarkeit, Aktualität, Speicher, Sicherungsprüfung und Budget sichtbar |
 | P09 | Verlässlichkeit | Kein stiller Datenverlust bei Timeout, doppeltem Senden oder Serverausfall |
+| P10 | Wissensbezug | Kanonische Zettel und Behauptungen mit Pro-/Contra-Belegen, Begründung und Prüfstand lesen |
 
 P06 wird im Pilot als Entwurf erstellt und von David freigegeben. Die geplante
 Uhrzeit ist die Bereitstellung eines Entwurfs, kein Versprechen automatischer
 wissenschaftlicher Freigabe. P07 benötigt den unabhängigen Medienanbieter;
 ein erfolgreicher Textlauf bleibt bei Audioproblemen erfolgreich.
+
+P10 ergänzt den bestätigten Wissens-MVP. Die Oberfläche berechnet keine
+Evidenzbewertungen und zeigt keine Wahrscheinlichkeit, dass eine Behauptung
+„wahr“ sei. Prüfentscheidungen und Notizänderungen verwenden später dieselben
+fachlichen Regeln wie die lokalen Wissenswerkzeuge.
 
 ## Bewusste Begrenzungen
 
