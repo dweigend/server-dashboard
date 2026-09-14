@@ -1,0 +1,15 @@
+.local/
+.env
+.env.*
+!.env.example
+.DS_Store
+node_modules/
+.svelte-kit/
+build/
+dist/
+coverage/
+__pycache__/
+*.pyc
+*.log
+*.pem
+*.key

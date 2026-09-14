@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>30 Dashboard-Ideen</title>
+<link rel="stylesheet" href="app.css">
+<script src="gallery.js" defer></script>
+</head>
+<body>
+<main>
+<header class="gallery-header"><h1>30 Dashboard-Ideen</h1><p>Redaktion · Direkt · Linie</p></header>
+<section class="filters" aria-label="Bilder filtern">
+<div class="directions">
+<button type="button" data-direction="Alle" aria-pressed="true">Alle</button>
+<button type="button" data-direction="Redaktion" aria-pressed="false">Redaktion</button>
+<button type="button" data-direction="Direkt" aria-pressed="false">Direkt</button>
+<button type="button" data-direction="Linie" aria-pressed="false">Linie</button>
+</div>
+<div class="filter-row">
+<label>Interaktion<select id="category"><option value="all">Alle Interaktionen</option><option value="reading">Lesen</option><option value="audio">Hören</option><option value="selection">Markieren</option><option value="sources">Quellen</option><option value="note">Notizen</option><option value="voice">Sprache</option><option value="photo">Foto</option><option value="task">Auftrag</option><option value="jobs">Jobs</option><option value="result">Ergebnis</option><option value="operations">Betrieb</option><option value="settings">Einstellungen</option><option value="access">Zugang</option><option value="home">Start</option><option value="magazine">Magazin</option></select></label>
+<label class="favorite-filter"><input id="favorites-only" type="checkbox"> Nur gemerkt</label>
+<button id="export" type="button">Auswahl kopieren</button>
+</div>
+</section>
+<div class="status-row"><p id="count" aria-live="polite"></p><p id="selection-status" aria-live="polite"></p></div>
+<section id="gallery" class="gallery" aria-label="Mockup-Bilder"></section>
+<p id="empty" hidden>Keine Bilder mit diesen Filtern.</p>
+<details class="reference-notes">
+<summary>Referenzen &amp; Stilabgleich</summary>
+<p><strong>Redaktion:</strong> Lesen, synchrones Hören, Markierungen und Quellen. Die Referenzen mit großen Textflächen und kleinen Lesewerkzeugen liefern die Hierarchie; der Inhalt bleibt auf schwarzem Grund.</p>
+<p><strong>Direkt:</strong> Gedanken sofort eingeben, aufnehmen, korrigieren oder als Foto sichern. Das Diktat ist die Oberfläche. Keine Chat-Avatare, Leuchteffekte oder zusätzlichen Überschriften.</p>
+<p><strong>Linie:</strong> Monospace-Schrift und aufklappbare Details. Betrieb zeigt konkrete Probleme und nächste Schritte. Keine Tabellen oder Kennzahlenkarten.</p>
+<p><strong>Verbindlich:</strong> Mobile First, Schwarz-Weiß, eckige Flächen, schmale Hauptnavigation oben, keine Marken- oder Seitentitelzeile. Echte Artikel- und Aufgabentitel gehören zum Inhalt. Die 90%-Regel meint die für Inhalt und Eingabe verfügbare Fläche, nicht eine mit Text gefüllte Fläche.</p>
+<p><strong>Bewusst verworfen:</strong> Helle Hintergründe, schwach lesbare Textverläufe, runde Pillen, untere Hauptnavigation, große Kopfzeilen, dekorative Telefoninszenierung und Lichtglanz aus den Referenzen.</p>
+<p>Die Bilder sind Designideen mit Beispieldaten, keine lauffähige App. Schriftgrößen, aktive Icons und Abstände variieren leicht zwischen den generierten Bildern; eine pixelgenaue 48px-/90%-Messung ist daraus nicht ableitbar. Die Auswahl dient der nächsten Designentscheidung.</p>
+<a href="reference-review.md">Abgleich aller zehn Referenzen</a>
+</details>
+<footer>30 eigenständige GPT-Image-Mockups · 14. September 2026 · <a href="manifest.json">Bildverzeichnis &amp; Prompts</a></footer>
+</main>
+<dialog id="viewer" aria-label="Bild in Großansicht">
+<div class="viewer-toolbar"><button id="previous" type="button" aria-label="Vorheriges Bild">←</button><p id="viewer-title"></p><button id="next" type="button" aria-label="Nächstes Bild">→</button><button id="close" type="button">Schließen</button></div>
+<img id="viewer-image" alt="">
+<div class="viewer-actions"><button id="viewer-favorite" type="button" aria-pressed="false">Merken</button><a id="original" href="images/01.png" target="_blank" rel="noopener">Original öffnen</a></div>
+</dialog>
+</body>
+</html>

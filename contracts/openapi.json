@@ -1,0 +1,4123 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "Weigend Hub Browser API",
+    "version": "0.1.0",
+    "description": "Proposed Hub contract. No endpoints are deployed. Authentication library routes /api/auth/* are specified by the selected library and its integration spike. See contracts/README.md.",
+    "contact": {
+      "name": "Project maintainer"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5173",
+      "description": "Planned local development origin; not a running service"
+    }
+  ],
+  "security": [
+    {
+      "sessionCookie": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Health",
+      "description": "Health operations."
+    },
+    {
+      "name": "Session",
+      "description": "Session operations."
+    },
+    {
+      "name": "Captures",
+      "description": "Captures operations."
+    },
+    {
+      "name": "Uploads",
+      "description": "Uploads operations."
+    },
+    {
+      "name": "Tasks",
+      "description": "Tasks operations."
+    },
+    {
+      "name": "Magazine",
+      "description": "Magazine operations."
+    },
+    {
+      "name": "Audio",
+      "description": "Audio operations."
+    },
+    {
+      "name": "Settings",
+      "description": "Settings operations."
+    },
+    {
+      "name": "Operations",
+      "description": "Operations operations."
+    }
+  ],
+  "paths": {
+    "/health/live": {
+      "get": {
+        "operationId": "getLiveness",
+        "summary": "Read process liveness",
+        "description": "Read process liveness. Target contract; not an implemented endpoint.",
+        "tags": [
+          "Health"
+        ],
+        "responses": {
+          "200": {
+            "description": "Read process liveness",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Health"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ProblemResponse"
+          }
+        },
+        "security": []
+      }
+    },
+    "/health/ready": {
+      "get": {
+        "operationId": "getReadiness",
+        "summary": "Read Hub database and storage readiness",
+        "description": "Read Hub database and storage readiness. Target contract; not an implemented endpoint.",
+        "tags": [
+          "Health"
+        ],
+        "responses": {
+          "200": {
+            "description": "Read Hub database and storage readiness",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Health"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ProblemResponse"
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/v1/session": {
+      "get": {
+        "operationId": "getSession",
+        "summary": "Read authenticated Hub session",
+        "description": "Read authenticated Hub session. Target contract; not an implemented endpoint.",
+        "tags": [
+          "Session"
+        ],
+        "responses": {
+          "200": {
+            "description": "Read authenticated Hub session",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Session"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ProblemResponse"
+          }
+        }
+      }
+    },
+    "/api/v1/captures": {
+      "get": {
+        "operationId": "listCaptures",
+        "summary": "List capture inbox",
+        "description": "List capture inbox. Target contract; not an implemented endpoint.",
+        "tags": [
+          "Captures"
+        ],
+        "responses": {
+          "200": {
+            "description": "List capture inbox",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CapturePage"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ProblemResponse"
+          }
+        },
+        "parameters": [
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "maxLength": 1000
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 30
+            }
+          }
+        ]
+      },
+      "post": {
+        "operationId": "createCapture",
+        "summary": "Save a capture",
+        "description": "Save a capture. Target contract; not an implemented endpoint.",
+        "tags": [
+          "Captures"
+        ],
+        "responses": {
+          "201": {
+            "description": "Save a capture",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Capture"
+                }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "description": "Strong ETag corresponding to revision.",
+                "schema": {
+                  "type": "string",
+                  "maxLength": 140
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "409": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "422": {
+            "$ref": "#/components/responses/ProblemResponse"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/IdempotencyKey"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CaptureCreate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/captures/{id}": {
+      "get": {
+        "operationId": "getCapture",
+        "summary": "Read a capture",
+        "description": "Read a capture. Target contract; not an implemented endpoint.",
+        "tags": [
+          "Captures"
+        ],
+        "responses": {
+          "200": {
+            "description": "Read a capture",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Capture"
+                }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "description": "Strong ETag corresponding to revision.",
+                "schema": {
+                  "type": "string",
+                  "maxLength": 140
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ProblemResponse"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9_-]+$"
+            }
+          }
+        ]
+      },
+      "put": {
+        "operationId": "replaceCaptureContent",
+        "summary": "Replace capture text and attachment selection",
+        "description": "Full content replacement: omit text for empty text, omit attachmentIds for no attachments. At least one non-empty content kind. Only saved or transfer_failed captures can be edited; accepted canonical notes belong to Research.",
+        "tags": [
+          "Captures"
+        ],
+        "responses": {
+          "200": {
+            "description": "Replace capture text and attachment selection",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Capture"
+                }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "description": "Strong ETag corresponding to revision.",
+                "schema": {
+                  "type": "string",
+                  "maxLength": 140
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "409": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "412": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "428": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "422": {
+            "$ref": "#/components/responses/ProblemResponse"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9_-]+$"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/ExpectedRevision"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CaptureEdit"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/captures/{id}/transfer": {
+      "post": {
+        "operationId": "transferCapture",
+        "summary": "Register the exact capture revision in Research",
+        "description": "Register the exact capture revision in Research. Target contract; not an implemented endpoint.",
+        "tags": [
+          "Captures"
+        ],
+        "responses": {
+          "202": {
+            "description": "Register the exact capture revision in Research",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Delivery"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "409": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "412": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "428": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "422": {
+            "$ref": "#/components/responses/ProblemResponse"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9_-]+$"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/ExpectedRevision"
+          },
+          {
+            "$ref": "#/components/parameters/IdempotencyKey"
+          }
+        ]
+      }
+    },
+    "/api/v1/uploads": {
+      "post": {
+        "operationId": "uploadAttachment",
+        "summary": "Store and validate a private attachment",
+        "description": "Store and validate a private attachment. Target contract; not an implemented endpoint.",
+        "tags": [
+          "Uploads"
+        ],
+        "responses": {
+          "201": {
+            "description": "Store and validate a private attachment",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Upload"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "409": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "422": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "413": {
+            "$ref": "#/components/responses/ProblemResponse"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/IdempotencyKey"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "file"
+                ],
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/uploads/{id}": {
+      "get": {
+        "operationId": "getUpload",
+        "summary": "Read attachment validation status",
+        "description": "Read attachment validation status. Target contract; not an implemented endpoint.",
+        "tags": [
+          "Uploads"
+        ],
+        "responses": {
+          "200": {
+            "description": "Read attachment validation status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Upload"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ProblemResponse"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9_-]+$"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/tasks": {
+      "get": {
+        "operationId": "listTasks",
+        "summary": "List research jobs",
+        "description": "List research jobs. Target contract; not an implemented endpoint.",
+        "tags": [
+          "Tasks"
+        ],
+        "responses": {
+          "200": {
+            "description": "List research jobs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskPage"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ProblemResponse"
+          }
+        },
+        "parameters": [
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "maxLength": 1000
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 30
+            }
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "queued",
+                "running",
+                "waiting_for_input",
+                "cancelling",
+                "succeeded",
+                "failed",
+                "cancelled"
+              ]
+            }
+          }
+        ]
+      },
+      "post": {
+        "operationId": "createTask",
+        "summary": "Accept a durable research request",
+        "description": "Accept a durable research request. Target contract; not an implemented endpoint.",
+        "tags": [
+          "Tasks"
+        ],
+        "responses": {
+          "202": {
+            "description": "Accept a durable research request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Task"
+                }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "description": "Strong ETag corresponding to revision.",
+                "schema": {
+                  "type": "string",
+                  "maxLength": 140
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "409": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "422": {
+            "$ref": "#/components/responses/ProblemResponse"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/IdempotencyKey"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TaskCreate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tasks/{id}": {
+      "get": {
+        "operationId": "getTask",
+        "summary": "Read research job state",
+        "description": "Read research job state. Target contract; not an implemented endpoint.",
+        "tags": [
+          "Tasks"
+        ],
+        "responses": {
+          "200": {
+            "description": "Read research job state",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Task"
+                }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "description": "Strong ETag corresponding to revision.",
+                "schema": {
+                  "type": "string",
+                  "maxLength": 140
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ProblemResponse"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9_-]+$"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/tasks/{id}/reply": {
+      "post": {
+        "operationId": "replyToTask",
+        "summary": "Answer the current research question",
+        "description": "Answer the current research question. Target contract; not an implemented endpoint.",
+        "tags": [
+          "Tasks"
+        ],
+        "responses": {
+          "202": {
+            "description": "Answer the current research question",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Task"
+                }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "description": "Strong ETag corresponding to revision.",
+                "schema": {
+                  "type": "string",
+                  "maxLength": 140
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "409": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "412": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "428": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "422": {
+            "$ref": "#/components/responses/ProblemResponse"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9_-]+$"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/ExpectedRevision"
+          },
+          {
+            "$ref": "#/components/parameters/IdempotencyKey"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TaskReply"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tasks/{id}/cancel": {
+      "post": {
+        "operationId": "cancelTask",
+        "summary": "Request research cancellation",
+        "description": "Request research cancellation. Target contract; not an implemented endpoint.",
+        "tags": [
+          "Tasks"
+        ],
+        "responses": {
+          "202": {
+            "description": "Request research cancellation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Task"
+                }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "description": "Strong ETag corresponding to revision.",
+                "schema": {
+                  "type": "string",
+                  "maxLength": 140
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "409": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "412": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "428": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "422": {
+            "$ref": "#/components/responses/ProblemResponse"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9_-]+$"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/ExpectedRevision"
+          },
+          {
+            "$ref": "#/components/parameters/IdempotencyKey"
+          }
+        ]
+      }
+    },
+    "/api/v1/tasks/{id}/retry": {
+      "post": {
+        "operationId": "retryTask",
+        "summary": "Create a new attempt linked to the old job",
+        "description": "Create a new attempt linked to the old job. Target contract; not an implemented endpoint.",
+        "tags": [
+          "Tasks"
+        ],
+        "responses": {
+          "202": {
+            "description": "Create a new attempt linked to the old job",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Task"
+                }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "description": "Strong ETag corresponding to revision.",
+                "schema": {
+                  "type": "string",
+                  "maxLength": 140
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "409": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "412": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "428": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "422": {
+            "$ref": "#/components/responses/ProblemResponse"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9_-]+$"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/ExpectedRevision"
+          },
+          {
+            "$ref": "#/components/parameters/IdempotencyKey"
+          }
+        ]
+      }
+    },
+    "/api/v1/results/{id}": {
+      "get": {
+        "operationId": "getResult",
+        "summary": "Read a versioned result with sources",
+        "description": "Read a versioned result with sources. Target contract; not an implemented endpoint.",
+        "tags": [
+          "Tasks"
+        ],
+        "responses": {
+          "200": {
+            "description": "Read a versioned result with sources",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ProblemResponse"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9_-]+$"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/issues": {
+      "get": {
+        "operationId": "listIssues",
+        "summary": "List daily magazine issues",
+        "description": "List daily magazine issues. Target contract; not an implemented endpoint.",
+        "tags": [
+          "Magazine"
+        ],
+        "responses": {
+          "200": {
+            "description": "List daily magazine issues",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IssuePage"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ProblemResponse"
+          }
+        },
+        "parameters": [
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "maxLength": 1000
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 30
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/issues/{id}": {
+      "get": {
+        "operationId": "getIssue",
+        "summary": "Read an issue and its article order",
+        "description": "Read an issue and its article order. Target contract; not an implemented endpoint.",
+        "tags": [
+          "Magazine"
+        ],
+        "responses": {
+          "200": {
+            "description": "Read an issue and its article order",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Issue"
+                }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "description": "Strong ETag corresponding to revision.",
+                "schema": {
+                  "type": "string",
+                  "maxLength": 140
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ProblemResponse"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9_-]+$"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/issues/{id}/release": {
+      "post": {
+        "operationId": "releaseIssue",
+        "summary": "Release the exact reviewed issue revision",
+        "description": "Research validates the current dependency revision set and records the authenticated owner decision. A stale or ineligible release fails; this does not modify evidence acceptance implicitly.",
+        "tags": [
+          "Magazine"
+        ],
+        "responses": {
+          "200": {
+            "description": "Release the exact reviewed issue revision",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Issue"
+                }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "description": "Strong ETag corresponding to revision.",
+                "schema": {
+                  "type": "string",
+                  "maxLength": 140
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "409": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "412": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "428": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "422": {
+            "$ref": "#/components/responses/ProblemResponse"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9_-]+$"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/ExpectedRevision"
+          },
+          {
+            "$ref": "#/components/parameters/IdempotencyKey"
+          }
+        ]
+      }
+    },
+    "/api/v1/articles/{id}": {
+      "get": {
+        "operationId": "getArticle",
+        "summary": "Read article text and sources",
+        "description": "Read article text and sources. Target contract; not an implemented endpoint.",
+        "tags": [
+          "Magazine"
+        ],
+        "responses": {
+          "200": {
+            "description": "Read article text and sources",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Article"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ProblemResponse"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9_-]+$"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/articles/{id}/audio": {
+      "get": {
+        "operationId": "getArticleAudio",
+        "summary": "Read independent audio availability",
+        "description": "Read independent audio availability. Target contract; not an implemented endpoint.",
+        "tags": [
+          "Audio"
+        ],
+        "responses": {
+          "200": {
+            "description": "Read independent audio availability",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AudioStatus"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ProblemResponse"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9_-]+$"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/articles/{id}/audio/request": {
+      "post": {
+        "operationId": "requestArticleAudio",
+        "summary": "Request explicitly budgeted media generation",
+        "description": "Request explicitly budgeted media generation. Target contract; not an implemented endpoint.",
+        "tags": [
+          "Audio"
+        ],
+        "responses": {
+          "202": {
+            "description": "Request explicitly budgeted media generation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AudioStatus"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "409": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "422": {
+            "$ref": "#/components/responses/ProblemResponse"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9_-]+$"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/IdempotencyKey"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AudioRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/media/options": {
+      "get": {
+        "operationId": "getMediaOptions",
+        "summary": "Read available configured voices",
+        "description": "Read available configured voices. Target contract; not an implemented endpoint.",
+        "tags": [
+          "Audio"
+        ],
+        "responses": {
+          "200": {
+            "description": "Read available configured voices",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MediaOptions"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ProblemResponse"
+          }
+        }
+      }
+    },
+    "/api/v1/articles/{id}/position": {
+      "get": {
+        "operationId": "getReadingPosition",
+        "summary": "Read revision-bound reading position",
+        "description": "When absent, return a virtual initial position with revision 0 and corresponding ETag. Never silently apply an old paragraph or audio offset to a different article/audio revision.",
+        "tags": [
+          "Magazine"
+        ],
+        "responses": {
+          "200": {
+            "description": "Read revision-bound reading position",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReadingPosition"
+                }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "description": "Strong ETag corresponding to revision.",
+                "schema": {
+                  "type": "string",
+                  "maxLength": 140
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ProblemResponse"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9_-]+$"
+            }
+          }
+        ]
+      },
+      "put": {
+        "operationId": "setReadingPosition",
+        "summary": "Save a reading or listening position",
+        "description": "Save a reading or listening position. Target contract; not an implemented endpoint.",
+        "tags": [
+          "Magazine"
+        ],
+        "responses": {
+          "200": {
+            "description": "Save a reading or listening position",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReadingPosition"
+                }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "description": "Strong ETag corresponding to revision.",
+                "schema": {
+                  "type": "string",
+                  "maxLength": 140
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "409": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "412": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "428": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "422": {
+            "$ref": "#/components/responses/ProblemResponse"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9_-]+$"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/ExpectedRevision"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PositionUpdate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/preferences": {
+      "get": {
+        "operationId": "getPreferences",
+        "summary": "Read Hub display preferences",
+        "description": "Read Hub display preferences. Target contract; not an implemented endpoint.",
+        "tags": [
+          "Settings"
+        ],
+        "responses": {
+          "200": {
+            "description": "Read Hub display preferences",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Preferences"
+                }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "description": "Strong ETag corresponding to revision.",
+                "schema": {
+                  "type": "string",
+                  "maxLength": 140
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ProblemResponse"
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updatePreferences",
+        "summary": "Update Hub display preferences",
+        "description": "Update Hub display preferences. Target contract; not an implemented endpoint.",
+        "tags": [
+          "Settings"
+        ],
+        "responses": {
+          "200": {
+            "description": "Update Hub display preferences",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Preferences"
+                }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "description": "Strong ETag corresponding to revision.",
+                "schema": {
+                  "type": "string",
+                  "maxLength": 140
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "409": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "412": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "428": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "422": {
+            "$ref": "#/components/responses/ProblemResponse"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ExpectedRevision"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PreferencesUpdate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/schedule": {
+      "get": {
+        "operationId": "getSchedule",
+        "summary": "Read authoritative schedule configuration",
+        "description": "Read authoritative schedule configuration. Target contract; not an implemented endpoint.",
+        "tags": [
+          "Settings"
+        ],
+        "responses": {
+          "200": {
+            "description": "Read authoritative schedule configuration",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Schedule"
+                }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "description": "Strong ETag corresponding to revision.",
+                "schema": {
+                  "type": "string",
+                  "maxLength": 140
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ProblemResponse"
+          }
+        }
+      },
+      "put": {
+        "operationId": "setSchedule",
+        "summary": "Apply authoritative schedule configuration",
+        "description": "Return only after the owning service confirms application. On ambiguous delivery, reconcile the stable request before a new write. Revision checks and idempotency are enforced by the authority, not just a local cache.",
+        "tags": [
+          "Settings"
+        ],
+        "responses": {
+          "200": {
+            "description": "Apply authoritative schedule configuration",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Schedule"
+                }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "description": "Strong ETag corresponding to revision.",
+                "schema": {
+                  "type": "string",
+                  "maxLength": 140
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "409": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "412": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "428": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "422": {
+            "$ref": "#/components/responses/ProblemResponse"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ExpectedRevision"
+          },
+          {
+            "$ref": "#/components/parameters/IdempotencyKey"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScheduleUpdate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admission": {
+      "get": {
+        "operationId": "getAdmission",
+        "summary": "Read authoritative admission configuration",
+        "description": "Read authoritative admission configuration. Target contract; not an implemented endpoint.",
+        "tags": [
+          "Operations"
+        ],
+        "responses": {
+          "200": {
+            "description": "Read authoritative admission configuration",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Admission"
+                }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "description": "Strong ETag corresponding to revision.",
+                "schema": {
+                  "type": "string",
+                  "maxLength": 140
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ProblemResponse"
+          }
+        }
+      },
+      "put": {
+        "operationId": "setAdmission",
+        "summary": "Apply authoritative admission configuration",
+        "description": "Return only after the owning service confirms application. On ambiguous delivery, reconcile the stable request before a new write. Revision checks and idempotency are enforced by the authority, not just a local cache.",
+        "tags": [
+          "Operations"
+        ],
+        "responses": {
+          "200": {
+            "description": "Apply authoritative admission configuration",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Admission"
+                }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "description": "Strong ETag corresponding to revision.",
+                "schema": {
+                  "type": "string",
+                  "maxLength": 140
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "409": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "412": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "428": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "422": {
+            "$ref": "#/components/responses/ProblemResponse"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ExpectedRevision"
+          },
+          {
+            "$ref": "#/components/parameters/IdempotencyKey"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdmissionUpdate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/operations": {
+      "get": {
+        "operationId": "getOperations",
+        "summary": "Read safe component observations",
+        "description": "Read safe component observations. Target contract; not an implemented endpoint.",
+        "tags": [
+          "Operations"
+        ],
+        "responses": {
+          "200": {
+            "description": "Read safe component observations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Operations"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ProblemResponse"
+          }
+        }
+      }
+    },
+    "/api/v1/uploads/{id}/content": {
+      "get": {
+        "operationId": "readUploadContent",
+        "summary": "Read authorized private media bytes",
+        "description": "Serve only available authorized media. No public object URL, no render side effect. Audio is revision-bound; requested revision must match the advertised AudioStatus.",
+        "tags": [
+          "Uploads"
+        ],
+        "responses": {
+          "200": {
+            "description": "Private file bytes. Content-Type is the validated supported media type.",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            },
+            "headers": {
+              "Accept-Ranges": {
+                "schema": {
+                  "type": "string",
+                  "const": "bytes"
+                },
+                "description": "Byte-range support."
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "206": {
+            "description": "Private file bytes. Content-Type is the validated supported media type.",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            },
+            "headers": {
+              "Accept-Ranges": {
+                "schema": {
+                  "type": "string",
+                  "const": "bytes"
+                },
+                "description": "Byte-range support."
+              },
+              "Content-Range": {
+                "schema": {
+                  "type": "string",
+                  "maxLength": 100
+                },
+                "description": "Returned byte range and full size."
+              }
+            }
+          },
+          "416": {
+            "$ref": "#/components/responses/ProblemResponse"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9_-]+$"
+            }
+          },
+          {
+            "name": "Range",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 100
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/articles/{id}/audio/content": {
+      "get": {
+        "operationId": "readAudioContent",
+        "summary": "Read authorized private media bytes",
+        "description": "Serve only available authorized media. No public object URL, no render side effect. Audio is revision-bound; requested revision must match the advertised AudioStatus.",
+        "tags": [
+          "Audio"
+        ],
+        "responses": {
+          "200": {
+            "description": "Private file bytes. Content-Type is the validated supported media type.",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            },
+            "headers": {
+              "Accept-Ranges": {
+                "schema": {
+                  "type": "string",
+                  "const": "bytes"
+                },
+                "description": "Byte-range support."
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "206": {
+            "description": "Private file bytes. Content-Type is the validated supported media type.",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            },
+            "headers": {
+              "Accept-Ranges": {
+                "schema": {
+                  "type": "string",
+                  "const": "bytes"
+                },
+                "description": "Byte-range support."
+              },
+              "Content-Range": {
+                "schema": {
+                  "type": "string",
+                  "maxLength": 100
+                },
+                "description": "Returned byte range and full size."
+              }
+            }
+          },
+          "416": {
+            "$ref": "#/components/responses/ProblemResponse"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9_-]+$"
+            }
+          },
+          {
+            "name": "Range",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 100
+            }
+          },
+          {
+            "name": "revision",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/budgets/{domain}": {
+      "get": {
+        "operationId": "getDomainBudget",
+        "summary": "Read the budget of one owning system",
+        "description": "Research and media own separate budgets. Apply this operation only to the selected authority; there is no cross-system transaction. Return confirmed state or a structured error; reconcile ambiguous writes before retrying.",
+        "tags": [
+          "Operations"
+        ],
+        "responses": {
+          "200": {
+            "description": "Read authoritative budget configuration",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Budget"
+                }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "description": "Strong ETag corresponding to revision.",
+                "schema": {
+                  "type": "string",
+                  "maxLength": 140
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ProblemResponse"
+          }
+        },
+        "parameters": [
+          {
+            "name": "domain",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "research",
+                "media"
+              ]
+            }
+          }
+        ]
+      },
+      "put": {
+        "operationId": "setDomainBudget",
+        "summary": "Apply the budget to one owning system",
+        "description": "Research and media own separate budgets. Apply this operation only to the selected authority; there is no cross-system transaction. Return confirmed state or a structured error; reconcile ambiguous writes before retrying.",
+        "tags": [
+          "Operations"
+        ],
+        "responses": {
+          "200": {
+            "description": "Apply authoritative budget configuration",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Budget"
+                }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "description": "Strong ETag corresponding to revision.",
+                "schema": {
+                  "type": "string",
+                  "maxLength": 140
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "409": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "412": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "428": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "422": {
+            "$ref": "#/components/responses/ProblemResponse"
+          }
+        },
+        "parameters": [
+          {
+            "name": "domain",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "research",
+                "media"
+              ]
+            }
+          },
+          {
+            "$ref": "#/components/parameters/ExpectedRevision"
+          },
+          {
+            "$ref": "#/components/parameters/IdempotencyKey"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BudgetUpdate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/issues/drafts": {
+      "post": {
+        "operationId": "requestIssueDraft",
+        "summary": "Request a magazine draft for a local date",
+        "description": "Create a draft through Research using the configured source registry and topics. Deduplicate scheduled and manual draft requests by local date and configuration revision. This does not release text or create audio.",
+        "tags": [
+          "Magazine"
+        ],
+        "responses": {
+          "202": {
+            "description": "Accept a durable research request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Task"
+                }
+              }
+            },
+            "headers": {
+              "ETag": {
+                "description": "Strong ETag corresponding to revision.",
+                "schema": {
+                  "type": "string",
+                  "maxLength": 140
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "503": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "403": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "429": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "409": {
+            "$ref": "#/components/responses/ProblemResponse"
+          },
+          "422": {
+            "$ref": "#/components/responses/ProblemResponse"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/IdempotencyKey"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IssueDraftRequest"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "sessionCookie": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "hub_session",
+        "description": "HttpOnly host-scoped session, Secure in production. Configure the auth library to match."
+      }
+    },
+    "schemas": {
+      "Problem": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "type": "string",
+            "format": "uri-reference"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 160
+          },
+          "status": {
+            "type": "integer",
+            "minimum": 400,
+            "maximum": 599
+          },
+          "detail": {
+            "type": "string",
+            "maxLength": 500
+          },
+          "code": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "requestId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          }
+        },
+        "required": [
+          "type",
+          "title",
+          "status",
+          "code",
+          "requestId"
+        ],
+        "examples": [
+          {
+            "type": "about:blank",
+            "title": "Revision conflict",
+            "status": 412,
+            "code": "revision_conflict",
+            "detail": "The object changed since it was loaded.",
+            "requestId": "request_demo_01"
+          }
+        ]
+      },
+      "Session": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "accountId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          "displayName": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "secondFactorVerified": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "accountId",
+          "displayName",
+          "expiresAt",
+          "secondFactorVerified"
+        ]
+      },
+      "Health": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "ok",
+              "unavailable"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "CanonicalReference": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          "revision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "input",
+              "note",
+              "document"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "revision",
+          "kind"
+        ]
+      },
+      "Upload": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          "revision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "processing",
+              "ready",
+              "rejected"
+            ]
+          },
+          "mediaType": {
+            "type": "string",
+            "maxLength": 100
+          },
+          "bytes": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 26214400
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "errorCode": {
+            "type": "string",
+            "maxLength": 80
+          }
+        },
+        "required": [
+          "id",
+          "revision",
+          "state",
+          "mediaType",
+          "bytes",
+          "createdAt"
+        ]
+      },
+      "CaptureCreate": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "text": {
+            "type": "string",
+            "maxLength": 20000
+          },
+          "attachmentIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9_-]+$"
+            },
+            "maxItems": 5
+          }
+        },
+        "required": [],
+        "anyOf": [
+          {
+            "required": [
+              "text"
+            ],
+            "properties": {
+              "text": {
+                "minLength": 1
+              }
+            }
+          },
+          {
+            "required": [
+              "attachmentIds"
+            ],
+            "properties": {
+              "attachmentIds": {
+                "minItems": 1
+              }
+            }
+          }
+        ],
+        "examples": [
+          {
+            "text": "Gedanke zur n\u00e4chsten Recherche",
+            "attachmentIds": []
+          },
+          {
+            "attachmentIds": [
+              "upload_demo_01"
+            ]
+          }
+        ]
+      },
+      "CaptureEdit": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "text": {
+            "type": "string",
+            "maxLength": 20000
+          },
+          "attachmentIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9_-]+$"
+            },
+            "maxItems": 5
+          }
+        },
+        "required": [],
+        "anyOf": [
+          {
+            "required": [
+              "text"
+            ],
+            "properties": {
+              "text": {
+                "minLength": 1
+              }
+            }
+          },
+          {
+            "required": [
+              "attachmentIds"
+            ],
+            "properties": {
+              "attachmentIds": {
+                "minItems": 1
+              }
+            }
+          }
+        ]
+      },
+      "Capture": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          "revision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "text": {
+            "type": "string",
+            "maxLength": 20000
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Upload"
+            },
+            "maxItems": 5
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "saved",
+              "transferring",
+              "transferred",
+              "transfer_failed"
+            ]
+          },
+          "canonicalReference": {
+            "$ref": "#/components/schemas/CanonicalReference"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "errorCode": {
+            "type": "string",
+            "maxLength": 80
+          }
+        },
+        "required": [
+          "id",
+          "revision",
+          "text",
+          "attachments",
+          "state",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "Delivery": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          "captureId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          "captureRevision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "transferring",
+              "transferred",
+              "transfer_failed"
+            ]
+          },
+          "canonicalReference": {
+            "$ref": "#/components/schemas/CanonicalReference"
+          }
+        },
+        "required": [
+          "requestId",
+          "captureId",
+          "captureRevision",
+          "state"
+        ]
+      },
+      "TaskCreate": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "question": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 20000
+          },
+          "captureIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9_-]+$"
+            },
+            "maxItems": 5
+          },
+          "articleId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          "articleRevision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "dueAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "maxCostCents": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "length": {
+            "type": "string",
+            "enum": [
+              "brief",
+              "standard",
+              "detailed"
+            ]
+          },
+          "sourceInstructions": {
+            "type": "string",
+            "maxLength": 2000
+          }
+        },
+        "required": [
+          "question"
+        ],
+        "dependentRequired": {
+          "articleId": [
+            "articleRevision"
+          ],
+          "articleRevision": [
+            "articleId"
+          ]
+        },
+        "examples": [
+          {
+            "question": "Welche Ans\u00e4tze eignen sich f\u00fcr lokale Literaturrecherche?",
+            "maxCostCents": 200,
+            "length": "brief"
+          }
+        ]
+      },
+      "TaskQuestion": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          "revision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "text": {
+            "type": "string",
+            "maxLength": 4000
+          }
+        },
+        "required": [
+          "id",
+          "revision",
+          "text"
+        ]
+      },
+      "Task": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          "revision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "requestId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 200
+          },
+          "question": {
+            "type": "string",
+            "maxLength": 20000
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "queued",
+              "running",
+              "waiting_for_input",
+              "cancelling",
+              "succeeded",
+              "failed",
+              "cancelled"
+            ]
+          },
+          "step": {
+            "type": "string",
+            "maxLength": 180
+          },
+          "inputQuestion": {
+            "$ref": "#/components/schemas/TaskQuestion"
+          },
+          "resultId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          "retryOf": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "finishedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "observedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "stale": {
+            "type": "boolean"
+          },
+          "errorCode": {
+            "type": "string",
+            "maxLength": 80
+          }
+        },
+        "required": [
+          "id",
+          "revision",
+          "requestId",
+          "title",
+          "question",
+          "state",
+          "createdAt",
+          "updatedAt",
+          "observedAt",
+          "stale"
+        ]
+      },
+      "TaskReply": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "questionId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          "questionRevision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 20000
+          }
+        },
+        "required": [
+          "questionId",
+          "questionRevision",
+          "text"
+        ]
+      },
+      "Source": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          "revision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 300
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https?://"
+          },
+          "locator": {
+            "type": "string",
+            "maxLength": 1000
+          }
+        },
+        "required": [
+          "id",
+          "revision",
+          "title"
+        ]
+      },
+      "Result": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          "revision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "taskId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 300
+          },
+          "markdown": {
+            "type": "string",
+            "maxLength": 200000
+          },
+          "reviewState": {
+            "type": "string",
+            "enum": [
+              "unreviewed",
+              "needs_changes",
+              "accepted"
+            ]
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Source"
+            },
+            "maxItems": 500
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "revision",
+          "taskId",
+          "title",
+          "markdown",
+          "reviewState",
+          "sources",
+          "createdAt"
+        ]
+      },
+      "PackageReference": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "packageId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          "revision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "contractVersion": {
+            "type": "string",
+            "maxLength": 30
+          }
+        },
+        "required": [
+          "packageId",
+          "revision",
+          "sha256",
+          "contractVersion"
+        ]
+      },
+      "Article": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          "revision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 300
+          },
+          "markdown": {
+            "type": "string",
+            "maxLength": 200000
+          },
+          "readingMinutes": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "reviewState": {
+            "type": "string",
+            "enum": [
+              "unreviewed",
+              "needs_changes",
+              "accepted"
+            ]
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Source"
+            },
+            "maxItems": 500
+          },
+          "packageReference": {
+            "$ref": "#/components/schemas/PackageReference"
+          }
+        },
+        "required": [
+          "id",
+          "revision",
+          "title",
+          "markdown",
+          "readingMinutes",
+          "reviewState",
+          "sources"
+        ]
+      },
+      "Issue": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          "revision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 200
+          },
+          "issueDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "draft",
+              "released",
+              "withdrawn"
+            ]
+          },
+          "articleIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9_-]+$"
+            },
+            "maxItems": 30
+          },
+          "coverageWarnings": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "maxItems": 20
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "revision",
+          "title",
+          "issueDate",
+          "state",
+          "articleIds",
+          "coverageWarnings",
+          "createdAt"
+        ]
+      },
+      "AudioRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "packageReference": {
+            "$ref": "#/components/schemas/PackageReference"
+          },
+          "voiceId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          "maxCostCents": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "packageReference",
+          "voiceId",
+          "maxCostCents"
+        ]
+      },
+      "AudioStatus": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "state": {
+            "type": "string",
+            "enum": [
+              "unavailable",
+              "queued",
+              "running",
+              "ready",
+              "failed"
+            ]
+          },
+          "articleId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          "articleRevision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "mediaJobId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          "packageReference": {
+            "$ref": "#/components/schemas/PackageReference"
+          },
+          "audioRevision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "durationSeconds": {
+            "type": "number",
+            "minimum": 0
+          },
+          "errorCode": {
+            "type": "string",
+            "maxLength": 80
+          }
+        },
+        "required": [
+          "state",
+          "articleId",
+          "articleRevision"
+        ]
+      },
+      "ReadingPosition": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "revision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "articleRevision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "paragraphId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          "audioRevision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "audioSeconds": {
+            "type": "number",
+            "minimum": 0
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "revision",
+          "articleRevision",
+          "updatedAt"
+        ]
+      },
+      "PositionUpdate": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "articleRevision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "paragraphId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          "audioRevision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "audioSeconds": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "articleRevision"
+        ],
+        "dependentRequired": {
+          "audioSeconds": [
+            "audioRevision"
+          ]
+        }
+      },
+      "Preferences": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "revision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "bodySizePx": {
+            "type": "integer",
+            "enum": [
+              18,
+              20,
+              22,
+              24
+            ]
+          },
+          "readingFont": {
+            "type": "string",
+            "enum": [
+              "sans",
+              "serif"
+            ]
+          },
+          "playbackRate": {
+            "type": "number",
+            "enum": [
+              0.75,
+              1,
+              1.25,
+              1.5,
+              1.75,
+              2
+            ]
+          },
+          "defaultVoiceId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          }
+        },
+        "required": [
+          "revision",
+          "bodySizePx",
+          "readingFont",
+          "playbackRate"
+        ]
+      },
+      "PreferencesUpdate": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "bodySizePx": {
+            "type": "integer",
+            "enum": [
+              18,
+              20,
+              22,
+              24
+            ]
+          },
+          "readingFont": {
+            "type": "string",
+            "enum": [
+              "sans",
+              "serif"
+            ]
+          },
+          "playbackRate": {
+            "type": "number",
+            "enum": [
+              0.75,
+              1,
+              1.25,
+              1.5,
+              1.75,
+              2
+            ]
+          },
+          "defaultVoiceId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          }
+        },
+        "required": [],
+        "minProperties": 1
+      },
+      "ScheduleUpdate": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "enabled": {
+            "type": "boolean"
+          },
+          "localTime": {
+            "type": "string",
+            "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$"
+          },
+          "timezone": {
+            "type": "string",
+            "enum": [
+              "Europe/Berlin"
+            ]
+          },
+          "weekdays": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 7
+            },
+            "minItems": 1,
+            "maxItems": 7,
+            "uniqueItems": true
+          },
+          "topics": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "minItems": 1,
+            "maxItems": 10
+          }
+        },
+        "required": [
+          "enabled",
+          "localTime",
+          "timezone",
+          "weekdays",
+          "topics"
+        ]
+      },
+      "Schedule": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "revision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "localTime": {
+            "type": "string",
+            "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$"
+          },
+          "timezone": {
+            "type": "string",
+            "enum": [
+              "Europe/Berlin"
+            ]
+          },
+          "weekdays": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 7
+            },
+            "minItems": 1,
+            "maxItems": 7,
+            "uniqueItems": true
+          },
+          "topics": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "minItems": 1,
+            "maxItems": 10
+          },
+          "observedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "stale": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "revision",
+          "enabled",
+          "localTime",
+          "timezone",
+          "weekdays",
+          "topics",
+          "observedAt",
+          "stale"
+        ]
+      },
+      "BudgetUpdate": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "monthlyLimitCents": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "monthlyLimitCents"
+        ]
+      },
+      "Budget": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "revision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "domain": {
+            "type": "string",
+            "enum": [
+              "research",
+              "media"
+            ]
+          },
+          "monthlyLimitCents": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "spentCents": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "reservedCents": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "period": {
+            "type": "string",
+            "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])$"
+          },
+          "observedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "stale": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "revision",
+          "domain",
+          "monthlyLimitCents",
+          "spentCents",
+          "reservedCents",
+          "period",
+          "observedAt",
+          "stale"
+        ],
+        "examples": [
+          {
+            "revision": "1",
+            "domain": "research",
+            "monthlyLimitCents": 3000,
+            "spentCents": 800,
+            "reservedCents": 200,
+            "period": "2026-09",
+            "observedAt": "2026-09-14T15:00:00Z",
+            "stale": false
+          }
+        ]
+      },
+      "ComponentStatus": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "component": {
+            "type": "string",
+            "enum": [
+              "app",
+              "research",
+              "media",
+              "storage",
+              "backup"
+            ]
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "ok",
+              "degraded",
+              "down",
+              "unknown"
+            ]
+          },
+          "summary": {
+            "type": "string",
+            "maxLength": 180
+          },
+          "observedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "staleAfterSeconds": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "lastBackupAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lastRestoreTestAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "component",
+          "state",
+          "summary",
+          "observedAt",
+          "staleAfterSeconds"
+        ]
+      },
+      "Operations": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "components": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ComponentStatus"
+            },
+            "maxItems": 10
+          },
+          "observedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "components",
+          "observedAt"
+        ]
+      },
+      "Admission": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "revision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "acceptingNewTasks": {
+            "type": "boolean"
+          },
+          "scope": {
+            "type": "string",
+            "enum": [
+              "research"
+            ]
+          },
+          "observedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "stale": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "revision",
+          "acceptingNewTasks",
+          "scope",
+          "observedAt",
+          "stale"
+        ]
+      },
+      "AdmissionUpdate": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "acceptingNewTasks": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "acceptingNewTasks"
+        ]
+      },
+      "CapturePage": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Capture"
+            },
+            "maxItems": 100
+          },
+          "nextCursor": {
+            "type": "string",
+            "maxLength": 1000
+          }
+        },
+        "required": [
+          "items"
+        ]
+      },
+      "TaskPage": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Task"
+            },
+            "maxItems": 100
+          },
+          "nextCursor": {
+            "type": "string",
+            "maxLength": 1000
+          }
+        },
+        "required": [
+          "items"
+        ]
+      },
+      "IssuePage": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Issue"
+            },
+            "maxItems": 100
+          },
+          "nextCursor": {
+            "type": "string",
+            "maxLength": 1000
+          }
+        },
+        "required": [
+          "items"
+        ]
+      },
+      "Voice": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 100
+          },
+          "language": {
+            "type": "string",
+            "maxLength": 30
+          }
+        },
+        "required": [
+          "id",
+          "label",
+          "language"
+        ]
+      },
+      "MediaOptions": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "voices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Voice"
+            },
+            "maxItems": 100
+          },
+          "available": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "voices",
+          "available"
+        ]
+      },
+      "IssueDraftRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "issueDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "scheduleRevision": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          }
+        },
+        "required": [
+          "issueDate",
+          "scheduleRevision"
+        ]
+      }
+    },
+    "responses": {
+      "ProblemResponse": {
+        "description": "Request rejected or dependency unavailable. Inspect code and requestId.",
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/Problem"
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "IdempotencyKey": {
+        "name": "Idempotency-Key",
+        "in": "header",
+        "required": true,
+        "description": "Stable key for this logical operation; reuse with identical payload after timeout.",
+        "schema": {
+          "type": "string",
+          "minLength": 16,
+          "maxLength": 128
+        }
+      },
+      "ExpectedRevision": {
+        "name": "If-Match",
+        "in": "header",
+        "required": true,
+        "description": "Strong ETag of the target resource. Missing: 428; stale: 412.",
+        "schema": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 140
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "config": {
+    "MD013": false
+  },
+  "ignores": [".local/**", "node_modules/**"]
+}
