@@ -4137,7 +4137,13 @@
             "then": {
               "required": [
                 "accessValidUntil"
-              ]
+              ],
+              "properties": {
+                "accessValidUntil": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              }
             }
           }
         ],
