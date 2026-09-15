@@ -1,6 +1,8 @@
 # Schichten und Anwendungen
 
-Festlegung vom 15. September 2026. Diese Fassung ersetzt die flache M01–M14-Liste.
+Am 15. September 2026 von David als konzeptionelle Grundlage bestätigt:
+vier Schichten, vier Fachanwendungen, klare Datenhoheit und einheitliche Namen.
+Diese Fassung ersetzt die flache M01–M14-Liste.
 Sie trennt Zugänge, vier Fachanwendungen, Ressourcen und Betriebsbasis. Die
 [Namensregeln](system-naming.md) und [Datenflüsse](../contracts/integrations.md)
 konkretisieren die Grenzen. Es werden keine neuen Repositories oder Dienste

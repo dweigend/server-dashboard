@@ -1,7 +1,10 @@
 # Entscheidungen und offene Punkte
 
 Stand: 2026-09-15. „Arbeitsentscheidung“ ist eine begründete Vorgabe dieses
-Konzepts, keine nachträglich behauptete Zustimmung des Nutzers.
+Konzepts, keine nachträglich behauptete Zustimmung des Nutzers. Die vereinfachte
+Architektur mit vier Schichten und vier Anwendungen wurde am 15. September 2026
+ausdrücklich bestätigt. Dies bestätigt die konzeptionelle Grundlage; offene
+Betriebsentscheidungen und Integrationsnachweise bleiben separat.
 
 ## Festgelegt durch den Nutzer oder bestehende Projektentscheidungen
 
@@ -18,7 +21,9 @@ Konzepts, keine nachträglich behauptete Zustimmung des Nutzers.
 | D09 | Audioproduktion ist ein eigenständiges System |
 | D10 | Zuerst Specs, Designsystem und Verträge; Grundgerüst inzwischen erstellt, Feature-Implementierung jetzt über Issues vorbereitet |
 | D11 | Als Nächstes lokales Wissensfundament; im separaten Task bestätigtes Behauptungs-/Evidenzregister berücksichtigen |
-| D12 | Vier Fachanwendungen: Dashboard, Task Service, Knowledge Server, Media Service; Magazin ist internes Dashboard-Modul, Transkription/Narration sind Media-Module; siehe [Schichten](system-modules.md) |
+| D12 | Vier Fachanwendungen: Dashboard, Task Service, Knowledge Server, Media Service; Magazin ist internes Dashboard-Modul, Transkription/Narration sind Media-Module; am 2026-09-15 bestätigt; siehe [Schichten](system-modules.md) |
+
+| D13 | Vier getrennte Schichten: Zugänge, Fachanwendungen, Ressourcen und Betriebsbasis; Namen nach Anwendung → Modul → Aktion; siehe [Namensregeln](system-naming.md) |
 
 ## Arbeitsentscheidungen dieses Konzepts
 
@@ -36,7 +41,7 @@ Konzepts, keine nachträglich behauptete Zustimmung des Nutzers.
 | A10 | 30 Mockups, 10 Originalreferenzen und 15 Stitch-Screenshots im Repo | Nutzerwunsch vom 2026-09-15: alle Designbeispiele übertragen; Herkunft und Abweichungen dokumentieren |
 | A11 | Private HTTPS-API über Tailscale zwischen Hetzner und MS-A2 | vorhandenes Heimserver-Netz nutzen, kein öffentlicher Research-Port |
 | A12 | Dashboard-Webprozess und kleiner Delivery-Prozess aus einem Image | Zustellung und Lesekopien unabhängig von Browser und HTTP-Laufzeit |
-| A13 | Nur freigegebene, revisionsgebundene Lesekopien auf Hetzner | begrenzte Lesbarkeit bei Heimserverausfall ohne Wissensspiegel |
+| A13 | Externe Wissensinhalte und Medienartefakte nur als erlaubte, revisionsgebundene Auslieferungskopien; eigene Magazinartikel/-ausgaben bleiben Dashboard-Daten | begrenzte externe Rechte respektieren, keine zweite Wissensautorität |
 
 ## Noch zu entscheiden oder nachzuweisen
 
@@ -50,7 +55,7 @@ Konzepts, keine nachträglich behauptete Zustimmung des Nutzers.
 | O06 | Öffentliches persönliches Repository ohne Open-Source-Lizenz festgelegt | erledigt am 2026-09-15 |
 | O07 | Auth-Spike inklusive Recovery und 2FA | Produktivzugang |
 | O08 | Backupziel, Kapazität und getestete RPO/RTO | Produktionsfreigabe |
-| O09 | 24-Stunden-Rechtefenster für Lesekopien und Grenzen der Cloud-Ablage bestätigen | Magazin-Auslieferung bei Heimserverausfall |
+| O09 | 24-Stunden-Rechtefenster für externe Auslieferungskopien und Grenzen der Cloud-Ablage bestätigen | externe Wissens-/Medienkopien bei Ausfall ihres Besitzers |
 | O10 | Hetzner-Wartung, Managementports, Provider-Firewall und IPv6 prüfen | Produktionsfreigabe |
 | O11 | Lokale Wissens-Pilotverträge vorhanden; externe Authentifizierung, unterstützte Wissensbeiträge, Lesen/Suchen und Revisions-/Rechtevertrag abstimmen | echte Wissensintegration; siehe [Codeabgleich](knowledge-server-status.md) |
 
