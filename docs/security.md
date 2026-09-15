@@ -53,7 +53,7 @@ Standardlogs. Diagnosen verwenden korrelierbare IDs und bereinigte Fehlercodes.
 
 ## Wiederherstellung und Veröffentlichung
 
-Auth-Daten, Hub-DB und Capture-Dateien gehören in verschlüsselte Backups.
+Auth-Daten, Dashboard-DB und Capture-Dateien gehören in verschlüsselte Backups.
 Research und Media sichern ihre eigenen autoritativen Daten. Restoretests
 prüfen auch Referenzen und Dateihashes, nicht nur das Starten eines Containers.
 

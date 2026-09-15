@@ -7,7 +7,7 @@ die folgenden Stufen bleiben das übergeordnete Zielbild.
 
 Das lokale Wissensfundament ist bereits teilweise implementiert. Seine nächste
 Priorität ist die isolierte Experimentieroberfläche zur überprüfbaren Verbesserung
-der Pipeline, siehe [Knowledge-Stand](knowledge-server-status.md). Der Hub-Ausbau
+der Pipeline, siehe [Knowledge-Stand](knowledge-server-status.md). Der Dashboard-Ausbau
 ordnet diese Priorität nicht neu. Navigation, privater Eingang und Vertragsfixtures
 können unabhängig von der späteren Remote-Schnittstelle umgesetzt werden.
 Die [Systemmodule](system-modules.md) trennen Knowledge-Zugriff von allgemeinen
@@ -36,7 +36,7 @@ Biome und gezielte Interaktionstests laufen.
 
 ## 2 · Zugang und dauerhafter Eingang
 
-Auth-Spike, Konto/TOTP/Recovery, Hub-DB, Uploadspeicher und Capture-Versionierung.
+Auth-Spike, Konto/TOTP/Recovery, Dashboard-DB, Uploadspeicher und Capture-Versionierung.
 Upload- und Sessiongrenzen prüfen. Text/Foto/Aufnahme real speichern; Transkript
 darf vorerst fehlen. Browser- und Serverneustart, fremde Objekt-IDs und Doppeltap testen.
 
@@ -59,24 +59,24 @@ kanonischen Zettel, Behauptung und Belege lesen, Bewertungsbegründung und
 Gegenbelege anzeigen und das Wissen wiederfinden. Modellfreie Änderung/Prüfung,
 Revisionskonflikt, doppelte Zustellung und fehlende Rechte prüfen.
 
-Abnahme: gleiche kanonische Referenzen über Hub, CLI und Hermes-Werkzeuge;
+Abnahme: gleiche kanonische Referenzen über Dashboard, CLI und Hermes-Werkzeuge;
 keine zweite Wissensautorität, keine selbst berechneten Wahrheitswerte.
 
 ## 3b · Spätere Research-Aufträge
 
-Über einen eigenen Execution-Vertrag einen kleinen Agentenauftrag auslösen,
+Über einen eigenen Task Service-Vertrag einen kleinen Agentenauftrag auslösen,
 Rückfrage beantworten und Ergebnis mit Quellen abrufen. Stop, Fehler und
 Wiederholung nach unklarer Annahme nachweisen. Diese Fähigkeit ist weder eine
 Knowledge-Aufgabe noch
 Voraussetzung für 3a und wird nicht allein aus einem installierten Hermes abgeleitet.
 
-Abnahme: gleiche besitzerqualifizierte Request-/Run-Referenzen über Hub und
+Abnahme: gleiche besitzerqualifizierte Request-/Run-Referenzen über Dashboard und
 bestehende Clients; Wissensreferenzen nur für tatsächlich genutzte Inhalte.
 Kein zweiter Harness. P03/P04/P05.
 
 ## 4 · Magazin und unabhängiges Audio
 
-Themen und Quellen festlegen; Publication erstellt den ersten Ausgabeentwurf,
+Themen und Quellen festlegen; Das Dashboard-Magazin erstellt den ersten Ausgabeentwurf,
 der redaktionell geprüft und freigegeben wird. Knowledge ist eine optionale
 Inhaltsquelle, seine Export-Roadmap keine allgemeine Voraussetzung. Content-Paket
 an den getrennten Medienanbieter übergeben. Playback,
@@ -95,7 +95,7 @@ Abnahme: P08/P09 und sämtliche Produktionskriterien aus
 
 Zusätzliche Hybrid-Abnahme: Nach Unterbrechung der Heimverbindung funktionieren
 Login und Capture-Speicherung; explizite Transfers bleiben nachvollziehbar.
-Timeout nach Execution-Annahme erzeugt keine Doppelarbeit. Unberechtigte Container
+Timeout nach Task Service-Annahme erzeugt keine Doppelarbeit. Unberechtigte Container
 erreichen die lokale API nicht. Lesekopien beachten Freigabe und Frist auch nach
 Restore. Bestehende Matrix-/Website-Funktionen bleiben im Deploymenttest intakt.
 

@@ -6,8 +6,10 @@ UI-/Interaktionsregeln, Browser-API, Hybridbetrieb und dem
 Die [14 GitHub-Issues](https://github.com/dweigend/server-dashboard/issues)
 enthalten Ergebnis, Abnahmekriterien, Abhängigkeiten, Grenzen und Prüfungen.
 Dieser Plan beschreibt offene Arbeit, keine bereits gelieferten Funktionen.
-Die [Systemabgrenzung](system-modules.md) trennt Knowledge, Execution, Publication
-und Media. Deren Verträge werden unabhängig bei den zuständigen Besitzern erfüllt.
+Die [Schichten](system-modules.md) trennen Dashboard, Task Service, Knowledge
+und Media Service. Magazin liegt intern im Dashboard; Rechercheadapter im
+Task Service; Transkription/Narration im Media Service. Die
+[Namensregeln](system-naming.md) gelten auch für die Issues.
 
 ## Was jetzt starten kann
 
@@ -28,16 +30,16 @@ Ansichten ausdrücklich synthetische Vorschauen.
 | Issue | Umsetzung | Voraussetzung / Grenze |
 | --- | --- | --- |
 | [#1](https://github.com/dweigend/server-dashboard/issues/1) | Mobile Navigation, Tokens, gemeinsame UI-Zustände | sofort; fünf Ziele, kein neuer Wissens-Tab |
-| [#2](https://github.com/dweigend/server-dashboard/issues/2) | Hub-PostgreSQL, Migrationen, private Dateiablage, Readiness | sofort; keine Knowledge-Tabellen |
+| [#2](https://github.com/dweigend/server-dashboard/issues/2) | Dashboard-PostgreSQL, Migrationen, private Dateiablage, Readiness | sofort; keine Knowledge-Tabellen |
 | [#3](https://github.com/dweigend/server-dashboard/issues/3) | Privater Login, TOTP, Recovery und Sessions | #1, #2; Auth-Spike vor Festlegung der Bibliothek |
 | [#4](https://github.com/dweigend/server-dashboard/issues/4) | Dauerhafte Textnotizen, Bearbeiten, Retry und Konflikte | #1–#3; unabhängig vom Knowledge Server |
 | [#5](https://github.com/dweigend/server-dashboard/issues/5) | Fotoaufnahme/-auswahl und geschützte Uploads | #4; keine OCR oder automatische Übernahme |
 | [#6](https://github.com/dweigend/server-dashboard/issues/6) | Sprachnotiz aufnehmen, anhören und speichern | #5; keine automatische Transkription |
-| [#7](https://github.com/dweigend/server-dashboard/issues/7) | Separate Knowledge-/Execution-/Publication-Verträge und Beispiele | sofort; jeder Besitzer bestätigt nur seine Fähigkeiten |
-| [#8](https://github.com/dweigend/server-dashboard/issues/8) | Private Verbindung und explizite unterstützte Wissensbeiträge | #4, #7; Knowledge-Remotevertrag fehlt, freie Notizen bleiben im Hub |
+| [#7](https://github.com/dweigend/server-dashboard/issues/7) | Drei externe Clients und interner Magazinvertrag | sofort; jeder Besitzer bestätigt nur seine Fähigkeiten |
+| [#8](https://github.com/dweigend/server-dashboard/issues/8) | Private Verbindung und explizite unterstützte Wissensbeiträge | #4, #7; Knowledge-Remotevertrag fehlt, freie Notizen bleiben im Dashboard |
 | [#9](https://github.com/dweigend/server-dashboard/issues/9) | Zettel, Claims, Belege und Suche lesen | #1, #3, #7; Fixtures möglich, Live-Lesen/Suchen noch gesperrt |
-| [#10](https://github.com/dweigend/server-dashboard/issues/10) | Auftrag, laufende Jobs, Rückfragen, Stop und Ergebnisse | #1, #3, #7; eigener Execution-Vertrag, keine Knowledge-Pflicht |
-| [#11](https://github.com/dweigend/server-dashboard/issues/11) | Tagesausgabe und fokussierter Artikelreader | #1, #3, #7; eigener Publication-Vertrag, Knowledge optional |
+| [#10](https://github.com/dweigend/server-dashboard/issues/10) | Auftrag, laufende Jobs, Rückfragen, Stop und Ergebnisse | #1, #3, #7; eigener Task Service-Vertrag, keine Knowledge-Pflicht |
+| [#11](https://github.com/dweigend/server-dashboard/issues/11) | Tagesausgabe und fokussierter Artikelreader | #1, #3, #7; internes dashboard.magazine, Knowledge optional |
 | [#12](https://github.com/dweigend/server-dashboard/issues/12) | Audio abspielen und Position fortsetzen | #11; separater Medienanbieter und Rechtevertrag erforderlich |
 | [#13](https://github.com/dweigend/server-dashboard/issues/13) | Betrieb, Aktualität, Speicher, Sicherung und Budget | #1, #3, #7; reale Werte erst mit geprüftem Collector |
 | [#14](https://github.com/dweigend/server-dashboard/issues/14) | Staging, Wiederherstellung und Deployment-Abnahme | #3–#5, #13; private Integration nur für tatsächlich aktivierte Module nachweisen |

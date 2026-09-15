@@ -6,11 +6,12 @@
 - Read README, docs/decisions.md and the relevant spec before changes.
 - Inspect Git status. Preserve unrelated edits; checkpoint substantial work.
 - Distinguish a proposal, an implemented feature and an observed deployment.
-- Keep source-of-truth boundaries: Hub owns presentation and capture staging;
-  Execution/Hermes owns general tasks; Knowledge owns canonical knowledge and
-  its domain processing; Publication owns editions/releases; Media owns audio.
-- Read docs/system-modules.md. Do not assign every capture, task or publication
-  to Knowledge Server or require source-free Knowledge notes for Hub capture.
+- Keep source-of-truth boundaries: Dashboard owns presentation and capture staging;
+  Task Service/Hermes owns general tasks; Knowledge owns canonical knowledge and
+  its domain processing; dashboard.magazine owns editions/releases; Media Service
+  owns transcription/narration as separate modules.
+- Read docs/system-modules.md and docs/system-naming.md. Do not assign every capture, task or publication
+  to Knowledge Server or require source-free Knowledge notes for Dashboard capture.
 - Do not invent upstream endpoints or treat a model response as a committed note.
 - Stack: SvelteKit, Svelte 5, Bun tooling, Node production runtime,
   Bits UI/shadcn-svelte patterns and Lucide. Pin compatible versions at build time.

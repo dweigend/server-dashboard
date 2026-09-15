@@ -5,7 +5,7 @@ Diese Seite ergänzt Eigentum, Persistenz und Regeln, die ein Schema allein
 nicht ausdrückt. Alle IDs sind undurchsichtige Strings; Timestamps sind UTC nach
 RFC 3339, lokale Anzeige nach IANA-Zone `Europe/Berlin`. Geld: ganze Eurocent.
 
-## Hub-eigene Datensätze
+## Dashboard-eigene Datensätze
 
 | Datensatz | Zweck | Wichtige Bindungen |
 | --- | --- | --- |
@@ -14,16 +14,19 @@ RFC 3339, lokale Anzeige nach IANA-Zone `Europe/Berlin`. Geld: ganze Eurocent.
 | Upload | private Binärdatei | owner, gemessener MIME-Typ, Größe, Hash, Zustand |
 | Delivery | idempotente Übernahme | requestId, payloadHash, canonicalReference |
 | Preferences | Anzeige, Themen, Zeit, Budgetvorschlag | owner, revision; Scheduler-/Budgetautorität beachten |
+| Edition/Article | redaktioneller Inhalt und Freigabe | magazine owner, revision, sources, release/withdrawal |
+| TextPackage | unveränderlicher freigegebener Text für Media | article revision, hash, rights, release reference |
 | ReadingPosition | Fortsetzen | articleId, articleRevision, Absatz/Audiozeit |
 | RequestReceipt | Schutz vor Doppelübermittlung | owner + operation + key + bodyHash |
-| PublicationCopy | private abgeleitete Artikel-/Audiokopie | owner, package/revision/hash, releaseReference, rightsCheckedAt, serveUntil |
+| DeliveryCopy | private abgeleitete Kopie eines externen Artefakts | owner, package/revision/hash, releaseReference, rightsCheckedAt, serveUntil |
 
-Job-/Ausgabeansichten sind Projektionen der jeweiligen Autorität. `observedAt`
+Jobansichten sind Projektionen ihrer externen Besitzer. Artikel und Ausgaben
+gehören dagegen dem internen Modul dashboard.magazine. `observedAt`
 und `stale` werden mitgeführt. Cacheverlust darf keine Forschungsdaten löschen.
 Keine zweite editierbare Quellen-, Zitat- oder Notenbibliothek.
 
 Kanonische Notes, Claims, Evidence und Assessments gehören vollständig dem
-Wissenssystem. Hub führt dafür Referenzen/Ansichten, keine editierbaren Kopien.
+Wissenssystem. Dashboard führt dafür Referenzen/Ansichten, keine editierbaren Kopien.
 `Result.reviewState` und `Article.reviewState` ersetzen weder Evidenzlage noch
 Belastbarkeit oder den Reviewstatus einer Behauptungsbewertung. Das Mapping wird
 im [Wissensabgleich](knowledge-integration.md) bewusst noch nicht auf feste
@@ -36,13 +39,15 @@ RequestReceipt unterscheidet intern `pending`, `accepted`, `rejected` und
 `uncertain`. Diese Transportzustände sind keine Research-Jobzustände.
 Ein verlorenes HTTP-Ergebnis erzeugt niemals automatisch einen neuen Auftrag.
 
-PublicationCopy speichert ausschließlich freigegebene Auslieferungsartefakte.
-Rechtefrist, Abgleich und Verhalten bei Widerruf stehen im
+DeliveryCopy speichert ausschließlich freigegebene Auslieferungsartefakte.
+Lokale Magazintexte sind eigene Datensätze, keine Kopien eines entfernten
+Publication-Dienstes. Für externe Artefakte stehen Rechtefrist, Abgleich und
+Verhalten bei Widerruf im
 [Hybrid-Backend-Vertrag](hybrid-backend.md). Sicherungen solcher Kopien dürfen
 keine alte Freigabe wieder aktivieren; nach Restore zuerst Rechte abgleichen.
 
 Eine zusammengeführte Jobansicht führt Besitzer und lokale ID getrennt.
-`Task` beschreibt im aktuellen API-Entwurf allgemeine Execution-Aufträge;
+`Task` beschreibt im aktuellen API-Entwurf allgemeine Task Service-Aufträge;
 Knowledge-Extraktion, Transkription und Media haben eigene Statusverträge.
 Deren spätere gemeinsame Projektion benötigt konkrete Beispiele, nicht eine
 unbelegte Gleichsetzung der Zustände.
@@ -54,7 +59,7 @@ Browserentwurf → saved → transferring → transferred
                           ↘ transfer_failed → transferring
 ```
 
-`saved` benötigt eine bestätigte Hub-Transaktion und ist ein dauerhaft gültiger
+`saved` benötigt eine bestätigte Dashboard-Transaktion und ist ein dauerhaft gültiger
 Zustand ohne spätere Knowledge-Pflicht. Der Transfer ist ausdrücklich optional. Bei Textänderung im Zustand
 `transferring` verweigert der Server mit Konflikt; nach `transferred` führt die
 kanonische Referenz zu Knowledge. Fehler vor Bestätigung erzeugen keine behauptete
@@ -80,7 +85,7 @@ kein frei erfundener Prozentwert. Rückfragen haben eine eigene ID und Revision.
 
 Getrennte Ergebnisprüfung: `unreviewed`, `needs_changes`, `accepted`.
 Ausführung `succeeded` impliziert nicht `accepted` und nicht Veröffentlichung.
-Ausgabezustände: `draft`, `released`, `withdrawn`; nur Publication darf sie ändern.
+Ausgabezustände: `draft`, `released`, `withdrawn`; nur dashboard.magazine darf sie ändern.
 Freigaben beziehen sich auf die exakte Ausgabe- und Abhängigkeitsrevision.
 
 ## Revisionen und Konflikte
@@ -94,7 +99,7 @@ Idempotenz gilt pro Konto und Operation. Gleicher Schlüssel und gleiche Nutzlas
 geben die ursprüngliche Antwort; andere Nutzlast mit gleichem Schlüssel ergibt
 409. Annahme und Schlüssel werden atomar gespeichert. Eine unklare ursprüngliche
 Zustellung ist kein Anlass für automatischen Retry mit neuem Schlüssel.
-Hub-Receipts mindestens sieben Tage halten; Upstream-Annahmen länger anhand
+Dashboard-Receipts mindestens sieben Tage halten; Upstream-Annahmen länger anhand
 der stabilen Request-ID abgleichen, bevor ein Ablaufdatum Doppelarbeit erlaubt.
 
 ## Dateien und Aufbewahrung

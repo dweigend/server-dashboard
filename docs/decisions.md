@@ -18,24 +18,24 @@ Konzepts, keine nachträglich behauptete Zustimmung des Nutzers.
 | D09 | Audioproduktion ist ein eigenständiges System |
 | D10 | Zuerst Specs, Designsystem und Verträge; Grundgerüst inzwischen erstellt, Feature-Implementierung jetzt über Issues vorbereitet |
 | D11 | Als Nächstes lokales Wissensfundament; im separaten Task bestätigtes Behauptungs-/Evidenzregister berücksichtigen |
-| D12 | Knowledge ist ein spezialisierter Baustein; allgemeine Aufgaben, Magazin, Transkription und Audio besitzen eigene Zuständigkeiten, siehe [Systemmodule](system-modules.md) |
+| D12 | Vier Fachanwendungen: Dashboard, Task Service, Knowledge Server, Media Service; Magazin ist internes Dashboard-Modul, Transkription/Narration sind Media-Module; siehe [Schichten](system-modules.md) |
 
 ## Arbeitsentscheidungen dieses Konzepts
 
 | ID | Entscheidung | Grund |
 | --- | --- | --- |
 | A01 | Repositoryname `server-dashboard`, Subdomainvorschlag `hub.weigend.studio` | klare eigenständige Identität |
-| A02 | SvelteKit mit serverseitiger Hub-API | ein kleiner Webstack statt paralleler Backends |
+| A02 | SvelteKit mit serverseitiger Dashboard-API | ein kleiner Webstack statt paralleler Backends |
 | A03 | Svelte 5, Bun-Tooling, Node im Produktionscontainer | Nutzerkonvention und dokumentierter Serveradapter |
 | A04 | System-Sans + optionale Leseserif + sparsame Monospace-Akzente | Lesen und Eingabe vor Terminal-Dekor |
 | A05 | 48px-Iconnavigation, 44px-Touchziele | messbare Flächenregel bei guter Bedienbarkeit |
-| A06 | Hub-eigene Capture-Ablage, optional explizite Knowledge-Übernahme | schneller sicherer Eingang ohne zweite Wissensautorität |
+| A06 | Dashboard-eigene Capture-Ablage, optional explizite Knowledge-Übernahme | schneller sicherer Eingang ohne zweite Wissensautorität |
 | A07 | Polling statt eigener Event-Infrastruktur im ersten Release | einfache verlässliche Statusabfrage |
 | A08 | Passwort + TOTP; Better Auth als Kandidat | keine eigene Kryptografie |
 | A09 | Forschungs- und Medienbudget getrennt | unabhängige Ausführung und Kostenautorität |
 | A10 | 30 Mockups, 10 Originalreferenzen und 15 Stitch-Screenshots im Repo | Nutzerwunsch vom 2026-09-15: alle Designbeispiele übertragen; Herkunft und Abweichungen dokumentieren |
 | A11 | Private HTTPS-API über Tailscale zwischen Hetzner und MS-A2 | vorhandenes Heimserver-Netz nutzen, kein öffentlicher Research-Port |
-| A12 | Hub-Webprozess und kleiner Delivery-Prozess aus einem Image | Zustellung und Lesekopien unabhängig von Browser und HTTP-Laufzeit |
+| A12 | Dashboard-Webprozess und kleiner Delivery-Prozess aus einem Image | Zustellung und Lesekopien unabhängig von Browser und HTTP-Laufzeit |
 | A13 | Nur freigegebene, revisionsgebundene Lesekopien auf Hetzner | begrenzte Lesbarkeit bei Heimserverausfall ohne Wissensspiegel |
 
 ## Noch zu entscheiden oder nachzuweisen

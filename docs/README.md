@@ -7,7 +7,7 @@ vollständig erhalten. Der alte lokale Pfad ist eine Weiterleitung.
 1. [Produkt](product-spec.md) und [Entscheidungen](decisions.md).
 2. [Design-Brief aus Stitch](../design.md), [Designkonzept](../design/design-concept.md), [UI-System](../design/ui-system.md)
    und [Interaktionen](../design/interaction-spec.md).
-3. [Systemmodule](system-modules.md), [Architektur](architecture.md), [Datenmodell](data-model.md) und
+3. [Schichten](system-modules.md), [Namensregeln](system-naming.md), [Architektur](architecture.md), [Datenmodell](data-model.md) und
    [Schnittstellen](../contracts/README.md).
 4. [Wissens-MVP](knowledge-integration.md) und [Hybrid-Backend](hybrid-backend.md).
 5. [Deployment](deployment.md), [Audit](deployment-audit.md) und [Sicherheit](security.md).

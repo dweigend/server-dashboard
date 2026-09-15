@@ -17,7 +17,7 @@ relevante Aufgaben. Kein Begrüßungsbanner, kein Logo und kein Kennzahlendashbo
 
 Dies ist der Funktionsumfang der angestrebten Dashboard-Version, nicht der
 Umfang des unmittelbar nächsten Wissens-MVP. Dieser wird jetzt zuerst lokal
-aufgebaut; Hub übernimmt später dessen Text-, Zettel-, Behauptungs- und
+aufgebaut; Dashboard übernimmt später dessen Text-, Zettel-, Behauptungs- und
 Bewertungsverträge. [Gemeinsame Lieferstufen](knowledge-integration.md).
 
 | ID | Fähigkeit | Erkennbares Ergebnis |

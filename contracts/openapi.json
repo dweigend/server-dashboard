@@ -90,8 +90,8 @@
     "/health/ready": {
       "get": {
         "operationId": "getReadiness",
-        "summary": "Read Hub database and storage readiness",
-        "description": "Read Hub database and storage readiness. Target contract; not an implemented endpoint.",
+        "summary": "Read Dashboard database and storage readiness",
+        "description": "Read Dashboard database and storage readiness. Target contract; not an implemented endpoint.",
         "tags": [
           "Health"
         ],
@@ -119,8 +119,8 @@
     "/api/v1/session": {
       "get": {
         "operationId": "getSession",
-        "summary": "Read authenticated Hub session",
-        "description": "Read authenticated Hub session. Target contract; not an implemented endpoint.",
+        "summary": "Read authenticated Dashboard session",
+        "description": "Read authenticated Dashboard session. Target contract; not an implemented endpoint.",
         "tags": [
           "Session"
         ],
@@ -348,7 +348,7 @@
       "put": {
         "operationId": "replaceCaptureContent",
         "summary": "Replace capture text and attachment selection",
-        "description": "Full content replacement: omit text for empty text, omit attachmentIds for no attachments. At least one non-empty content kind. Only saved or transfer_failed captures can be edited; accepted canonical notes belong to Knowledge. Captures may remain in Hub without any knowledge transfer.",
+        "description": "Full content replacement: omit text for empty text, omit attachmentIds for no attachments. At least one non-empty content kind. Only saved or transfer_failed captures can be edited; accepted canonical notes belong to Knowledge. Captures may remain in Dashboard without any knowledge transfer.",
         "tags": [
           "Captures"
         ],
@@ -435,7 +435,7 @@
       "post": {
         "operationId": "transferCapture",
         "summary": "Submit the exact supported capture revision to Knowledge",
-        "description": "Submit a supported capture revision as an explicit Knowledge contribution after contract validation. Ordinary captures may remain in Hub. Do not fabricate references for source-free thoughts or silently omit attachments. Target contract; not an implemented endpoint.",
+        "description": "Submit a supported capture revision as an explicit Knowledge contribution after contract validation. Ordinary captures may remain in Dashboard. Do not fabricate references for source-free thoughts or silently omit attachments. Target contract; not an implemented endpoint.",
         "tags": [
           "Captures"
         ],
@@ -1264,7 +1264,7 @@
       "post": {
         "operationId": "releaseIssue",
         "summary": "Release the exact reviewed issue revision",
-        "description": "Publication validates the current edition and dependency revision set and records the authenticated owner decision. Knowledge review is a separate input when Knowledge content is used. A stale or ineligible release fails; this does not modify evidence acceptance implicitly.",
+        "description": "The Dashboard magazine module validates the current edition and dependency revision set and records the authenticated owner decision. Knowledge review is a separate input when Knowledge content is used. A stale or ineligible release fails; this does not modify evidence acceptance implicitly.",
         "tags": [
           "Magazine"
         ],
@@ -1708,8 +1708,8 @@
     "/api/v1/preferences": {
       "get": {
         "operationId": "getPreferences",
-        "summary": "Read Hub display preferences",
-        "description": "Read Hub display preferences. Target contract; not an implemented endpoint.",
+        "summary": "Read Dashboard display preferences",
+        "description": "Read Dashboard display preferences. Target contract; not an implemented endpoint.",
         "tags": [
           "Settings"
         ],
@@ -1755,8 +1755,8 @@
       },
       "patch": {
         "operationId": "updatePreferences",
-        "summary": "Update Hub display preferences",
-        "description": "Update Hub display preferences. Target contract; not an implemented endpoint.",
+        "summary": "Update Dashboard display preferences",
+        "description": "Update Dashboard display preferences. Target contract; not an implemented endpoint.",
         "tags": [
           "Settings"
         ],
@@ -2338,7 +2338,7 @@
       "get": {
         "operationId": "getDomainBudget",
         "summary": "Read the budget of one owning system",
-        "description": "Execution owns the research budget; media owns its separate budget. Knowledge is not the global task or budget authority. Apply this operation only to the selected authority; there is no cross-system transaction. Return confirmed state or a structured error; reconcile ambiguous writes before retrying.",
+        "description": "Task Service owns the research budget; media owns its separate budget. Knowledge is not the global task or budget authority. Apply this operation only to the selected authority; there is no cross-system transaction. Return confirmed state or a structured error; reconcile ambiguous writes before retrying.",
         "tags": [
           "Operations"
         ],
@@ -2399,7 +2399,7 @@
       "put": {
         "operationId": "setDomainBudget",
         "summary": "Apply the budget to one owning system",
-        "description": "Execution owns the research budget; media owns its separate budget. Knowledge is not the global task or budget authority. Apply this operation only to the selected authority; there is no cross-system transaction. Return confirmed state or a structured error; reconcile ambiguous writes before retrying.",
+        "description": "Task Service owns the research budget; media owns its separate budget. Knowledge is not the global task or budget authority. Apply this operation only to the selected authority; there is no cross-system transaction. Return confirmed state or a structured error; reconcile ambiguous writes before retrying.",
         "tags": [
           "Operations"
         ],
@@ -2490,7 +2490,7 @@
       "post": {
         "operationId": "requestIssueDraft",
         "summary": "Request a magazine draft for a local date",
-        "description": "Create a draft through Publication using the configured discovery sources and topics. Knowledge is an optional revisioned content source, not a prerequisite. Deduplicate scheduled and manual draft requests by local date and configuration revision. This does not release text or create audio.",
+        "description": "Request a bounded briefing through Task Service and record its retrieved result as a local dashboard.magazine draft. Deduplicate by local date, configuration revision and task-result identity. Editorial release remains an explicit local operation; Knowledge is optional. No remote Publication API or callback into Dashboard is required.",
         "tags": [
           "Magazine"
         ],
@@ -3415,7 +3415,8 @@
           "articleIds",
           "coverageWarnings",
           "createdAt"
-        ]
+        ],
+        "description": "Editorial edition owned by dashboard.magazine. The legacy wire name Issue remains until an explicit API migration; it is not a GitHub issue or a remote publication record."
       },
       "AudioRequest": {
         "type": "object",

@@ -38,8 +38,8 @@ OCR und Live-Diktat sind Folgefunktionen, nicht Voraussetzung für Foto/Audio.
 
 Ein Capture ist zunächst ein Eingang, keine wissenschaftlich geprüfte Wissensnotiz.
 Eine ausdrückliche Wissensaktion registriert unterstütztes Material über Knowledge.
-Freie Gedanken dürfen im Hub bleiben; keine Dummy-Referenz für den Transfer. Nach bestätigter Übernahme wird die
-kanonische Wissensreferenz angezeigt; Hub bearbeitet diese nicht als zweite Kopie.
+Freie Gedanken dürfen im Dashboard bleiben; keine Dummy-Referenz für den Transfer. Nach bestätigter Übernahme wird die
+kanonische Wissensreferenz angezeigt; Dashboard bearbeitet diese nicht als zweite Kopie.
 
 ## Wissensreferenz und Belege
 
@@ -56,7 +56,7 @@ Prozentwerte, Stimmenzählung oder Tabellen. Details und gemeinsame Abnahmefäll
 stehen im [Wissensabgleich](../docs/knowledge-integration.md).
 
 Der erste Wissens-Transfer unterstützt nur Text-Captures ohne Anhänge. Fotos
-und Audio bleiben speicherbar, sobald Hub-Staging implementiert ist; die UI
+und Audio bleiben speicherbar, sobald Dashboard-Staging implementiert ist; die UI
 verspricht keine bereits vorhandene OCR-/Transkriptions-/Importfunktion.
 
 ## Auftrag und Rückfrage
@@ -93,7 +93,7 @@ Probleme zuerst, danach wenige Zeilen: App, Research, Audio, Speicher, Sicherung
 Budget. „Letzte Kopie vorhanden“ und „Wiederherstellung geprüft“ sind unabhängig.
 Öffnen zeigt Beobachtungszeit und nächsten sinnvollen Schritt. Die erste Version
 ist dort weitgehend lesend; Backup/Restore, Updates und Neustarts bleiben im
-separaten Betriebswerkzeug. Nur die Annahme neuer Aufträge ist im Hub schaltbar.
+separaten Betriebswerkzeug. Nur die Annahme neuer Aufträge ist im Dashboard schaltbar.
 
 ## Übergreifende Fehlerzustände
 

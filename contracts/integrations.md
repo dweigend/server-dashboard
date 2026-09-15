@@ -1,187 +1,149 @@
-# Systemadapter und Integrationsverträge
+# Application contracts and data flows
 
-Status: zu vereinbarende Ports; keine bestätigten Implementierungen. Öffentliche
-Hub-Routen dürfen stabil bleiben, während ein Adapter auf den tatsächlich
-installierten Dienst abgebildet wird. Niemals URLs aus Vorschlägen erraten.
+Target design, revised 2026-09-15. The [system layers](../docs/system-modules.md)
+and [naming rules](../docs/system-naming.md) replace the former Research,
+ExecutionPort, PublicationPort and TranscriptionPort grouping. Names below are
+semantic operations, not invented upstream URLs. Existing Knowledge routes and
+stored enum values remain unchanged until their explicit contract migration.
 
-Transportziel ist jetzt die [private HTTPS-Strecke](../docs/hybrid-backend.md)
-von Hetzner zum MS-A2. Im [Knowledge-Server-Repository](https://github.com/dweigend/knowledge-server)
-existieren inzwischen lokale JSON-Leserouten und Python-Fachoperationen.
-Der [Codeabgleich vom 15. September](../docs/knowledge-server-status.md)
-bestätigt jedoch keine authentifizierte Remote-API oder laufende private Strecke.
-Die hier genannten Operationen bleiben Zielverträge, keine ausgerollten URL-Pfade.
+## Three remote clients
 
-## KnowledgePort
-
-KnowledgePort bezeichnet ausschließlich den Adapter zur Wissensanwendung.
-Allgemeine Agentenaufträge und Publikation besitzen eigene Ports gemäß den
-[Systemgrenzen](../docs/system-modules.md). Der [Wissensabgleich](../docs/knowledge-integration.md)
-hat Vorrang für den ersten Pilot: Textübernahme und kanonische Wissensoperationen
-werden unabhängig von Recherchejobs, Publikation und Audio abgenommen.
-
-### Wissensoperationen des ersten Piloten
-
-Die Namen sind fachliche Arbeitsbezeichnungen, keine festgelegten API-Pfade.
-Pilot-Schemas und Bewertungswerte existieren auf Produzentenseite; der externe
-Vertrag wird dort abgestimmt und danach in den Hub-Vertrag übernommen.
-Nicht jede Operation braucht eine eigene UI-Seite.
-
-| Operation | Eingabe | Ausgabe / Pflichtnachweis |
+| Client | Receiver | Purpose |
 | --- | --- | --- |
-| capture.register | Text/Markdown oder ausgewählte Passage, Herkunft, Request-ID | kanonischer Eingang mit ID und Revision |
-| requests.find | ursprüngliche Request-ID im erlaubten Operations-/Kontoumfang | Annahmestand und vorhandene kanonische Referenzen; kein neuer Befehl |
-| notes.read/propose/edit | Notizreferenz oder Inhalt/Art, Urheberschaft, erwartete Revision | Zettel/Wiki mit Quellen-, Claim- und Linkreferenzen |
-| claims.read/propose | präzise Aussage, Geltungsbereich oder Claim-Referenz | Claim-ID/Revision; keine automatische Wahrheitsfeststellung |
-| evidence.read/link/appraise | Claim-/Quellenversion, Locator, Beziehung und Begründung | versionierte Belegbeziehung, Einzelbeurteilung und Abhängigkeiten |
-| assessments.read/propose | Claim-Revision, ausgewertete Belegrevisionen, begründetes Urteil | Evidenzlage, Belastbarkeit, Umfang und Bewertungsrevision |
-| review.record | genaue Ziel-/Bewertungsrevision, Abhängigkeitsstand, Entscheidung | attribuierte Entscheidung oder Revisionskonflikt |
-| retrieval.search | erlaubter Wissensbereich, Frage/Suchtext, Filter | revisionsgebundene Treffer, Gegenbelege und Abdeckungsgrenzen |
+| `TaskClient` | Task Service / verified Hermes control adapter | general task acceptance, control, result and schedule |
+| `KnowledgeClient` | Knowledge Server's authorized domain adapter | scoped records, search and supported contributions |
+| `MediaClient` | Media Service | separate transcription and narration operations |
 
-Manuelle Fachbefehle und Hermes-Werkzeuge verwenden dieselben Regeln. Ein
-Notiz-Edit oder eine Prüfentscheidung löst nicht automatisch Agentenarbeit aus.
-Der erste Capture-Zielvertrag überträgt keine Fotos, Audio oder PDFs.
-Freie Texte ohne Wissensreferenz sind im aktuellen Note-Vertrag noch nicht
-unterstützt. capture.register bleibt nur eine Kandidatenbezeichnung für eine
-explizite unterstützte Wissensaufnahme, kein Pflichtweg für jeden Capture.
-Der erste Pilot darf bestehende Datensätze lesen und eine referenzgebundene
-Passage übergeben; eine Erweiterung für freie Gedanken ist keine Hub-Voraussetzung.
-Hub darf eine Übernahme mit Anhängen nicht als vollständig melden, wenn nur Text übernommen
-wurde. Auslieferungsrechte für konkrete Quellenstellen separat prüfen.
+Dashboard magazine is an internal module, not a remote client. It owns drafts,
+editorial release, text-package creation and current article delivery rights.
+Platform observations use narrow read-only adapters, not an all-purpose business
+API. The browser never calls a remote application directly.
 
-## ExecutionPort
+## Task operations
 
-Der allgemeine Auftragszugang mit Hermes besitzt Annahme, Status und Kontrolle.
-Knowledge wird nur bei fachlichem Bedarf aufgerufen. research.* benennt hier
-Operationskandidaten dieses Ausführungsbereichs, keine Knowledge-Endpunkte.
-
-| Operation | Eingabe | Ausgabe / Pflichtnachweis |
+| Semantic operation | Input | Required result |
 | --- | --- | --- |
-| research.submit | requestId, Operation, Frage, Referenzen, Grenzen | dauerhafte Job-ID und Annahmezeit |
-| research.findRequest | requestId | nicht angenommen, angenommen oder noch unklar |
-| research.get/list | Job-ID oder Cursor/Filter | versionierter Status, beobachtete Zeit, Hermes-Zuordnung |
-| research.reply | Job-/Rückfrage-ID, erwartete Revision, Antwort | aktualisierter Status |
-| research.stop | Job-ID, erwartete Revision | Stop angefragt; später bestätigtes Ende |
-| research.retry | alter Job, neue requestId | neuer Job mit retryOf |
+| `tasks.control.submit` | question, allowed tools/scope, limits, request identity | durable task identity and accepted time |
+| `tasks.control.reconcile` | original request identity | known acceptance or still uncertain |
+| `tasks.control.read/list` | task ref or scoped page request | owner-qualified state, observation time, next permitted actions |
+| `tasks.control.reply/cancel` | task/question ref, expected revision | confirmed transition or conflict; requested stop is not completed stop |
+| `tasks.control.retry` | confirmed prior outcome and new request | new linked task |
+| `tasks.control.configure-schedule` | timezone/date rule, topics, limits, config revision | confirmed schedule revision |
 
-## PublicationPort
+Task Service owns the Hermes run mapping and general research admission/budget.
+It collects news and sources through selected research adapters. It may call
+Knowledge through scoped tools when needed; it does not require Knowledge for
+every task or persist editorial state there. Matrix uses the same verified task
+owner through its own authenticated channel, not Dashboard session cookies.
 
-Redaktion besitzt Artikel, Ausgaben und aktuelle Auslieferungsfreigaben.
-Knowledge liefert bei Bedarf erlaubte referenzierte Beiträge. Eine Ausgabe
-kann ohne Knowledge entstehen; dessen geplante Exportfunktionen sind kein
-allgemeiner Blocker. Die Freigabe wahrt Rechte sämtlicher verwendeter Quellen.
+Verify the installed Hermes version and actual durable/control capabilities
+before enabling them. A working Matrix reply, native capability response or
+bounded local model call is not that proof. No second agent loop or raw
+administrative/tool API is exposed to the browser.
 
-| Operation | Eingabe | Ausgabe / Pflichtnachweis |
+## Knowledge operations
+
+| Semantic operation | Purpose and required evidence |
+| --- | --- |
+| `knowledge.records.read/propose/edit` | typed note, claim, evidence or assessment with its required provenance, source locators, relations, rationale and revisions; supported commands only |
+| `knowledge.records.reconcile` | original command receipt; no new side effect |
+| `knowledge.review.record` | permitted human decision on exact revisions/dependencies |
+| `knowledge.search.query` | scoped paginated hits, references, counterevidence and coverage |
+
+The [inspected producer](../docs/knowledge-server-status.md) has local records,
+receipts and domain rules, but no completed authenticated remote API. Its notes
+require pinned references, including inbox notes. An ordinary Dashboard capture
+therefore stays local unless a supported explicit contribution is requested.
+No dummy reference or mandatory source-free note extension is introduced.
+
+Model-free operations require no Hermes run. Knowledge validates and atomically
+accepts changes; a proposal or another system's receipt cannot grant acceptance.
+The first contribution excludes attachments unless the producer explicitly
+supports them; never silently omit files or claim a partial transfer is complete.
+
+## Local editorial operations
+
+`dashboard.magazine.create-draft` consumes a retrieved task result with source
+provenance, coverage and warnings. `dashboard.magazine.release` records David's
+editorial decision on a specific edition and dependency revision.
+`dashboard.magazine.read` and `check-access` resolve the current permitted view.
+These are local application functions with transactional persistence.
+
+A daily schedule lives in Task Service. Dashboard delivery polls the accepted
+run/result and records a draft even without an open browser. Deduplicate by
+local date, schedule/config revision and task-result identity. No callback into
+Dashboard, second scheduler or implicit release is required.
+
+Release creates an immutable text package: ID/revision/hash, article revision,
+language, source/paragraph mapping, release reference, allowed use and manifest.
+Knowledge refs/checkpoint are included only for actual Knowledge-derived inputs.
+A news-only article has no invented Knowledge checkpoint. Input source rights
+constrain derivative rights; editorial release does not bypass them.
+
+## Media operations
+
+| Semantic operation | Input | Result |
 | --- | --- | --- |
-| publication.list/read | Ausgabe/Artikel und Revision | zitierter Text, Review, Quellen, Paketreferenz |
-| publication.release | exakte Ausgabe-Revision | geprüfte Freigabe oder Begründung |
-| publication.checkAccess | PackageRef, Actor, letzte bekannte Revision | aktuelle Berechtigung, Freigabestatus, Prüfzeit oder expliziter Widerruf |
+| `media.transcriptions.submit` | authorized original audio ref/hash, language, permitted processing and limits | transcription job |
+| `media.narrations.submit` | immutable released text package, voice/language and media limit | narration job |
+| `media.transcriptions.read/reconcile` or `media.narrations.read/reconcile` | owner-qualified job/original request | derived revision, source input ref, warnings/errors and artifact access |
 
-## Gemeinsame Anforderungen an die jeweiligen Besitzer
+Transcription returns derived text and method provenance. Dashboard applies it
+to the capture deliberately, with revision checks; the original recording stays
+unchanged. Narration returns text/audio versions bound to the exact submitted
+package. It cannot alter accepted Knowledge or the edition release.
 
-Jeder schreibende Aufruf führt `contractVersion`, `requestId`, `idempotencyKey`,
-authentifizierten Actor/Scope, Payload und erwartete Revisionen mit. Actor/Scope
-werden vom Adapter gesetzt und vom Produzenten autorisiert. Jede Antwort
-korreliert den Request mit ihrem Ergebnis beziehungsweise kanonischen Revisionen.
-Run-ID, Hermes-Zuordnung und Execution-State sind nur bei tatsächlicher
-Agentenausführung erforderlich; modellfreie Befehle benötigen keinen Dummy-Job.
-Review/Output-Revisionen bleiben davon unabhängig. `requests.find` muss bereits
-im ersten Wissenspilot verfügbar sein, bevor Wiederholungen nach Timeouts
-produktiv aktiviert werden; es hängt nicht vom späteren `research.findRequest` ab.
+Both modules may share one Media runtime while enforcing distinct operation
+permissions and limits. No provider receives a recording without the explicitly
+selected processing path. Choose and verify runtime/voice/provider before live
+processing. Media failure changes only its job, not research or released text.
 
-Hermes bleibt der Forschungsharness. Seine aktuelle Dokumentation beschreibt
-HTTP-Integration und Capability-Discovery. Das beweist nicht, dass die lokal
-installierte Version diese Funktionen bereitstellt. Im Spike Version,
-Authentifizierung, Annahme, Status, Events, Rückfragen und Stop nachweisen;
-keine internen Datenbanktabellen oder undokumentierten Python-Interna anzapfen.
-Quelle: [Hermes API Server](https://hermes-agent.nousresearch.com/docs/user-guide/features/api-server).
+## Identity, retries and delivery rights
 
-Jede empfangende API authentifiziert den Diensttoken und ordnet ihn serverseitig
-einem erlaubten Konto-/Operationsumfang zu. Ein vom Browser angelieferter Actor
-oder ein Tailscale-Identity-Header allein erteilt keine Schreibrechte. Staging
-und Produktion erhalten getrennte Tokens und Datenbereiche. Diensttokens
-dürfen weder freie Shellbefehle noch allgemeine Hermes-Administration erlauben.
+Every receiver verifies the service principal and attributed actor/scope; a
+browser field or private-network identity alone is not a mutation permission.
+Use fixed private destinations, separate staging credentials and least-privilege
+operation scopes. Providers and raw material cannot supply URLs or instructions
+that expand those permissions.
 
-Ein Capability-Nachweis muss fachliche Unterstützung belegen: Knowledge-Übernahme,
-Execution-Annahme/Abgleich und Publikation können zu unterschiedlichen Zeitpunkten
-bereitstehen. Die native Hermes-Capability-Antwort beweist keine implementierten
-Wissens- oder Review-Operationen.
+Commands carry contract version, request/payload identity and expected revisions
+where appropriate. Commit effects and receipt atomically at their owner; reconcile
+uncertain acceptance with the same identity before retry. Knowledge receipt
+lookup already matters for its first integration, independently of task lookup.
+A missing receipt during in-flight work is not necessarily final rejection.
 
-## MediaPort
+Requests, jobs, record revisions and contract versions are distinct. A combined
+job view retains `{ owner, kind, id }`, observed time and unknown/stale state.
+No cross-application transaction, direct database access or shared job authority
+is required. Dashboard outbox is delivery, not agent execution.
 
-`media.request` erhält eine immutable PackageRef aus Publication: `packageId`,
-`revision`, `sha256`, `contractVersion`. Der Produzent gibt zusätzlich
-Dokumentrevision, Textsprache, Quellen-/Absatzreferenzen, Freigabe,
-Nutzungsrechte und Dateien im Paketmanifest mit. Bei verwendeten Knowledge-Inhalten
-kommen deren tatsächliche Revisionen beziehungsweise Checkpoint hinzu; sonst
-kein künstlicher Wissensbezug. Hub erfindet dieses Paket nicht.
+Immutable content is separate from current access. Dashboard checks its editorial
+release and input permissions; Media enforces audio access. A known hash or past
+receipt does not prove current authorization. Apply the bounded private-copy
+expiry/revocation and restore rules in [hybrid-backend.md](../docs/hybrid-backend.md).
+Media may revalidate via an explicit updated permission/lease at the next request;
+a frozen manifest alone never grants indefinite use after withdrawal.
 
-Die Medienanforderung hat eigene Request-/Job-IDs, eigene Contract-Version,
-Idempotenz, Sprache/Stimme und Kostengrenze. `media.status` liefert PackageRef,
-eigenen Jobstatus, Audiorevision, Dauer, sichere Artefaktreferenz, optionale
-Alignment-Segmente, Warnungen und Fehler. Paket-ID/Revision/Hash müssen zur
-Anforderung passen; andernfalls keine Wiedergabe als Audio dieses Artikels.
+## Platform observations, scheduling and budget
 
-Für eine private Audiokopie muss zusätzlich der aktuelle Auslieferungsstatus
-der Audiorevision prüfbar sein. Sowohl Publication-Freigabe als auch Media-Rechte
-müssen gültig sein; eine Sperre an einer der Grenzen verhindert Auslieferung.
-Es gibt keinen Rückschluss von einem vorhandenen Dateihash auf aktuelle Rechte.
+Each owner emits safe state, `observedAt`, stale threshold and actionable code.
+Backup-copy and successful-restore timestamps remain separate. Dashboard only
+projects them; no Coolify token, shell or raw log is exposed in the browser.
+Notifications report actionable changes through explicitly configured channels.
 
-Ein Audio-Fehler ändert niemals den Execution-Jobstatus. Medienjobs werden nicht
-im Execution-Auftragsregister gespeichert. Keine Medienprozesse im Hub-Webrequest.
+Daily research is once per local date in an IANA zone. Define DST, missed-run and
+restart behavior before activation: one skipped-date recovery at most, no duplicate
+run at a repeated local time. A timer may produce a draft but cannot approve it.
+Task Service enforces research budget/admission, Media enforces its costs; unknown
+budgets block new paid work. Show a global pause only when its scope really covers
+all relevant clients. Existing API budget value `research` denotes task research,
+not Knowledge ownership; wire migration is separate from these naming rules.
 
-## TranscriptionPort
+## Acceptance
 
-Ein eigener Auftrag erhält Capture-/Upload-Referenz, Originalhash, Sprache und
-expliziten Verarbeitungsumfang. Der zuständige Worker liefert Jobstatus,
-Transkriptrevision, Methodenherkunft und strukturierte Fehler. Das Original bleibt
-im Hub; abgeleiteter Text wird dort bewusst übernommen und nicht automatisch
-als Wissen gespeichert. Kein Mitsenden an einen Hosted-Provider ohne festgelegten
-Verarbeitungsweg und Erlaubnis. Runtime und Provider bleiben zu prüfen.
-
-## OperationsPort
-
-Read-only-Snapshot: Komponentenkennung, `state` (`ok`, `degraded`, `down`,
-`unknown`), sichere Zusammenfassung, `observedAt`, `staleAfterSeconds`, optional
-konkreter Problemcode. Backup liefert getrennt Zeitpunkt der Kopie und des
-erfolgreichen Restoretests. Fehlende Daten bleiben `unknown`.
-
-Globale Annahmepause und verbindliches Forschungsbudget liegen im Execution-
-Auftragszugang. Hub vermittelt `admission.set` mit Revision. Der Schalter gilt
-auch für Matrix und geplante Research-Aufträge, sonst muss die Oberfläche
-ausdrücklich „Nur Hub-Aufträge pausieren“ heißen. Audio hat ein eigenes Limit.
-Laufende Jobs werden durch eine Annahmepause nicht still gestoppt.
-
-Keine Coolify-Administrator-Tokens an den Browser, keine Shellbefehle im
-OperationsPort. Vor dem Pilot einen minimal berechtigten Status-Collector oder
-eine vorhandene sichere Statusschnittstelle auswählen. Keine Kopie vollständiger Logs.
-
-## Scheduler und Budget
-
-Execution/Hermes ist Autorität für geplante Rechercheaufträge. Publication
-führt Ausgabeentwürfe/Freigaben; ein Timer verleiht keine redaktionelle Freigabe.
-Konfiguration:
-IANA-Zeitzone, lokale Uhrzeit, Wochentage, Themen, letzte angewandte Revision.
-Die UI zeigt eine Änderung erst nach bestätigter Anwendung als aktiv.
-Bei Sommerzeitwechsel einmal pro lokalem Datum: ausgefallene Uhrzeit zum nächsten
-gültigen Zeitpunkt, doppelte Uhrzeit nur einmal. Wiederanlauf höchstens einen
-verpassten heutigen Lauf nachholen, keine unbegrenzte Aufholschlange.
-
-Budget wird bei Annahme atomar reserviert und bei Abschluss mit tatsächlichen
-Kosten abgeglichen. Harte Grenzen brauchen Upstream-Enforcement; geschätzte
-Kosten allein sind keine Garantie. Neue kostenpflichtige Arbeit bei unklarem
-Budget sperren, vorhandene Inhalte weiter anzeigen. Das Monatslimit bezieht sich
-auf die lokale Kalenderperiode und getrennte Research-/Audio-Töpfe.
-
-## Erforderlicher Adapterpilot
-
-Mit synthetischen Daten jeweils Erfolgsfall, Timeout nach Annahme, erneute
-Zustellung, falsche Revision, unerlaubter Scope und Dienstneustart nachweisen.
-Kein Dienst erhält Produktivzugriff allein deshalb, weil ein Mockadapter denselben
-TypeScript-Typ erfüllt. Verifizierte Zuordnungen werden hier mit Version und
-Datum ergänzt; offene Ports bleiben ausdrücklich offen.
-
-Der lokale Wissenspilot benötigt zunächst keinen HTTP-Transport. Der spätere
-Hub-Pilot prüft zuerst Textübernahme, Notiz-/Behauptungsansicht, Beleg-/Bewertungs-
-bezug und Suche. Jobannahme, Rückfragen, Stop, Budgets und Publikation bilden
-eigene Abnahmen bei ihren Besitzern. Sie blockieren weder den Aufbau der
-Wissensdatenbank noch sind sie deren Implementierungsauftrag.
+Test each boundary with synthetic success, timeout-after-acceptance, duplicate
+request, changed payload, stale revision, wrong scope and restart cases.
+Capture and Knowledge-independent tasks must work during a Knowledge outage.
+An edition may use permitted sources without any Knowledge mutation. Failed
+transcription preserves the original; failed audio preserves released text.
+Runtime placement, identity and real integration remain separate acceptance gates.

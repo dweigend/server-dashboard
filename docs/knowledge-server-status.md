@@ -44,9 +44,9 @@ per HTML-Scraping und direktem Datenbankzugriff anbinden.
 
 Die [Nutzervorgabe zu Modulgrenzen](system-modules.md) präzisiert diesen Befund:
 Die unten fehlenden Funktionen sind nicht sämtlich Aufgaben des Knowledge Servers.
-Allgemeine Aufträge gehören zu Execution, Magazin zu Publication, Transkription
-und Audio zu eigenen Fähigkeiten. Die Referenzpflicht für Wissensnotizen
-blockiert keine persönliche Notiz im Hub und muss dafür nicht gelockert werden.
+Allgemeine Aufträge gehören zum Task Service, Magazin zum Dashboard-Magazin;
+Transkription und Audio sind getrennte Module des Media Service. Die Referenzpflicht für Wissensnotizen
+blockiert keine persönliche Notiz im Dashboard und muss dafür nicht gelockert werden.
 
 ## Konkrete Vertragslücken
 
@@ -58,7 +58,7 @@ blockiert keine persönliche Notiz im Hub und muss dafür nicht gelockert werden
 2. **Remote-Zugang:** Dienst- und Nutzeridentität, Berechtigungen, Versionierung,
    Rechte für Quellenpassagen und ein konkreter HTTP-Fehlervertrag fehlen.
 3. **Unsichere Annahme:** Lokale Receipts sind eine Grundlage, aber das Mapping
-   von Hub-Capture/Revision auf Request und kanonische Referenz muss vereinbart
+   von Dashboard-Capture/Revision auf Request und kanonische Referenz muss vereinbart
    werden. Ein Timeout oder noch fehlender Beleg darf keine Doppelannahme erzeugen.
 4. **Wissensansichten:** Lesen/Suchen braucht einen externen Vertrag einschließlich
    Suchumfang, Pagination und unbekannter Werte. Bearbeiten und Review werden erst
@@ -89,7 +89,7 @@ Publikationsentscheidung bleiben getrennt; es gibt keinen Wahrheits-Prozentwert.
 - [#40: Publikation](https://github.com/dweigend/knowledge-server/issues/40) und
   [#41: Freigegebene Pakete](https://github.com/dweigend/knowledge-server/issues/41)
   betreffen optionale Knowledge-Exporte für zitierte Beiträge. Das allgemeine
-  Magazin und seine Medienverbraucher erhalten einen eigenen Publication-Vertrag
+  Magazin und seine Medienverbraucher erhalten einen internen Magazinvertrag
   und sind nicht von diesen beiden Issues abhängig.
 - [#19: Nützliche Wissensintegration](https://github.com/dweigend/knowledge-server/issues/19)
   adressiert die noch nicht zuverlässig belegte Verbesserung vorhandener Notizen.

@@ -1,117 +1,85 @@
-# Zielarchitektur und Verantwortlichkeiten
+# Dashboard architecture
 
-Status: Zielbild, keine bereitgestellten Dienste. Hub ist ein eigenständiges
-Projekt und ein Client mehrerer spezialisierter Systeme. Die
-[Modulgrenzen](system-modules.md) ersetzen den früheren Sammelbegriff Research
-für Wissen, allgemeine Ausführung und Publikation.
+Target design, revised 2026-09-15. The [layered system](system-modules.md)
+contains Dashboard, Task Service, Knowledge Server and Media Service.
+The [naming rules](system-naming.md) distinguish applications, internal modules,
+providers and deployment processes. Existing runtime names are not migrated.
 
-Die Web-App läuft künftig auf Hetzner, Knowledge und allgemeine Ausführung
-auf dem MS-A2. Der
-[Hybrid-Backend-Entwurf](hybrid-backend.md) konkretisiert private HTTPS-Verbindung,
-Containergrenzen, dauerhafte Zustellung und Verfügbarkeit bei Heimserverausfall.
-Der [Deployment-Audit](deployment-audit.md) trennt Livebefunde von diesem Zielbild.
-Der [Wissensabgleich](knowledge-integration.md) definiert die Anbindung ohne
-Abhängigkeit von Recherchejobs. Der [aktuelle Codeabgleich](knowledge-server-status.md)
-trennt vorhandene lokale Funktionen von noch fehlenden Remote-Verträgen.
+## Application boundary
 
-```mermaid
-flowchart TD
-    Browser[Browser: mobile UI] -->|HTTPS / Sitzung| Hub[SvelteKit UI und serverseitige Adapter]
-    Hub --> HubDB[(Hub: Zugang, Captures, Präferenzen)]
-    Hub --> Files[Private Capture-Originale und Lesekopien]
-    Hub -->|KnowledgePort| Knowledge[Knowledge: kanonisches Wissen und Fachverarbeitung]
-    Hub -->|ExecutionPort| Execution[Auftragszugang und Hermes-Ausführung]
-    Execution -->|gezielte Wissensoperation| Knowledge
-    Knowledge --> Zotero[Zotero: Literaturautorität]
-    Execution --> Discovery[Recherche- und News-Werkzeuge]
-    Hub -->|PublicationPort| Publication[Redaktion und Ausgabenfreigabe]
-    Discovery --> Publication
-    Knowledge -->|optionale erlaubte Beiträge| Publication
-    Publication -->|freigegebenes Textpaket| Media[Unabhängige Audioproduktion]
-    Hub -->|MediaPort| Media
-    Hub -->|TranscriptionPort| Transcript[Aufnahme zu abgeleitetem Text]
-    Hub -->|OperationsPort| Operations[Bereinigte Betriebsbeobachtungen]
-```
+Dashboard is one SvelteKit application: UI plus server-side application logic.
+Use Svelte 5, TypeScript/Bun tooling and the existing Node production adapter.
+Browser requests stay on the same origin. Server-side clients call only Task,
+Knowledge and Media capabilities, with platform observations read separately.
 
-## Minimaler eigener Stack
+Dashboard owns access, personal captures, editorial editions and preferences.
+Knowledge owns canonical knowledge and its domain processing. Task Service owns
+general agent execution and schedules with Hermes. Media owns its transcription
+and narration jobs. No application reads another owner's tables.
 
-Ein SvelteKit-Projekt enthält UI und serverseitige API als Backend-for-Frontend.
-Svelte 5, TypeScript und Bun für Entwicklung/Checks. `adapter-node` liefert den
-Node-Server für den Coolify-Container. Keine zweite FastAPI-Schicht allein für
-die Weboberfläche. Nur der Knowledge-HTTP-Adapter gehört in das Knowledge-Projekt.
-Allgemeiner Auftragszugang und Publikation erhalten eigene fachliche Grenzen;
-konkrete Repository-/Prozessaufteilung wird erst bei Umsetzung festgelegt.
+## Internal modules
 
-Ein eigenes PostgreSQL-Schema bzw. eine eigene Datenbank mit separatem Nutzer
-hält Zugang, persönliche Captures, Transferbelege, Präferenzen und Zuordnungen. Es ist
-keine neue Wissensautorität. Für Dateien zunächst eine private Volume-Ablage
-hinter einer kleinen Storage-Schnittstelle; S3 erst bei konkretem Betriebsbedarf.
-
-## Eigentum an Daten und Verhalten
-
-| Bereich | Autorität | Rolle von Hub |
+| Module | Owns | Calls |
 | --- | --- | --- |
-| Zugang/Sitzungen | Hub/Auth-Bibliothek | Konto und Session schützen |
-| Unverarbeiteter Eingang | Hub | aufnehmen, dauerhaft speichern, übertragen |
-| Wissen/Quellen/Review | Knowledge und Zotero | revisionsgebunden lesen und Befehle vermitteln |
-| Rechercheplanung/-ausführung | Execution mit Hermes | Auftrag über verifizierten Adapter übergeben |
-| Forschungsauftragsstatus | Execution-Auftragsregister mit Hermes-Zuordnung | lesen und kurzzeitig projizieren |
-| Magazintext/-freigabe | Publication/Redaktion | Ausgabe darstellen, Freigabebefehl vermitteln |
-| Transkription | Transcription-Worker; Original im Hub | Auftrag und abgeleiteten Text vermitteln |
-| Audio/Renderjobs | eigenständiges Mediensystem | vorhandenes Audio lesen, expliziten Auftrag vermitteln |
-| Gerätepräferenzen/Leseposition | Hub | speichern, synchronisieren |
-| Serverzustand/Backup | jeweiliger Betriebsdienst | bereinigte Beobachtungen anzeigen |
+| `dashboard.access` | personal login/session/recovery | selected auth library and own persistence |
+| `dashboard.inbox` | captures, original attachments and revisions | own storage; explicit delivery functions |
+| `dashboard.magazine` | article/edition revisions, editorial release, rights, immutable text packages | task results; optional Knowledge reads; media requests |
+| `dashboard.preferences` | display choices and reading/listening positions | own persistence |
+| `dashboard.delivery` | durable explicit handoffs and reconciliation | narrow Task/Knowledge/Media clients |
 
-Keine Direktzugriffe aus dem Browser auf private Fachadapter, Hermes, Datenbanken, Coolify,
-NAS oder Provider-Keys. Serveradapter konstruieren Identität und Scope selbst;
-Clientfelder dürfen keine Berechtigungen erteilen.
+Modules are domain responsibilities, not mandatory classes or directory trees.
+Keep business operations, persistence, UI and remote clients separate. Magazine
+release is a local domain operation, so there is no remote Publication service,
+Publication token or network hop for editorial changes.
 
-## Ausführung und Zuverlässigkeit
+## Data ownership and execution
 
-Hub führt keinen Modellloop aus. Lange Arbeit endet nicht an einem HTTP-Timeout.
-Execution muss Annahme und Ausführungs-ID dauerhaft bestätigen und die Verbindung
-zur nativen Hermes-Ausführung halten. Falls die installierte Hermes-Version das
-nicht zuverlässig anbietet, ist zunächst der Adapter zu ergänzen; die betroffenen Execution-Funktionen bleiben bis dahin ausdrücklich im
-Mockbetrieb. Capture und andere bereits verifizierte Fähigkeiten bleiben
-unabhängig nutzbar.
+One private Dashboard database stores its own records with module-owned tables;
+a private volume stores capture originals and permitted delivery copies.
+The magazine module alone changes edition release state. It does not treat a
+successful task or Knowledge review as editorial approval.
 
-Captures bleiben im Hub. Eine gezielte spätere Knowledge-Übernahme ist optional
-und benötigt einen unterstützten Fachbefehl; freie Gedanken brauchen kein Wissen.
-Eine kleine transaktionale Outbox in Hub ist ausschließlich Zustellmechanik,
-kein Forschungs-Scheduler und keine zweite Agentensteuerung. Ein eigener
-Delivery-Prozess aus demselben Image verarbeitet sie unabhängig von Webrequests
-und aktualisiert berechtigte Lesekopien. Neue Aufträge werden bei
-nicht erreichbarer Execution nicht heimlich auf spätere Ausführung gesetzt.
-Unklare Annahmen werden über Request-ID und Idempotenz abgeglichen.
+General tasks run in Task Service/Hermes. Dashboard delivery can submit, reconcile
+and retrieve results, including when no browser is open. It cannot start its own
+model loop or research scheduler. Scheduled task results become idempotent local
+magazine drafts keyed by date, configuration revision and task-result identity.
 
-Freigegebene Artikel-/Audiorevisionen dürfen als private, unveränderliche
-Auslieferungskopien auf Hetzner liegen. Eigentum, Frist und Widerruf bleiben
-im [Verfügbarkeitsvertrag](hybrid-backend.md) definiert. Die Kopie ist keine
-zweite Wissensautorität und kein umfassender Datenbankspiegel.
+Captures may remain in Dashboard permanently. Explicit Knowledge contributions
+must satisfy the actual supported producer contract. Free thoughts are not
+forced into referenced Knowledge notes; originals survive rejected transfers.
 
-Zu Beginn pollt die UI sichtbare aktive Jobs alle fünf Sekunden, inaktiven
-Status höchstens alle 30 Sekunden. Versteckte Tabs stoppen; nach Wiederaufnahme
-sofort abgleichen. Bei Fehlern exponentiell bis 60 Sekunden warten und
-Veraltetheit anzeigen. SSE ist ein späterer Transport, kein eigener Jobzustand.
+Media receives bounded authorized input and returns results. Dashboard retrieves
+a transcript/audio result before applying its own revisioned domain operation.
+There is no direct media write into captures, articles or Knowledge records.
 
-## Zukünftige Codegrenzen
+## UI and integration behavior
 
-```text
-src/routes/                    UI-Routen und dünne HTTP-Handler
-src/lib/components/            wiederverwendbare UI
-src/lib/domain/                Hub-Regeln und erlaubte Zustandsübergänge
-src/lib/server/application/    Anwendungsfälle und Transaktionsgrenzen
-src/lib/server/adapters/       Knowledge, Execution, Publication, Transcription, Media, Storage, Auth, Operations
-src/lib/server/persistence/    Hub-Tabellen und Migrationen
-src/app.css                    gesamtes App-Styling
-```
+All styling remains in `src/app.css`, using semantic classes. Follow the
+48px top navigation and content-area rules in [design.md](../design.md).
+A combined job list projects `{ owner, kind, id }` and observed time; it does
+not create a universal job store or infer failure from a missing response.
 
-Diese Verzeichnisse werden erst bei der Implementierung angelegt. Keine
-generischen Manager, Pluginplattform oder Service pro UI-Komponente.
+Poll visible active jobs every five seconds and inactive status at most every
+30 seconds; pause hidden tabs, reconcile on resume and back off on errors.
+SSE is a possible later transport, not an additional lifecycle.
 
-## Entwicklungs- und Produktionsmodus
+Synthetic fixtures can precede each integration. Missing Task capabilities
+block only those task actions; independent captures, Knowledge reads and Media
+operations retain their own verified behavior. Production never substitutes
+fabricated successful data for an unavailable adapter.
 
-Lokale Entwicklung beginnt mit synthetischen Fixtures an denselben Verträgen.
-Mockmodus ist deutlich erkennbar und technisch von produktiven Zugangsdaten
-getrennt. Produktiv darf ein ausgefallener Adapter niemals auf erfundene
-Erfolgsdaten zurückfallen. Geheimnisse sind ausschließlich serverseitig.
+## Placement and code boundaries
+
+The [hybrid deployment plan](hybrid-backend.md) places Dashboard on Hetzner and
+Task/Knowledge work on the home server. Media placement remains a separate
+runtime decision. Deployment topology does not redefine application ownership.
+
+Extend the current routes, domain/application functions, persistence and narrow
+server clients only when a feature needs them. Use `TaskClient`,
+`KnowledgeClient` and `MediaClient` for real remote boundaries; internal modules
+use ordinary functions. Do not pre-create a generic service framework.
+
+The [data model](data-model.md), [integration contracts](../contracts/integrations.md)
+and [security rules](security.md) define identity, revisions, delivery expiry,
+retry and object-level permissions. The [deployment audit](deployment-audit.md)
+records earlier observations, not acceptance of this target design.

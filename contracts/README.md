@@ -1,8 +1,8 @@
 # Schnittstellen v0.1
 
-[openapi.json](openapi.json) ist der maschinenlesbare Zielvertrag der Hub-
-Browser-API. Es beschreibt neue Hub-Endpunkte, **keine bereits existierenden
-Knowledge-, Execution-, Publication-, Hermes- oder Coolify-APIs**. Vertragsstatus: Entwurf für den ersten
+[openapi.json](openapi.json) ist der maschinenlesbare Zielvertrag der Dashboard-
+Browser-API. Es beschreibt neue Dashboard-Endpunkte, **keine bereits existierenden
+Knowledge-, Task-Service-, Media-, Hermes- oder Coolify-APIs**. Vertragsstatus: Entwurf für den ersten
 Implementierungspilot. Rückwärtskompatibilität ist erst nach Freigabe garantiert.
 
 Der Vertrag enthält noch keine fertigen Endpunkte für kanonische Wissensnotizen,
@@ -51,7 +51,7 @@ und Problem enthalten; ihre Inhalte und Geldbeträge sind synthetisch.
 `/api/auth/*` gehört der später eingebundenen Auth-Bibliothek und wird nicht als
 selbst erfundene Passwort-API nachgebaut. Favorit: Better Auth mit Passwort,
 TOTP und Wiederherstellungscodes. `/api/v1/session` ist die kleine normalisierte
-Hub-Sicht. Session-Cookiename im Zielvertrag: `hub_session`, bei Integration in
+Dashboard-Sicht. Session-Cookiename im Zielvertrag: `hub_session`, bei Integration in
 der Bibliothek entsprechend konfigurieren oder Vertrag anpassen.
 
 Vor Umsetzung muss der Auth-Spike konkrete Bibliotheksversion, Cookieverhalten,
@@ -80,11 +80,12 @@ einer Nutzeraktion ausgelöst. Vorhandenes Audio kann ohne Neugenerierung gehör
 werden. Die Statusantwort trennt `unavailable`, `queued`, `running`, `ready`, `failed`.
 
 `POST /issues/drafts` erstellt ausdrücklich einen Ausgabeentwurf, keine Freigabe
-und kein Audio. Der Besitzer bestätigt die Quellen-/Zeitplanrevision.
-Publication führt geplante und manuelle Ausgabeanfragen für denselben Tag
-zusammen; Execution kann die geplante Anfrage auslösen.
+und kein Audio. Das Dashboard bestätigt die Quellen-/Zeitplanrevision.
+dashboard.magazine führt geplante und manuelle Ausgabeergebnisse für denselben
+Tag zusammen. Task Service besitzt den Zeitplan; Dashboard delivery holt dessen
+Ergebnis ab. Die redaktionelle Freigabe ist eine lokale Domainoperation.
 
-`/budgets/{domain}` verwaltet Execution-Forschungsbudget (`research`) und Media
+`/budgets/{domain}` verwaltet Task Service-Forschungsbudget (`research`) und Media
 getrennt; `research` bezeichnet hier keine Knowledge-Tabellen. Ein gemeinsamer
 Bildschirm kann beide Budgets zeigen; eine einzelne Mutation schreibt nur bei
 einem Eigentümer. So gibt es keine vorgetäuschte atomare Änderung über zwei Dienste.
