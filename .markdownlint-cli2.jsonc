@@ -2,5 +2,10 @@
   "config": {
     "MD013": false
   },
-  "ignores": [".local/**", "node_modules/**"]
+  "ignores": [
+    ".local/**",
+    "node_modules/**",
+    ".svelte-kit/**",
+    "build/**"
+  ]
 }

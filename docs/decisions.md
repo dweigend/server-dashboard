@@ -23,7 +23,7 @@ Konzepts, keine nachträglich behauptete Zustimmung des Nutzers.
 
 | ID | Entscheidung | Grund |
 | --- | --- | --- |
-| A01 | Name `weigend-hub`, Subdomainvorschlag `hub.weigend.studio` | klare eigenständige Identität |
+| A01 | Repositoryname `server-dashboard`, Subdomainvorschlag `hub.weigend.studio` | klare eigenständige Identität |
 | A02 | SvelteKit mit serverseitiger Hub-API | ein kleiner Webstack statt paralleler Backends |
 | A03 | Svelte 5, Bun-Tooling, Node im Produktionscontainer | Nutzerkonvention und dokumentierter Serveradapter |
 | A04 | System-Sans + optionale Leseserif + sparsame Monospace-Akzente | Lesen und Eingabe vor Terminal-Dekor |
@@ -46,7 +46,7 @@ Konzepts, keine nachträglich behauptete Zustimmung des Nutzers.
 | O03 | tatsächliche Research-/Hermes-API, Dauerhaftigkeit und Stop-Verhalten | echte Rechercheintegration |
 | O04 | Audio-/Transkriptionsanbieter, Stimme, Datenverarbeitung | echte Audio-/Sprachverarbeitung |
 | O05 | Themen, Quellen, Uhrzeit und Monatslimits | produktiver Magazinplan |
-| O06 | Lizenz und GitHub-Sichtbarkeit | Veröffentlichung |
+| O06 | Öffentliches persönliches Repository ohne Open-Source-Lizenz festgelegt | erledigt am 2026-09-15 |
 | O07 | Auth-Spike inklusive Recovery und 2FA | Produktivzugang |
 | O08 | Backupziel, Kapazität und getestete RPO/RTO | Produktionsfreigabe |
 | O09 | 24-Stunden-Rechtefenster für Lesekopien und Grenzen der Cloud-Ablage bestätigen | Magazin-Auslieferung bei Heimserverausfall |

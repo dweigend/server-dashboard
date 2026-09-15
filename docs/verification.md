@@ -52,3 +52,10 @@ Der aktualisierte Backend-Entwurf ist weiterhin eine Spezifikation.
 Schema-Validität ist kein Nachweis einer funktionierenden API, sicherer Sessions
 oder vollständiger Integration. Auth-Spike, Research-/Media-Adaptertests,
 Lastmessungen, Coolify-Deployment und Restore bleiben geplante Arbeit.
+
+## Entwicklungsbasis am 15. September 2026
+
+Repository nach `server-dashboard` überführt und minimale SvelteKit-Basis ergänzt.
+`bun run validate` prüft zusätzlich App-Lint, Typen, Produktionsbuild und
+HTTP-Smoke-Tests. Die konkrete Ausstattung steht in [development.md](development.md).
+Die älteren Aussagen oben beschreiben den vorausgehenden Konzeptstand.

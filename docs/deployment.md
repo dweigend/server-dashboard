@@ -2,18 +2,19 @@
 
 Status: geplanter Hub-Betrieb; bestehende Infrastruktur read-only geprüft.
 Ziel nach aktueller Nutzervorgabe: Web-App auf Hetzner unter Coolify,
-Research auf dem MS-A2. Die App ist weiterhin ausschließlich ein lokales Konzept.
+Research auf dem MS-A2. Die App besitzt jetzt eine minimale lokale Entwicklungsbasis.
 Siehe [Live-Prüfung](deployment-audit.md) und [Backend-Verbindung](hybrid-backend.md).
 
 ## Lokal
 
-Projekt in `GitBase/weigend-hub`. Zuerst Fixtures und Mockadapter ohne
+Projekt in `GitBase/server-dashboard`. Zuerst Fixtures und Mockadapter ohne
 Produktiv-Credentials. Danach eigene Entwicklungsdatenbank und isolierte
 Testdienste. Bun für Installation, Dev-Server und Checks; Lockfile mitführen.
 Keine Verbindung zu Produktionsdaten durch voreingestellte `.env`-Werte.
 
-Noch kein `package.json`, Dockerfile oder Compose-Stack: diese werden erst mit
-dem ersten ausführbaren Durchstich angelegt und tatsächlich getestet.
+`package.json`, Bun-Lockfile und ein Dockerfile für die minimale SvelteKit-App
+sind vorhanden. Der Stand und die Prüfgrenzen stehen in [development.md](development.md).
+Datenbank, Worker und produktive Anbindung sind weiterhin geplant.
 
 ## Produktionspfad
 
