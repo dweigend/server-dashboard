@@ -59,3 +59,23 @@ Repository nach `server-dashboard` überführt und minimale SvelteKit-Basis erg�
 `bun run validate` prüft zusätzlich App-Lint, Typen, Produktionsbuild und
 HTTP-Smoke-Tests. Die konkrete Ausstattung steht in [development.md](development.md).
 Die älteren Aussagen oben beschreiben den vorausgehenden Konzeptstand.
+
+## Designbeispiele und Stitch-Brief am 15. September 2026
+
+Alle 30 Portfolio-Bilder sind erhalten. Auf erneuten Nutzerwunsch sind jetzt
+auch die zehn Originalreferenzen und alle 15 Stitch-Ansichten im Repository.
+Die Originalreferenzen wurden bytegenau mit der lokalen Quelle verglichen.
+Das [Bildinventar](../design/image-inventory.json) hält Herkunft, Maße und
+SHA-256-Prüfsummen aller 55 Beispiele fest; die Konzeptprüfung prüft Anzahl,
+Dateizugehörigkeit, Signaturen und Prüfsummen.
+
+Zwölf Stitch-PNGs stammen unverändert aus dem Export. Drei defekte Exportbilder
+wurden durch Chrome-Screenshots des zugehörigen unveränderten HTML ersetzt;
+der [Exportbericht](../design/stitch/README.md) nennt diese Fälle. Die Aufnahmen
+sind Bildbeispiele, keine Abnahme der App. Historische Layoutfehler bleiben
+sichtbar und sind als Abweichungen dokumentiert.
+
+[design.md](../design.md) entstand aus zwei Dokumentationsrunden in Stitch und
+einem Abgleich mit UI-System, Tokens und Wissensvertrag. Nicht belegte
+Funktions- und Abnahmebehauptungen wurden entfernt. Die App selbst wurde in
+diesem Schritt nicht erweitert.

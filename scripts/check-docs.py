@@ -1,8 +1,10 @@
 """Check concept links, JSON references and the complete mockup inventory."""
 
+import hashlib
 import json
 import re
 import struct
+from collections import Counter
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
@@ -68,9 +70,47 @@ def check() -> None:
             width, height = struct.unpack(">II", header[16:24])
             if not 0 < width < height:
                 errors.append(f"Expected portrait image: {path.name}")
+    design = root / "design"
+    inventory = json.loads((design / "image-inventory.json").read_text())
+    images = inventory["images"]
+    counts = Counter(entry["group"] for entry in images)
+    if counts != inventory["expectedCounts"]:
+        errors.append("Design image counts do not match the expected inventory")
+    listed = {entry["file"] for entry in images}
+    actual = {
+        str(path.relative_to(design))
+        for folder in ("portfolio/images", "references", "stitch/screens")
+        for path in (design / folder).iterdir()
+        if path.suffix in {".png", ".jpg"}
+    }
+    if listed != actual or len(listed) != len(images):
+        errors.append("Design image inventory has missing, extra or duplicate files")
+    for entry in images:
+        path = design / entry["file"]
+        if not path.is_file():
+            errors.append(f"Missing design example: {entry['file']}")
+            continue
+        content = path.read_bytes()
+        if hashlib.sha256(content).hexdigest() != entry["sha256"]:
+            errors.append(f"Design image checksum mismatch: {entry['file']}")
+        if path.suffix == ".png":
+            if len(content) < 24 or content[:8] != b"\x89PNG\r\n\x1a\n":
+                errors.append(f"Invalid design PNG: {entry['file']}")
+            elif struct.unpack(">II", content[16:24]) != (
+                entry["width"],
+                entry["height"],
+            ):
+                errors.append(f"Design image dimension mismatch: {entry['file']}")
+        elif not content.startswith(b"\xff\xd8\xff") or not content.endswith(
+            b"\xff\xd9"
+        ):
+            errors.append(f"Invalid design JPEG: {entry['file']}")
     if errors:
         raise SystemExit("\n".join(errors))
-    print(f"Checked {len(documents)} documents, contract references and 30 mockups.")
+    print(
+        f"Checked {len(documents)} documents, contract references, "
+        f"30 mockups and {len(images)} total design images."
+    )
 
 
 if __name__ == "__main__":

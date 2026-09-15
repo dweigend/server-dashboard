@@ -32,7 +32,7 @@ Konzepts, keine nachträglich behauptete Zustimmung des Nutzers.
 | A07 | Polling statt eigener Event-Infrastruktur im ersten Release | einfache verlässliche Statusabfrage |
 | A08 | Passwort + TOTP; Better Auth als Kandidat | keine eigene Kryptografie |
 | A09 | Forschungs- und Medienbudget getrennt | unabhängige Ausführung und Kostenautorität |
-| A10 | Originalreferenzen lokal; 30 neue Mockups im Repo | vollständige lokale Grundlage, nachvollziehbare Veröffentlichung |
+| A10 | 30 Mockups, 10 Originalreferenzen und 15 Stitch-Screenshots im Repo | Nutzerwunsch vom 2026-09-15: alle Designbeispiele übertragen; Herkunft und Abweichungen dokumentieren |
 | A11 | Private HTTPS-API über Tailscale zwischen Hetzner und MS-A2 | vorhandenes Heimserver-Netz nutzen, kein öffentlicher Research-Port |
 | A12 | Hub-Webprozess und kleiner Delivery-Prozess aus einem Image | Zustellung und Lesekopien unabhängig von Browser und HTTP-Laufzeit |
 | A13 | Nur freigegebene, revisionsgebundene Lesekopien auf Hetzner | begrenzte Lesbarkeit bei Heimserverausfall ohne Wissensspiegel |

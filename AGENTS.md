@@ -13,7 +13,7 @@
   Bits UI/shadcn-svelte patterns and Lucide. Pin compatible versions at build time.
 - All app styling belongs in src/app.css. Use semantic classes, no inline
   styles, component style blocks or Tailwind utility classes in markup.
-- Apply design/ui-system.md. A mockup cannot override the 48px navigation,
+- Read design.md and apply design/ui-system.md. A mockup cannot override the 48px navigation,
   content-area rule, accessibility, or lack of brand/title chrome.
 - Prefer standard components and existing code over custom abstractions.
 - Keep UI, domain behavior, data access and integration adapters separate.

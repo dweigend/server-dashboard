@@ -27,10 +27,11 @@ Die Vorschau bindet nur an den eigenen Rechner.
 ## Projektgrundlage
 
 - [Konzeptübersicht](docs/README.md)
-- [Design und UI-System](design/ui-system.md)
+- [Design-Brief aus Stitch](design.md) und [UI-System](design/ui-system.md)
 - [Wissenssystem und Dashboard](docs/knowledge-integration.md)
 - [Entwicklung und Betrieb](docs/development.md)
 - [30 Mockups](design/portfolio/index.html)
+- [10 Referenzbilder](design/references/README.md) und [15 Stitch-Screenshots](design/stitch/README.md)
 
-Private Serverdaten, Zugangsdaten und die ursprünglichen Referenzbilder bleiben
-lokal. GitHub veröffentlicht den Code, nicht meinen Server oder meine Inhalte.
+Private Serverdaten, Zugangsdaten und persönliche Arbeitsinhalte bleiben lokal.
+Die Designbeispiele sind im Repository dokumentiert.

@@ -1,0 +1,465 @@
+{
+  "version": 1,
+  "expectedCounts": {
+    "mockup": 30,
+    "reference": 10,
+    "stitch": 15
+  },
+  "images": [
+    {
+      "group": "mockup",
+      "file": "portfolio/images/01.png",
+      "width": 853,
+      "height": 1844,
+      "sha256": "4963783a6bf20b3e2cf33d55c62e7be3e7ebaa5e684ed26905d0f10a0647e87c",
+      "source": "GPT-Image final portfolio"
+    },
+    {
+      "group": "mockup",
+      "file": "portfolio/images/02.png",
+      "width": 853,
+      "height": 1844,
+      "sha256": "467cb8415310636af898e8c6c0ccc5139f77a0aabd5394fecfa9551453519c7a",
+      "source": "GPT-Image final portfolio"
+    },
+    {
+      "group": "mockup",
+      "file": "portfolio/images/03.png",
+      "width": 853,
+      "height": 1844,
+      "sha256": "04cb86b63f06ce61435d15465a0336d3564040badcf0450c239c201b112446f9",
+      "source": "GPT-Image final portfolio"
+    },
+    {
+      "group": "mockup",
+      "file": "portfolio/images/04.png",
+      "width": 853,
+      "height": 1844,
+      "sha256": "e0c42d6308b076cc28ff5f34d2a382b1d6de355aacfcc54597da195ea13c5caa",
+      "source": "GPT-Image final portfolio"
+    },
+    {
+      "group": "mockup",
+      "file": "portfolio/images/05.png",
+      "width": 853,
+      "height": 1844,
+      "sha256": "a619e0974575072c52ced47817e42073bf6f5aaf74dbc84f3b1a1860035f56a7",
+      "source": "GPT-Image final portfolio"
+    },
+    {
+      "group": "mockup",
+      "file": "portfolio/images/06.png",
+      "width": 853,
+      "height": 1844,
+      "sha256": "8f87e7717192ebf43e12a7da7406e9f00fdc45eb6e362a109b9b9e68b7d2d285",
+      "source": "GPT-Image final portfolio"
+    },
+    {
+      "group": "mockup",
+      "file": "portfolio/images/07.png",
+      "width": 853,
+      "height": 1844,
+      "sha256": "c700a747783abcd1c8b62d07923e4b95ed4c9e4f42849a8a7199c8159e0537c2",
+      "source": "GPT-Image final portfolio"
+    },
+    {
+      "group": "mockup",
+      "file": "portfolio/images/08.png",
+      "width": 853,
+      "height": 1844,
+      "sha256": "998f1eb9c2ed345051e5a949c9a801f41fe2038a35b1d98dac51ccdc6ee1d9a3",
+      "source": "GPT-Image final portfolio"
+    },
+    {
+      "group": "mockup",
+      "file": "portfolio/images/09.png",
+      "width": 853,
+      "height": 1844,
+      "sha256": "a8f7019be8d727168a919ced4ddec94ee2375f08f23842f4e2809df605706387",
+      "source": "GPT-Image final portfolio"
+    },
+    {
+      "group": "mockup",
+      "file": "portfolio/images/10.png",
+      "width": 853,
+      "height": 1843,
+      "sha256": "71ecfe711e03d8b0902b4ae48f1e0045a403782669f23e99a6169886fb7cc7b8",
+      "source": "GPT-Image final portfolio"
+    },
+    {
+      "group": "mockup",
+      "file": "portfolio/images/11.png",
+      "width": 853,
+      "height": 1844,
+      "sha256": "52c701c4521ef3abbcd9d498b5e1763192303de4590dc33caf7fcd21b902018a",
+      "source": "GPT-Image final portfolio"
+    },
+    {
+      "group": "mockup",
+      "file": "portfolio/images/12.png",
+      "width": 853,
+      "height": 1844,
+      "sha256": "d9e4611d062fc8ab47b5cc521cdff8f532ef71ff6d66ece8125ff5ed7b4fb11f",
+      "source": "GPT-Image final portfolio"
+    },
+    {
+      "group": "mockup",
+      "file": "portfolio/images/13.png",
+      "width": 853,
+      "height": 1844,
+      "sha256": "d82cd4170303f42021a1aa0674a204dac3b114783c77477d9e3fd4ab63a18b65",
+      "source": "GPT-Image final portfolio"
+    },
+    {
+      "group": "mockup",
+      "file": "portfolio/images/14.png",
+      "width": 853,
+      "height": 1844,
+      "sha256": "fda3eb810e4a536746333da56f11a568b0d64e6634da0e946ae2a60ba52e28e8",
+      "source": "GPT-Image final portfolio"
+    },
+    {
+      "group": "mockup",
+      "file": "portfolio/images/15.png",
+      "width": 853,
+      "height": 1844,
+      "sha256": "9d85b1eda4c64f1109c0fc22015fdac69ef59cd29ba4b9202f2dedffd18566ff",
+      "source": "GPT-Image final portfolio"
+    },
+    {
+      "group": "mockup",
+      "file": "portfolio/images/16.png",
+      "width": 853,
+      "height": 1844,
+      "sha256": "a9416561338f64f09c197327622eb6aa1f07f5396d3226880483ff79c7b9afb4",
+      "source": "GPT-Image final portfolio"
+    },
+    {
+      "group": "mockup",
+      "file": "portfolio/images/17.png",
+      "width": 853,
+      "height": 1844,
+      "sha256": "d7046f639f3a44b992227625ef5228e7031a5ff97ae3bf6b262a3fc82950c298",
+      "source": "GPT-Image final portfolio"
+    },
+    {
+      "group": "mockup",
+      "file": "portfolio/images/18.png",
+      "width": 852,
+      "height": 1846,
+      "sha256": "ac9dd8a665f58b5cf3e2e562ae2615966b349cc2757a2eeb4aa32abad09ccaf6",
+      "source": "GPT-Image final portfolio"
+    },
+    {
+      "group": "mockup",
+      "file": "portfolio/images/19.png",
+      "width": 853,
+      "height": 1844,
+      "sha256": "45e2d4820d4e93b1c9ec207a5e8f2f1b0dad758e860eb478e55e3ab0e405952b",
+      "source": "GPT-Image final portfolio"
+    },
+    {
+      "group": "mockup",
+      "file": "portfolio/images/20.png",
+      "width": 853,
+      "height": 1844,
+      "sha256": "7edcba1d54594b274e95d787065cd86b620daa1d635ee45a84d742bc6cc6b462",
+      "source": "GPT-Image final portfolio"
+    },
+    {
+      "group": "mockup",
+      "file": "portfolio/images/21.png",
+      "width": 853,
+      "height": 1844,
+      "sha256": "59c6b3fb2f3a3b12e493e24eb8d8d44d59ae7fd5ed19c666352876b05d49134e",
+      "source": "GPT-Image final portfolio"
+    },
+    {
+      "group": "mockup",
+      "file": "portfolio/images/22.png",
+      "width": 853,
+      "height": 1844,
+      "sha256": "52702ee3db6b19905f9cb49d62d66b829a8bca35147994c8314bd342f3193d20",
+      "source": "GPT-Image final portfolio"
+    },
+    {
+      "group": "mockup",
+      "file": "portfolio/images/23.png",
+      "width": 853,
+      "height": 1844,
+      "sha256": "707c7c085afb8922a1df0069877ffd0bdea0528f7256bc36f1c6074aafd07dc4",
+      "source": "GPT-Image final portfolio"
+    },
+    {
+      "group": "mockup",
+      "file": "portfolio/images/24.png",
+      "width": 853,
+      "height": 1844,
+      "sha256": "4691a0c1626d10e4a415ff5b3d02c3574194e17ded18583c5195b9cd7da47039",
+      "source": "GPT-Image final portfolio"
+    },
+    {
+      "group": "mockup",
+      "file": "portfolio/images/25.png",
+      "width": 852,
+      "height": 1846,
+      "sha256": "ec2b7b5ac9df4914f1bc59e5ca617ba9e0d3847acc3b27f81ead5dccef6dcf3d",
+      "source": "GPT-Image final portfolio"
+    },
+    {
+      "group": "mockup",
+      "file": "portfolio/images/26.png",
+      "width": 853,
+      "height": 1844,
+      "sha256": "59d24ad4fd84113a63205e7bfd20478fa4931c8eded7fce5f07f5b05e91cd914",
+      "source": "GPT-Image final portfolio"
+    },
+    {
+      "group": "mockup",
+      "file": "portfolio/images/27.png",
+      "width": 853,
+      "height": 1844,
+      "sha256": "b3927adccf9b927936dcdfab60c12a6ff6711fa46f2f575a72b250a4c5637ac8",
+      "source": "GPT-Image final portfolio"
+    },
+    {
+      "group": "mockup",
+      "file": "portfolio/images/28.png",
+      "width": 853,
+      "height": 1844,
+      "sha256": "c7f593ecd2f984347e4169d4f6a5da5cddd7a78f458c54e933faa3649a4df81e",
+      "source": "GPT-Image final portfolio"
+    },
+    {
+      "group": "mockup",
+      "file": "portfolio/images/29.png",
+      "width": 853,
+      "height": 1844,
+      "sha256": "28596f2f9f05d2c20d460970f1f628a4603a463a454741b45ed588c7ff797560",
+      "source": "GPT-Image final portfolio"
+    },
+    {
+      "group": "mockup",
+      "file": "portfolio/images/30.png",
+      "width": 853,
+      "height": 1844,
+      "sha256": "e8a23bc145f20a301de89c1818d666731e9b8f58c72873be81a3f950c6a3d270",
+      "source": "GPT-Image final portfolio"
+    },
+    {
+      "group": "reference",
+      "file": "references/01.png",
+      "width": 906,
+      "height": 906,
+      "sha256": "93512d919fe787b1f8378fae02259412fbde2a6d5b8be1a19796a4532ab08b13",
+      "source": "User-supplied reference"
+    },
+    {
+      "group": "reference",
+      "file": "references/02.png",
+      "width": 1200,
+      "height": 1200,
+      "sha256": "62714b27617632d0b067b303d5d9797513e5fc5ee2e30dc5c4117d7dc9e70ff2",
+      "source": "User-supplied reference"
+    },
+    {
+      "group": "reference",
+      "file": "references/03.png",
+      "width": 1440,
+      "height": 1795,
+      "sha256": "30da8e71dad9ceecdf582d1842cbbef9bfb120ef8658c7ac9b73f55ec2261e37",
+      "source": "User-supplied reference"
+    },
+    {
+      "group": "reference",
+      "file": "references/04.png",
+      "width": 1080,
+      "height": 1440,
+      "sha256": "78aeec6fa8516a5e81944b6a766a2948b7fb3abf7b4dee81a1ad559b829b82cb",
+      "source": "User-supplied reference"
+    },
+    {
+      "group": "reference",
+      "file": "references/05.png",
+      "width": 1080,
+      "height": 1080,
+      "sha256": "292f35b1271b863ae019fa832e5050e76664abfc5e4d2d0155fa0175d81f3e31",
+      "source": "User-supplied reference"
+    },
+    {
+      "group": "reference",
+      "file": "references/06.png",
+      "width": 906,
+      "height": 906,
+      "sha256": "91706666fd98056e03874b9f45bf8651a06fdf7286b25e07478c8def6b49b0c8",
+      "source": "User-supplied reference"
+    },
+    {
+      "group": "reference",
+      "file": "references/07.png",
+      "width": 1080,
+      "height": 1350,
+      "sha256": "53ba64eee7ff259be419efa68ee70a82b91dd7e451371e30d8c0153371cb9cc1",
+      "source": "User-supplied reference"
+    },
+    {
+      "group": "reference",
+      "file": "references/08.png",
+      "width": 1080,
+      "height": 2341,
+      "sha256": "610721adfa79c5dc4d2b390652fe06dd2625337686abd5e734ed0f7ea3cd4eca",
+      "source": "User-supplied reference"
+    },
+    {
+      "group": "reference",
+      "file": "references/09.png",
+      "width": 1080,
+      "height": 2341,
+      "sha256": "9f6398b871f9593dd2bec17f9051d967721e5eb92020253c6ca41de1bae899c9",
+      "source": "User-supplied reference"
+    },
+    {
+      "group": "reference",
+      "file": "references/10.png",
+      "width": 1200,
+      "height": 900,
+      "sha256": "7653b260db934d41b4f3360e107eadb5b838985b62ffc92f4bdfc1fa93f3f291",
+      "source": "User-supplied reference"
+    },
+    {
+      "group": "stitch",
+      "file": "stitch/screens/artikel-weigend-hub.png",
+      "width": 780,
+      "height": 2244,
+      "sha256": "46ed65032b419bbf54875f79893b66bc01b6d836b8457991047bba8d301a17d9",
+      "source": "Stitch PNG export"
+    },
+    {
+      "group": "stitch",
+      "file": "stitch/screens/aufgaben-weigend-hub-1.png",
+      "width": 1132,
+      "height": 1600,
+      "sha256": "f282b22fdd836db65a10b7be7415e853bacb2154ba7557e3fcdac3ac0fc97897",
+      "source": "Stitch PNG export"
+    },
+    {
+      "group": "stitch",
+      "file": "stitch/screens/aufgaben-weigend-hub-2.jpg",
+      "width": 390,
+      "height": 844,
+      "sha256": "176e629d8008e621c7688d5f4d4b61f401b38def665b806313675ad636170bcd",
+      "source": "Chrome JPEG screenshot of unchanged Stitch HTML export",
+      "sourceHtmlSha256": "886a92f192feda171001c63cfa6b56edcbbae48d6cffc53fd5e0a1547034e868",
+      "viewportCssPx": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "group": "stitch",
+      "file": "stitch/screens/auftrag-erstellen-weigend-hub.png",
+      "width": 780,
+      "height": 748,
+      "sha256": "55511acbb817ebad24b554917cb221032049327e5c215cfdb1d6faf20a123772",
+      "source": "Stitch PNG export"
+    },
+    {
+      "group": "stitch",
+      "file": "stitch/screens/auftrag-im-detail-weigend-hub.png",
+      "width": 780,
+      "height": 1498,
+      "sha256": "c71789f89b5543b4dec60fe166c58024c2c8f9d8a271e9cc86b58475bf78b3e9",
+      "source": "Stitch PNG export"
+    },
+    {
+      "group": "stitch",
+      "file": "stitch/screens/betrieb-weigend-hub.png",
+      "width": 780,
+      "height": 890,
+      "sha256": "10387b305b868d94a5be6e938963739f1bdc33ab3344588fe196721d8aaaaceb",
+      "source": "Stitch PNG export"
+    },
+    {
+      "group": "stitch",
+      "file": "stitch/screens/eingang-weigend-hub-1.png",
+      "width": 2560,
+      "height": 3470,
+      "sha256": "a1e847539165350f09077b6fe920f50b819c63353356f7a3f8d0d1261b820ba0",
+      "source": "Stitch PNG export"
+    },
+    {
+      "group": "stitch",
+      "file": "stitch/screens/eingang-weigend-hub-2.png",
+      "width": 780,
+      "height": 1768,
+      "sha256": "a256384b02168fe9d8c1efcc038d7efac04ef7804edc108cb73ee6c4a928f2b7",
+      "source": "Stitch PNG export"
+    },
+    {
+      "group": "stitch",
+      "file": "stitch/screens/eingang-weigend-hub-3.png",
+      "width": 780,
+      "height": 516,
+      "sha256": "5d0e74c6d2fe81b983f3bd966462bc7dbaa7da84da3bd4e177d2209c1c791471",
+      "source": "Stitch PNG export"
+    },
+    {
+      "group": "stitch",
+      "file": "stitch/screens/einstellungen-weigend-hub.png",
+      "width": 780,
+      "height": 1166,
+      "sha256": "f53485a9d5643cebde9e12bd3cb8b9af0080bc956b66ef4f34d608f744bcc479",
+      "source": "Stitch PNG export"
+    },
+    {
+      "group": "stitch",
+      "file": "stitch/screens/heute-weigend-hub-1.png",
+      "width": 1600,
+      "height": 1569,
+      "sha256": "31ec7db6c96bf52daf3f1106718396eac6cedb08001d8e54a2f907a7713e82c6",
+      "source": "Stitch PNG export"
+    },
+    {
+      "group": "stitch",
+      "file": "stitch/screens/heute-weigend-hub-2.jpg",
+      "width": 390,
+      "height": 844,
+      "sha256": "04737cb717b44e82895144b86a3f29768ebe5d2dfb2a2cc49ac10070d582c9a9",
+      "source": "Chrome JPEG screenshot of unchanged Stitch HTML export",
+      "sourceHtmlSha256": "06b5361a8bf8adfd7a9741a8ecd365d6f1c0224eba0dbcc24ca8bc6660b93736",
+      "viewportCssPx": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "group": "stitch",
+      "file": "stitch/screens/heute-weigend-hub-3.jpg",
+      "width": 390,
+      "height": 844,
+      "sha256": "128dcc5fd34c1459a4f9e14b3f107d49340db5997001167868b984a2274a50c2",
+      "source": "Chrome JPEG screenshot of unchanged Stitch HTML export",
+      "sourceHtmlSha256": "24501d0d44df57c625aac4205ef661eb9ae433e7e53d0d9c22cd07a8a6b271f4",
+      "viewportCssPx": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "group": "stitch",
+      "file": "stitch/screens/magazin-weigend-hub.png",
+      "width": 780,
+      "height": 818,
+      "sha256": "dc18c0a2a3e53172a1e516d0174728c8cb4f40ea011462956e0ab0c5af3734c7",
+      "source": "Stitch PNG export"
+    },
+    {
+      "group": "stitch",
+      "file": "stitch/screens/zugang-weigend-hub.png",
+      "width": 780,
+      "height": 1068,
+      "sha256": "be76e7f8ca5b179ae582e6aa1376c6bf44432644c7bab92ea7736d5fd55cb1b7",
+      "source": "Stitch PNG export"
+    }
+  ]
+}

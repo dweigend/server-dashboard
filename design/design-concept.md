@@ -35,8 +35,9 @@ Nutzer als verbindliche Pixelvorlage ausgewählt. [UI-System](ui-system.md) und
 
 Alle [30 Bilder in der Galerie](portfolio/index.html). Ihr
 [Referenzabgleich](portfolio/reference-review.md) erklärt die Ableitung aus den
-zehn gelieferten Referenzen. Die Originalreferenzen liegen nur lokal unter
-`.local/reference-images/` im Projekt.
+zehn gelieferten Referenzen. Alle [Originalreferenzen](references/README.md)
+und [15 Stitch-Screenshots](stitch/README.md) sind jetzt als Beispiele enthalten.
+Der [Design-Brief aus Stitch](../design.md) fasst die Umsetzungsvorgaben zusammen.
 
 ## Was „minimal“ hier bedeutet
 
