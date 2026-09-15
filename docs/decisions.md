@@ -22,7 +22,6 @@ Betriebsentscheidungen und Integrationsnachweise bleiben separat.
 | D10 | Zuerst Specs, Designsystem und Verträge; Grundgerüst inzwischen erstellt, Feature-Implementierung jetzt über Issues vorbereitet |
 | D11 | Als Nächstes lokales Wissensfundament; im separaten Task bestätigtes Behauptungs-/Evidenzregister berücksichtigen |
 | D12 | Vier Fachanwendungen: Dashboard, Task Service, Knowledge Server, Media Service; Magazin ist internes Dashboard-Modul, Transkription/Narration sind Media-Module; am 2026-09-15 bestätigt; siehe [Schichten](system-modules.md) |
-
 | D13 | Vier getrennte Schichten: Zugänge, Fachanwendungen, Ressourcen und Betriebsbasis; Namen nach Anwendung → Modul → Aktion; siehe [Namensregeln](system-naming.md) |
 
 ## Arbeitsentscheidungen dieses Konzepts
