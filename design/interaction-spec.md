@@ -37,7 +37,8 @@ das Original. Im ersten Release muss keine Live-Transkription erscheinen.
 OCR und Live-Diktat sind Folgefunktionen, nicht Voraussetzung für Foto/Audio.
 
 Ein Capture ist zunächst ein Eingang, keine wissenschaftlich geprüfte Wissensnotiz.
-„Übernehmen“ registriert ihn über Research. Nach bestätigter Übernahme wird die
+Eine ausdrückliche Wissensaktion registriert unterstütztes Material über Knowledge.
+Freie Gedanken dürfen im Hub bleiben; keine Dummy-Referenz für den Transfer. Nach bestätigter Übernahme wird die
 kanonische Wissensreferenz angezeigt; Hub bearbeitet diese nicht als zweite Kopie.
 
 ## Wissensreferenz und Belege

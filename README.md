@@ -26,7 +26,7 @@ Die Vorschau bindet nur an den eigenen Rechner.
 
 ## Projektgrundlage
 
-- [Konzeptübersicht](docs/README.md)
+- [Konzeptübersicht](docs/README.md) und [Systemmodule mit klaren Zuständigkeiten](docs/system-modules.md)
 - [Design-Brief aus Stitch](design.md) und [UI-System](design/ui-system.md)
 - [Wissenssystem und Dashboard](docs/knowledge-integration.md)
 - [Knowledge Server auf GitHub](https://github.com/dweigend/knowledge-server) und [geprüfter Integrationsstand](docs/knowledge-server-status.md)

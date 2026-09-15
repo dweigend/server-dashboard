@@ -8,6 +8,16 @@ fehlende Remote-Authentifizierung, Textaufnahme ohne Referenz und JSON-Suche.
 Diese Seite definiert das Ziel der Integration, keine bereits bereitgestellte API.
 Die ursprüngliche Abstimmung vom 14. September bleibt unten als Historie erhalten.
 
+## Verbindliche Abgrenzung im Gesamtsystem
+
+Knowledge besitzt nur seine Wissensfachaufgabe und dazu erforderliche Verarbeitung.
+Allgemeine Ausführung, Rohnotizen, Redaktion, Transkription und Audio haben
+[eigene Modulbesitzer](system-modules.md). Die folgenden Integrationsschritte
+sind optionale Wissensaktionen; sie verpflichten nicht zur Übernahme jedes Captures.
+Die aktuelle Referenzpflicht ist eine Knowledge-Grenze, kein Capture-Defekt.
+Ein erster Pilot kann vorhandenes Wissen lesen und unterstützte referenzgebundene
+Beiträge übertragen. Freie Wissensnotizen sind eine separate Produktentscheidung.
+
 ## Gemeinsamer erster Ablauf
 
 ```text
@@ -30,7 +40,7 @@ dieselben Anwendungsfälle; manuelle Änderungen benötigen keinen Modellaufruf.
 
 | Bereich | Wissenssystem | Dashboard |
 | --- | --- | --- |
-| Schneller Eingang | kanonische Übernahme mit Herkunft und Revision | noch nicht übernommene Captures dauerhaft speichern |
+| Wissensbeitrag | explizite unterstützte Übernahme mit Herkunft und Revision | persönliche Captures unabhängig davon dauerhaft speichern |
 | Quellen | Identität, unveränderliche Versionen, Originale und Fundstellen | erlaubte Ausschnitte und Quellenreferenzen darstellen |
 | Zettel/Wiki | gemeinsames Notizmodell, Revisionen und begründete Links | kanonische Notiz lesen; Änderungen über Fachoperationen vermitteln |
 | Behauptungen | Aussage, Geltungsbereich und Qualifikationen | genaue Aussage und Begrenzungen sichtbar halten |
@@ -38,7 +48,7 @@ dieselben Anwendungsfälle; manuelle Änderungen benötigen keinen Modellaufruf.
 | Gesamtbewertung | begründetes Urteil und geprüfte Abhängigkeiten | geliefertes Urteil darstellen, niemals selbst berechnen |
 | Review | Entscheidungen über festgelegte Revisionen und erneuten Prüfbedarf | bewusste Prüfaktion vermitteln; veraltete Entscheidung nicht anwenden |
 | Suche | Volltext, Beziehungen, relevante Gegenbelege und Suchumfang | Treffer verständlich darstellen, keine neue Suchautorität |
-| Agentenarbeit | Hermes als zentraler Harness | Aufträge und Ergebnisse über verifizierte Integration darstellen |
+| Wissensverarbeitung | nur eigene Import-/Extraktions-/Pflegejobs | Herkunft dieser Jobs anzeigen; allgemeine Hermes-Aufträge gehören zu Execution |
 
 Ein kanonischer Eingang vom Notiztyp `inbox` ist bereits ein Objekt des
 Wissenssystems. Er ist nicht identisch mit einem noch unübertragenen Hub-Capture.
@@ -113,9 +123,9 @@ als historische Urteile erkennbar. Bewertungsskalen werden nicht in Hub erfunden
 | K0 · lokal | Bewertungsregeln und fachliche Verträge | gemeinsame Beispiele und IDs abstimmen |
 | K1 · lokal | Quelle → Behauptung/Belege → Review → Zettel → Suche, mit Historie/Restore | Referenz für spätere Integration; keine Web-Abhängigkeit |
 | H1 · Hub | Anmeldung, Capture-Staging, Darstellung mit Fixtures | klar als Vorschau gekennzeichnet |
-| K2 · Verbindung | authentifizierte Textübernahme und kanonisches Lesen/Suchen | erster echter Hub-/Wissensdurchlauf |
-| K3 · Agentenaufträge | dauerhafte Annahme, Abgleich, Rückfrage, Stop und Budget | echte Recherchefunktionen erst nach Nachweis |
-| K4 · Publikation/Media | freigegebene Pakete, tägliche Ausgabe, unabhängiges Audio | Magazin und Hörfunktionen aktivieren |
+| K2 · Verbindung | authentifiziertes Lesen/Suchen und unterstützte Wissensbeiträge | erster echter Hub-/Wissensdurchlauf; kein freier Intake als Pflicht |
+| X · Execution | dauerhafte Annahme, Abgleich, Rückfrage, Stop und Budget | eigener allgemeiner Auftragsbereich, keine Knowledge-Ausbaustufe |
+| P/M · Publication/Media | freigegebene Pakete, tägliche Ausgabe, unabhängiges Audio | eigene Module; Knowledge nur bei fachlichem Bedarf |
 
 Die Stufen benennen Fähigkeiten, keine neuen Dienste. Speicherung eines Fotos
 oder einer Sprachnotiz in Hub verpflichtet den Wissens-MVP nicht zu OCR, PDF-
@@ -129,11 +139,11 @@ lassen oder Übernahme noch nicht anbieten; niemals Anhänge still weglassen.
 
 ## Gemeinsame Abnahmebeispiele
 
-1. Eigener Gedanke ohne Quellen wird mit Urheberschaft gespeichert, ohne einen
-   erfundenen Beleg oder ein positives Evidenzurteil zu erzeugen.
+1. Eigener Gedanke ohne Quellen wird mit Urheberschaft im Hub gespeichert.
+   Keine implizite Knowledge-Übernahme, kein erfundener Beleg oder Evidenzurteil.
 2. Eine Behauptung hat direkte Unterstützung, eine indirekte Einschränkung,
    einen wiederholenden Bericht derselben Studie und einen unklaren Befund.
-   Hub zählt keine Stimmen; die begründete Bewertung kommt aus Research.
+   Hub zählt keine Stimmen; die begründete Bewertung kommt aus Knowledge.
 3. Eine neue relevante Quelle löst gemäß Wissensregel erneuten Prüfbedarf aus.
    Das frühere Urteil und seine damaligen Eingaben bleiben nachvollziehbar.
 4. Ein Konflikt bei Prüfung/Bearbeitung bewahrt die Nutzerfassung; ein erneuter

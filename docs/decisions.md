@@ -18,6 +18,7 @@ Konzepts, keine nachträglich behauptete Zustimmung des Nutzers.
 | D09 | Audioproduktion ist ein eigenständiges System |
 | D10 | Zuerst Specs, Designsystem und Verträge; Grundgerüst inzwischen erstellt, Feature-Implementierung jetzt über Issues vorbereitet |
 | D11 | Als Nächstes lokales Wissensfundament; im separaten Task bestätigtes Behauptungs-/Evidenzregister berücksichtigen |
+| D12 | Knowledge ist ein spezialisierter Baustein; allgemeine Aufgaben, Magazin, Transkription und Audio besitzen eigene Zuständigkeiten, siehe [Systemmodule](system-modules.md) |
 
 ## Arbeitsentscheidungen dieses Konzepts
 
@@ -28,7 +29,7 @@ Konzepts, keine nachträglich behauptete Zustimmung des Nutzers.
 | A03 | Svelte 5, Bun-Tooling, Node im Produktionscontainer | Nutzerkonvention und dokumentierter Serveradapter |
 | A04 | System-Sans + optionale Leseserif + sparsame Monospace-Akzente | Lesen und Eingabe vor Terminal-Dekor |
 | A05 | 48px-Iconnavigation, 44px-Touchziele | messbare Flächenregel bei guter Bedienbarkeit |
-| A06 | Hub-eigene Capture-Ablage, danach explizite Research-Übernahme | schneller sicherer Eingang ohne zweite Wissensautorität |
+| A06 | Hub-eigene Capture-Ablage, optional explizite Knowledge-Übernahme | schneller sicherer Eingang ohne zweite Wissensautorität |
 | A07 | Polling statt eigener Event-Infrastruktur im ersten Release | einfache verlässliche Statusabfrage |
 | A08 | Passwort + TOTP; Better Auth als Kandidat | keine eigene Kryptografie |
 | A09 | Forschungs- und Medienbudget getrennt | unabhängige Ausführung und Kostenautorität |
@@ -51,7 +52,7 @@ Konzepts, keine nachträglich behauptete Zustimmung des Nutzers.
 | O08 | Backupziel, Kapazität und getestete RPO/RTO | Produktionsfreigabe |
 | O09 | 24-Stunden-Rechtefenster für Lesekopien und Grenzen der Cloud-Ablage bestätigen | Magazin-Auslieferung bei Heimserverausfall |
 | O10 | Hetzner-Wartung, Managementports, Provider-Firewall und IPv6 prüfen | Produktionsfreigabe |
-| O11 | Lokale Wissens-Pilotverträge vorhanden; externe Authentifizierung, referenzfreier Intake, Lesen/Suchen und Revisions-/Rechtevertrag abstimmen | echte Wissensintegration; siehe [Codeabgleich](knowledge-server-status.md) |
+| O11 | Lokale Wissens-Pilotverträge vorhanden; externe Authentifizierung, unterstützte Wissensbeiträge, Lesen/Suchen und Revisions-/Rechtevertrag abstimmen | echte Wissensintegration; siehe [Codeabgleich](knowledge-server-status.md) |
 
 Routineannahmen: 07:00 Europe/Berlin, Themen Design/Technik/Forschung, täglicher
 Entwurf. Budgetwerte in Bildern sind synthetisch, kein beschlossenes Ausgabenlimit.

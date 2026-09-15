@@ -2,7 +2,7 @@
 
 Status: geplanter Hub-Betrieb; bestehende Infrastruktur read-only geprüft.
 Ziel nach aktueller Nutzervorgabe: Web-App auf Hetzner unter Coolify,
-Research auf dem MS-A2. Die App besitzt jetzt eine minimale lokale Entwicklungsbasis.
+Knowledge und allgemeine Ausführung auf dem MS-A2. Die App besitzt jetzt eine minimale lokale Entwicklungsbasis.
 Siehe [Live-Prüfung](deployment-audit.md) und [Backend-Verbindung](hybrid-backend.md).
 
 ## Lokal
@@ -41,7 +41,7 @@ Kein DNS-Eintrag oder Coolify-Projekt wurde hier verändert.
 erhalten keine zusätzlichen öffentlichen Ports. Bei Hub auf dem bestehenden
 externen Server ist eine eingeschränkte private Verbindung zum MS-A2 erforderlich;
 die Existenz von Tailscale auf anderen Geräten beweist diese Strecke noch nicht.
-Auf Hetzner fehlt Tailscale noch. Host, Netzregeln und Dienstidentität im
+Beim Audit vom 14. September war Tailscale auf Hetzner nicht vorhanden. Host, Netzregeln und Dienstidentität im
 Integrationspilot prüfen; Details stehen im Hybrid-Backend-Entwurf.
 
 Ein Hub-Webcontainer, ein kleiner Delivery-Worker aus demselben Image und eine
@@ -51,10 +51,11 @@ Web und Worker teilen Capture-/Lesespeicher; die DB hat ein eigenes Volume.
 Keine Wiederverwendung interner Coolify-/Matrix-Datenbanken und kein neuer Broker.
 Research-/Audioressourcen sind unabhängig. Datei- und Backupvolumen begrenzen.
 
-Research wird zunächst als Python-Dienst mit eigener Unix-Identität und systemd
-auf dem MS-A2 betrieben; API nur auf Loopback, Datenbank lokal. Kein zweites
-Coolify nur für diese Verbindung. Das Verfahren wird im Research-Projekt
-implementiert. Die vorhandene interaktive Hermes-Konfiguration wird dafür
+Knowledge erhält nur seinen eigenen schmalen Python-Fachadapter. Allgemeiner
+Auftragszugang, Publikation und Medien bleiben getrennte Verantwortlichkeiten
+gemäß [Systemmodulen](system-modules.md), auch bei einem gemeinsamen HTTPS-Einstieg.
+Loopback/systemd und eigene Dienstidentitäten sind der lokale Pilotvorschlag;
+kein zweites Coolify allein für die Verbindung. Die vorhandene interaktive Hermes-Konfiguration wird dafür
 nicht ungeprüft als Internet-Auftragsdienst verwendet.
 
 ## Konfiguration zur späteren Umsetzung
@@ -65,7 +66,10 @@ nicht ungeprüft als Internet-Auftragsdienst verwendet.
 | HOST / PORT | Container-Bindung / interner Port | nein |
 | DATABASE_URL | ausschließlich Hub-Datenbank | ja |
 | AUTH_SECRET | Bibliothekskonfiguration | ja |
-| RESEARCH_BASE_URL / RESEARCH_TOKEN | private Research-Fassade | Token ja |
+| KNOWLEDGE_BASE_URL / KNOWLEDGE_TOKEN | nur Knowledge-Fachzugriff | Token ja |
+| EXECUTION_BASE_URL / EXECUTION_TOKEN | allgemeine Aufgaben/Hermes-Kontrolle | Token ja |
+| PUBLICATION_BASE_URL / PUBLICATION_TOKEN | Redaktion, Pakete und Freigaben | Token ja |
+| TRANSCRIPTION_BASE_URL / TRANSCRIPTION_TOKEN | explizite Aufnahmeverarbeitung | Token ja |
 | MEDIA_BASE_URL / MEDIA_TOKEN | separater Medienanbieter | Token ja |
 | CAPTURE_STORAGE_PATH | privates persistentes Volume | nein |
 | OPERATIONS_BASE_URL / OPERATIONS_TOKEN | minimaler Statuszugriff | Token ja |
@@ -120,8 +124,9 @@ keinen unsicheren Ausweichmodus anbieten.
 3. Einen synthetischen privaten HTTPS-Pilot auf dem MS-A2 über Serve anbinden.
    Aus isoliertem Testcontainer DNS, TLS und erlaubten API-Zugriff nachweisen;
    SSH/RDP/SMB/DB und fremde Container müssen gesperrt bleiben. Neustart testen.
-4. In der Research-Anwendung den minimalen Capture-Vertrag und den Hermes-
-   Annahme-/Abgleichvertrag implementieren. Hub kann parallel Fixtures verwenden.
+4. Knowledge-Lese-/Fachverträge und den Execution-Annahme-/Abgleichvertrag
+   unabhängig bei ihren Besitzern implementieren. Publication bekommt einen
+   eigenen Ausgabenvertrag. Hub kann parallel Fixtures verwenden.
 5. Eigenes Coolify-Projekt mit getrenntem Staging, DB, Volumes und Runtime-Secrets
    anlegen. Einen expliziten Docker-Zielserver wählen; die vorhandenen Einträge
    nicht als zwei unabhängige Maschinen oder als Hochverfügbarkeit interpretieren.

@@ -6,6 +6,8 @@ UI-/Interaktionsregeln, Browser-API, Hybridbetrieb und dem
 Die [14 GitHub-Issues](https://github.com/dweigend/server-dashboard/issues)
 enthalten Ergebnis, Abnahmekriterien, Abhängigkeiten, Grenzen und Prüfungen.
 Dieser Plan beschreibt offene Arbeit, keine bereits gelieferten Funktionen.
+Die [Systemabgrenzung](system-modules.md) trennt Knowledge, Execution, Publication
+und Media. Deren Verträge werden unabhängig bei den zuständigen Besitzern erfüllt.
 
 ## Was jetzt starten kann
 
@@ -31,18 +33,20 @@ Ansichten ausdrücklich synthetische Vorschauen.
 | [#4](https://github.com/dweigend/server-dashboard/issues/4) | Dauerhafte Textnotizen, Bearbeiten, Retry und Konflikte | #1–#3; unabhängig vom Knowledge Server |
 | [#5](https://github.com/dweigend/server-dashboard/issues/5) | Fotoaufnahme/-auswahl und geschützte Uploads | #4; keine OCR oder automatische Übernahme |
 | [#6](https://github.com/dweigend/server-dashboard/issues/6) | Sprachnotiz aufnehmen, anhören und speichern | #5; keine automatische Transkription |
-| [#7](https://github.com/dweigend/server-dashboard/issues/7) | Produzentenverträge und synthetische Consumer-Beispiele abgleichen | sofort; konkrete Lücken dokumentieren |
-| [#8](https://github.com/dweigend/server-dashboard/issues/8) | Private Verbindung und wiederaufnehmbare Textübernahme | #4, #7; Remote-Auth und referenzfreier Intake upstream fehlen |
+| [#7](https://github.com/dweigend/server-dashboard/issues/7) | Separate Knowledge-/Execution-/Publication-Verträge und Beispiele | sofort; jeder Besitzer bestätigt nur seine Fähigkeiten |
+| [#8](https://github.com/dweigend/server-dashboard/issues/8) | Private Verbindung und explizite unterstützte Wissensbeiträge | #4, #7; Knowledge-Remotevertrag fehlt, freie Notizen bleiben im Hub |
 | [#9](https://github.com/dweigend/server-dashboard/issues/9) | Zettel, Claims, Belege und Suche lesen | #1, #3, #7; Fixtures möglich, Live-Lesen/Suchen noch gesperrt |
-| [#10](https://github.com/dweigend/server-dashboard/issues/10) | Auftrag, laufende Jobs, Rückfragen, Stop und Ergebnisse | #1, #3, #7; allgemeine Research-API noch nicht vorhanden |
-| [#11](https://github.com/dweigend/server-dashboard/issues/11) | Tagesausgabe und fokussierter Artikelreader | #1, #3, #7; Publikation/Pakete upstream noch offen |
+| [#10](https://github.com/dweigend/server-dashboard/issues/10) | Auftrag, laufende Jobs, Rückfragen, Stop und Ergebnisse | #1, #3, #7; eigener Execution-Vertrag, keine Knowledge-Pflicht |
+| [#11](https://github.com/dweigend/server-dashboard/issues/11) | Tagesausgabe und fokussierter Artikelreader | #1, #3, #7; eigener Publication-Vertrag, Knowledge optional |
 | [#12](https://github.com/dweigend/server-dashboard/issues/12) | Audio abspielen und Position fortsetzen | #11; separater Medienanbieter und Rechtevertrag erforderlich |
 | [#13](https://github.com/dweigend/server-dashboard/issues/13) | Betrieb, Aktualität, Speicher, Sicherung und Budget | #1, #3, #7; reale Werte erst mit geprüftem Collector |
-| [#14](https://github.com/dweigend/server-dashboard/issues/14) | Staging, Wiederherstellung und Deployment-Abnahme | #3–#5, #8, #13; produktive Aktivierung bleibt eigener Schritt |
+| [#14](https://github.com/dweigend/server-dashboard/issues/14) | Staging, Wiederherstellung und Deployment-Abnahme | #3–#5, #13; private Integration nur für tatsächlich aktivierte Module nachweisen |
 
 Die Reihenfolge folgt Fähigkeiten, keinen Terminzusagen. Insbesondere verlangt
 sie nicht, dass der Knowledge Server seine Experimentieroberfläche zugunsten
-des Dashboards zurückstellt. Die dortigen Issues werden verlinkt, nicht dupliziert.
+des Dashboards zurückstellt. Die dortigen Issues werden für Knowledge-Aufgaben verlinkt, nicht dupliziert.
+Knowledge #40/#41 blockieren kein allgemeines Magazin/Audio; Knowledge #36
+blockiert nur den Knowledge-Zugriff, nicht die Hermes-Auftragssteuerung.
 Live-Adapter werden erst nach verifizierter Produzentenfähigkeit eingeschaltet;
 gleiche TypeScript-Typen oder vorhandene Screens reichen nicht.
 

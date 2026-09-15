@@ -27,7 +27,8 @@ Wissenssystem. Hub führt dafür Referenzen/Ansichten, keine editierbaren Kopien
 `Result.reviewState` und `Article.reviewState` ersetzen weder Evidenzlage noch
 Belastbarkeit oder den Reviewstatus einer Behauptungsbewertung. Das Mapping wird
 im [Wissensabgleich](knowledge-integration.md) bewusst noch nicht auf feste
-API-Werte reduziert; die Produzentenschemas fehlen.
+API-Werte reduziert; lokale Pilot-Schemas existieren, ihr externer Vertrag
+bleibt abzustimmen. [Systembesitzer](system-modules.md) sind getrennt.
 
 Delivery enthält zusätzlich Versuchszahl, nächste Zustellzeit und Lease-Ende;
 die Zustellung bleibt an die unveränderliche Capture-Revision gebunden.
@@ -40,6 +41,12 @@ Rechtefrist, Abgleich und Verhalten bei Widerruf stehen im
 [Hybrid-Backend-Vertrag](hybrid-backend.md). Sicherungen solcher Kopien dürfen
 keine alte Freigabe wieder aktivieren; nach Restore zuerst Rechte abgleichen.
 
+Eine zusammengeführte Jobansicht führt Besitzer und lokale ID getrennt.
+`Task` beschreibt im aktuellen API-Entwurf allgemeine Execution-Aufträge;
+Knowledge-Extraktion, Transkription und Media haben eigene Statusverträge.
+Deren spätere gemeinsame Projektion benötigt konkrete Beispiele, nicht eine
+unbelegte Gleichsetzung der Zustände.
+
 ## Eingangslebenszyklus
 
 ```text
@@ -47,9 +54,10 @@ Browserentwurf → saved → transferring → transferred
                           ↘ transfer_failed → transferring
 ```
 
-`saved` benötigt eine bestätigte Hub-Transaktion. Bei Textänderung im Zustand
+`saved` benötigt eine bestätigte Hub-Transaktion und ist ein dauerhaft gültiger
+Zustand ohne spätere Knowledge-Pflicht. Der Transfer ist ausdrücklich optional. Bei Textänderung im Zustand
 `transferring` verweigert der Server mit Konflikt; nach `transferred` führt die
-kanonische Referenz zu Research. Fehler vor Bestätigung erzeugen keine behauptete
+kanonische Referenz zu Knowledge. Fehler vor Bestätigung erzeugen keine behauptete
 Übernahme. Der Server registriert eine idempotente Zustellung einschließlich
 exakter Capture-Revision. Gelöschte/veränderte Anhänge können nicht unbemerkt
 in einen bereits begonnenen Transfer geraten.
@@ -72,7 +80,7 @@ kein frei erfundener Prozentwert. Rückfragen haben eine eigene ID und Revision.
 
 Getrennte Ergebnisprüfung: `unreviewed`, `needs_changes`, `accepted`.
 Ausführung `succeeded` impliziert nicht `accepted` und nicht Veröffentlichung.
-Ausgabezustände: `draft`, `released`, `withdrawn`; nur Research darf sie ändern.
+Ausgabezustände: `draft`, `released`, `withdrawn`; nur Publication darf sie ändern.
 Freigaben beziehen sich auf die exakte Ausgabe- und Abhängigkeitsrevision.
 
 ## Revisionen und Konflikte

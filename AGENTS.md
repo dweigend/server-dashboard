@@ -7,7 +7,10 @@
 - Inspect Git status. Preserve unrelated edits; checkpoint substantial work.
 - Distinguish a proposal, an implemented feature and an observed deployment.
 - Keep source-of-truth boundaries: Hub owns presentation and capture staging;
-  Hermes owns research execution; Research owns knowledge; Media owns audio.
+  Execution/Hermes owns general tasks; Knowledge owns canonical knowledge and
+  its domain processing; Publication owns editions/releases; Media owns audio.
+- Read docs/system-modules.md. Do not assign every capture, task or publication
+  to Knowledge Server or require source-free Knowledge notes for Hub capture.
 - Do not invent upstream endpoints or treat a model response as a committed note.
 - Stack: SvelteKit, Svelte 5, Bun tooling, Node production runtime,
   Bits UI/shadcn-svelte patterns and Lucide. Pin compatible versions at build time.

@@ -40,11 +40,20 @@ Authentifizierung. Die Deploymentvorlage bindet an Loopback. Das Dashboard darf
 diese Oberfläche nicht als vermeintlich geschützte API veröffentlichen oder
 per HTML-Scraping und direktem Datenbankzugriff anbinden.
 
+## Einordnung nach der Systemabgrenzung
+
+Die [Nutzervorgabe zu Modulgrenzen](system-modules.md) präzisiert diesen Befund:
+Die unten fehlenden Funktionen sind nicht sämtlich Aufgaben des Knowledge Servers.
+Allgemeine Aufträge gehören zu Execution, Magazin zu Publication, Transkription
+und Audio zu eigenen Fähigkeiten. Die Referenzpflicht für Wissensnotizen
+blockiert keine persönliche Notiz im Hub und muss dafür nicht gelockert werden.
+
 ## Konkrete Vertragslücken
 
 1. **Freie Gedanken:** Der gewünschte Capture darf ohne wissenschaftliche Quelle
    entstehen. Der aktuelle `Note.references`-Vertrag verlangt eine Referenz.
-   Die Produzentenseite muss die Aufnahmeart festlegen. Keine erfundene Quelle,
+   Eine freie kanonische Wissensnotiz wäre eine gesonderte Produktentscheidung;
+   der erste Wissenspilot darf referenzgebundene Beiträge nutzen. Keine erfundene Quelle,
    Dummy-Referenz oder stillschweigende Lockerung im Dashboard.
 2. **Remote-Zugang:** Dienst- und Nutzeridentität, Berechtigungen, Versionierung,
    Rechte für Quellenpassagen und ein konkreter HTTP-Fehlervertrag fehlen.
@@ -79,7 +88,9 @@ Publikationsentscheidung bleiben getrennt; es gibt keinen Wahrheits-Prozentwert.
   bündelt den Remote-Vertrag und liegt dort noch im späteren Backlog.
 - [#40: Publikation](https://github.com/dweigend/knowledge-server/issues/40) und
   [#41: Freigegebene Pakete](https://github.com/dweigend/knowledge-server/issues/41)
-  sind Voraussetzungen für das echte Magazin und dessen Medienverbraucher.
+  betreffen optionale Knowledge-Exporte für zitierte Beiträge. Das allgemeine
+  Magazin und seine Medienverbraucher erhalten einen eigenen Publication-Vertrag
+  und sind nicht von diesen beiden Issues abhängig.
 - [#19: Nützliche Wissensintegration](https://github.com/dweigend/knowledge-server/issues/19)
   adressiert die noch nicht zuverlässig belegte Verbesserung vorhandener Notizen.
   Erfolgreiche Verarbeitung und korrekte Zitatstruktur sind keine Qualitätsabnahme.

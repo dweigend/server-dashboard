@@ -2,13 +2,14 @@
 
 [openapi.json](openapi.json) ist der maschinenlesbare Zielvertrag der Hub-
 Browser-API. Es beschreibt neue Hub-Endpunkte, **keine bereits existierenden
-Research-, Hermes- oder Coolify-APIs**. Vertragsstatus: Entwurf für den ersten
+Knowledge-, Execution-, Publication-, Hermes- oder Coolify-APIs**. Vertragsstatus: Entwurf für den ersten
 Implementierungspilot. Rückwärtskompatibilität ist erst nach Freigabe garantiert.
 
 Der Vertrag enthält noch keine fertigen Endpunkte für kanonische Wissensnotizen,
 Behauptungen und Bewertungen. Die abgestimmten Operationsfamilien stehen in
 [integrations.md](integrations.md); verbindliche Produzentenschemas und Rubrik
-werden vor Erweiterung der Browser-OpenAPI festgelegt. Die bestehende
+werden aus den lokalen Pilotverträgen für den externen Zugriff abgestimmt.
+Die [Systemmodule](../docs/system-modules.md) trennen ihre Besitzer. Die bestehende
 Ergebnis-/Artikelprüfung ist kein Ersatz für Claim-Assessment-Review.
 
 ## Konventionen
@@ -73,16 +74,18 @@ keine freien Prompt-to-Shell-Endpunkte. Die erlaubten Zustände stehen im
 [Datenmodell](../docs/data-model.md). Artikel und Quellen sind revisionsgebunden.
 
 Die Audio-Erstellung referenziert ein freigegebenes Content-Paket mit ID,
-Revision und Hash. Auswahl einer Stimme darf keine neue Research-Freigabe
+Revision und Hash. Auswahl einer Stimme darf keine neue redaktionelle Freigabe
 erzeugen. `audio/request` ist ausdrücklich kostenrelevant und wird nur nach
 einer Nutzeraktion ausgelöst. Vorhandenes Audio kann ohne Neugenerierung gehört
 werden. Die Statusantwort trennt `unavailable`, `queued`, `running`, `ready`, `failed`.
 
 `POST /issues/drafts` erstellt ausdrücklich einen Ausgabeentwurf, keine Freigabe
 und kein Audio. Der Besitzer bestätigt die Quellen-/Zeitplanrevision.
-Research führt geplante und manuelle Anfragen für denselben Tag zusammen.
+Publication führt geplante und manuelle Ausgabeanfragen für denselben Tag
+zusammen; Execution kann die geplante Anfrage auslösen.
 
-`/budgets/{domain}` verwaltet Research und Media getrennt. Ein gemeinsamer
+`/budgets/{domain}` verwaltet Execution-Forschungsbudget (`research`) und Media
+getrennt; `research` bezeichnet hier keine Knowledge-Tabellen. Ein gemeinsamer
 Bildschirm kann beide Budgets zeigen; eine einzelne Mutation schreibt nur bei
 einem Eigentümer. So gibt es keine vorgetäuschte atomare Änderung über zwei Dienste.
 

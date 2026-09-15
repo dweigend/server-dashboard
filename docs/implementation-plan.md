@@ -10,7 +10,9 @@ Priorität ist die isolierte Experimentieroberfläche zur überprüfbaren Verbes
 der Pipeline, siehe [Knowledge-Stand](knowledge-server-status.md). Der Hub-Ausbau
 ordnet diese Priorität nicht neu. Navigation, privater Eingang und Vertragsfixtures
 können unabhängig von der späteren Remote-Schnittstelle umgesetzt werden.
-Der [gemeinsame Abgleich](knowledge-integration.md) definiert die Abhängigkeiten.
+Die [Systemmodule](system-modules.md) trennen Knowledge-Zugriff von allgemeinen
+Aufträgen und Publikation. Der [Wissensabgleich](knowledge-integration.md)
+definiert ausschließlich deren fachliche Integration.
 
 ## 0 · Konzept festhalten
 
@@ -45,11 +47,14 @@ Abnahme: P01/P02/P09; nach Timeout kein Datenverlust oder doppelter Capture.
 Zuvor den begrenzten Netzwerkpilot aus [deployment.md](deployment.md) durchführen.
 Der [implementierte Wissensstand](knowledge-server-status.md) enthält lokale
 Verträge und Leserouten, aber noch keine authentifizierte Remote-API. Mit
-Capture-Übernahme beginnen, sobald der referenzfreie Intake vereinbart ist.
-Der lokale Wissens-MVP selbst braucht diesen Netzwerkpilot nicht; er ist nur Voraussetzung für die spätere Hetzner-Anbindung.
+vorhandenem Wissen und einem unterstützten referenzgebundenen Beitrag beginnen.
+Freie Captures müssen nicht in Knowledge übernommen werden.
+Der lokale Wissens-MVP selbst braucht diesen Netzwerkpilot nicht; er ist nur
+Voraussetzung für die spätere Hetzner-Anbindung.
 
 Installierte Dienste inventarisieren, Ports aus `contracts/integrations.md`
-zuordnen und schriftlich bestätigen. Einen Text-Capture ohne Anhänge übernehmen,
+zuordnen und schriftlich bestätigen. Einen unterstützten referenzgebundenen
+Beitrag ohne Anhänge übernehmen,
 kanonischen Zettel, Behauptung und Belege lesen, Bewertungsbegründung und
 Gegenbelege anzeigen und das Wissen wiederfinden. Modellfreie Änderung/Prüfung,
 Revisionskonflikt, doppelte Zustellung und fehlende Rechte prüfen.
@@ -59,18 +64,22 @@ keine zweite Wissensautorität, keine selbst berechneten Wahrheitswerte.
 
 ## 3b · Spätere Research-Aufträge
 
-Erst nach eigener Backend-Bereitstellung einen kleinen Agentenauftrag auslösen,
+Über einen eigenen Execution-Vertrag einen kleinen Agentenauftrag auslösen,
 Rückfrage beantworten und Ergebnis mit Quellen abrufen. Stop, Fehler und
-Wiederholung nach unklarer Annahme nachweisen. Diese Fähigkeit ist nicht
+Wiederholung nach unklarer Annahme nachweisen. Diese Fähigkeit ist weder eine
+Knowledge-Aufgabe noch
 Voraussetzung für 3a und wird nicht allein aus einem installierten Hermes abgeleitet.
 
-Abnahme: gleiche Request-/Run-/Wissensreferenzen über Hub und bestehende Clients;
-kein zweiter Harness. P03/P04/P05.
+Abnahme: gleiche besitzerqualifizierte Request-/Run-Referenzen über Hub und
+bestehende Clients; Wissensreferenzen nur für tatsächlich genutzte Inhalte.
+Kein zweiter Harness. P03/P04/P05.
 
 ## 4 · Magazin und unabhängiges Audio
 
-Themen und Quellen festlegen; ersten Ausgabeentwurf erstellen, prüfen und
-freigeben. Content-Paket an den getrennten Medienanbieter übergeben. Playback,
+Themen und Quellen festlegen; Publication erstellt den ersten Ausgabeentwurf,
+der redaktionell geprüft und freigegeben wird. Knowledge ist eine optionale
+Inhaltsquelle, seine Export-Roadmap keine allgemeine Voraussetzung. Content-Paket
+an den getrennten Medienanbieter übergeben. Playback,
 Fortsetzen, Audiofehler und Artikelrevision testen. Danach Zeitplan aktivieren.
 
 Abnahme: P06/P07; Audioausfall beschädigt weder Ausgabe noch Research-Status.
@@ -86,7 +95,7 @@ Abnahme: P08/P09 und sämtliche Produktionskriterien aus
 
 Zusätzliche Hybrid-Abnahme: Nach Unterbrechung der Heimverbindung funktionieren
 Login und Capture-Speicherung; explizite Transfers bleiben nachvollziehbar.
-Timeout nach Research-Annahme erzeugt keine Doppelarbeit. Unberechtigte Container
+Timeout nach Execution-Annahme erzeugt keine Doppelarbeit. Unberechtigte Container
 erreichen die lokale API nicht. Lesekopien beachten Freigabe und Frist auch nach
 Restore. Bestehende Matrix-/Website-Funktionen bleiben im Deploymenttest intakt.
 

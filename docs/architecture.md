@@ -1,9 +1,12 @@
 # Zielarchitektur und Verantwortlichkeiten
 
 Status: Zielbild, keine bereitgestellten Dienste. Hub ist ein eigenständiges
-Projekt und ein Client der bestehenden Forschungsarchitektur.
+Projekt und ein Client mehrerer spezialisierter Systeme. Die
+[Modulgrenzen](system-modules.md) ersetzen den früheren Sammelbegriff Research
+für Wissen, allgemeine Ausführung und Publikation.
 
-Die Web-App läuft künftig auf Hetzner, Research auf dem MS-A2. Der
+Die Web-App läuft künftig auf Hetzner, Knowledge und allgemeine Ausführung
+auf dem MS-A2. Der
 [Hybrid-Backend-Entwurf](hybrid-backend.md) konkretisiert private HTTPS-Verbindung,
 Containergrenzen, dauerhafte Zustellung und Verfügbarkeit bei Heimserverausfall.
 Der [Deployment-Audit](deployment-audit.md) trennt Livebefunde von diesem Zielbild.
@@ -13,17 +16,21 @@ trennt vorhandene lokale Funktionen von noch fehlenden Remote-Verträgen.
 
 ```mermaid
 flowchart TD
-    Browser[Browser: mobile UI] -->|HTTPS / Sitzung| Proxy[Coolify Reverse Proxy]
-    Proxy --> Hub[SvelteKit UI und serverseitige API]
-    Hub --> HubDB[(Hub PostgreSQL: Zugang, Captures, Präferenzen)]
-    Hub --> Files[Private Dateiablage: Capture-Anhänge]
-    Hub -->|privater authentifizierter Adapter| Research[Research-Fassade auf MS-A2]
-    Research --> Hermes[Hermes: Rechercheausführung]
-    Research --> Knowledge[(Research PostgreSQL: Wissen und Revisionen)]
-    Research --> Zotero[Zotero: Literaturautorität]
-    Hub -->|separater Adapter| Media[Unabhängiges Mediensystem]
-    Research -->|freigegebenes Content-Paket| Media
-    Hub -->|nur lesend| Operations[Bereinigte Betriebsbeobachtungen]
+    Browser[Browser: mobile UI] -->|HTTPS / Sitzung| Hub[SvelteKit UI und serverseitige Adapter]
+    Hub --> HubDB[(Hub: Zugang, Captures, Präferenzen)]
+    Hub --> Files[Private Capture-Originale und Lesekopien]
+    Hub -->|KnowledgePort| Knowledge[Knowledge: kanonisches Wissen und Fachverarbeitung]
+    Hub -->|ExecutionPort| Execution[Auftragszugang und Hermes-Ausführung]
+    Execution -->|gezielte Wissensoperation| Knowledge
+    Knowledge --> Zotero[Zotero: Literaturautorität]
+    Execution --> Discovery[Recherche- und News-Werkzeuge]
+    Hub -->|PublicationPort| Publication[Redaktion und Ausgabenfreigabe]
+    Discovery --> Publication
+    Knowledge -->|optionale erlaubte Beiträge| Publication
+    Publication -->|freigegebenes Textpaket| Media[Unabhängige Audioproduktion]
+    Hub -->|MediaPort| Media
+    Hub -->|TranscriptionPort| Transcript[Aufnahme zu abgeleitetem Text]
+    Hub -->|OperationsPort| Operations[Bereinigte Betriebsbeobachtungen]
 ```
 
 ## Minimaler eigener Stack
@@ -31,11 +38,12 @@ flowchart TD
 Ein SvelteKit-Projekt enthält UI und serverseitige API als Backend-for-Frontend.
 Svelte 5, TypeScript und Bun für Entwicklung/Checks. `adapter-node` liefert den
 Node-Server für den Coolify-Container. Keine zweite FastAPI-Schicht allein für
-die Weboberfläche. Falls die Research-Fassade neu entsteht, gehört sie ins
-Forschungssystem und folgt dessen Python-/FastAPI-Konventionen.
+die Weboberfläche. Nur der Knowledge-HTTP-Adapter gehört in das Knowledge-Projekt.
+Allgemeiner Auftragszugang und Publikation erhalten eigene fachliche Grenzen;
+konkrete Repository-/Prozessaufteilung wird erst bei Umsetzung festgelegt.
 
 Ein eigenes PostgreSQL-Schema bzw. eine eigene Datenbank mit separatem Nutzer
-hält Zugang, noch nicht übernommene Captures, Präferenzen und Zuordnungen. Es ist
+hält Zugang, persönliche Captures, Transferbelege, Präferenzen und Zuordnungen. Es ist
 keine neue Wissensautorität. Für Dateien zunächst eine private Volume-Ablage
 hinter einer kleinen Storage-Schnittstelle; S3 erst bei konkretem Betriebsbedarf.
 
@@ -45,32 +53,35 @@ hinter einer kleinen Storage-Schnittstelle; S3 erst bei konkretem Betriebsbedarf
 | --- | --- | --- |
 | Zugang/Sitzungen | Hub/Auth-Bibliothek | Konto und Session schützen |
 | Unverarbeiteter Eingang | Hub | aufnehmen, dauerhaft speichern, übertragen |
-| Wissen/Quellen/Review | Research und Zotero | revisionsgebunden lesen und Befehle vermitteln |
-| Rechercheplanung/-ausführung | Hermes innerhalb Research | Auftrag über verifizierten Adapter übergeben |
-| Forschungsauftragsstatus | Research-Auftragsregister mit Hermes-Zuordnung | lesen und kurzzeitig projizieren |
-| Magazintext/-freigabe | Research Publication/Review | Ausgabe darstellen, Freigabebefehl vermitteln |
+| Wissen/Quellen/Review | Knowledge und Zotero | revisionsgebunden lesen und Befehle vermitteln |
+| Rechercheplanung/-ausführung | Execution mit Hermes | Auftrag über verifizierten Adapter übergeben |
+| Forschungsauftragsstatus | Execution-Auftragsregister mit Hermes-Zuordnung | lesen und kurzzeitig projizieren |
+| Magazintext/-freigabe | Publication/Redaktion | Ausgabe darstellen, Freigabebefehl vermitteln |
+| Transkription | Transcription-Worker; Original im Hub | Auftrag und abgeleiteten Text vermitteln |
 | Audio/Renderjobs | eigenständiges Mediensystem | vorhandenes Audio lesen, expliziten Auftrag vermitteln |
 | Gerätepräferenzen/Leseposition | Hub | speichern, synchronisieren |
 | Serverzustand/Backup | jeweiliger Betriebsdienst | bereinigte Beobachtungen anzeigen |
 
-Keine Direktzugriffe aus dem Browser auf Research, Hermes, Datenbanken, Coolify,
+Keine Direktzugriffe aus dem Browser auf private Fachadapter, Hermes, Datenbanken, Coolify,
 NAS oder Provider-Keys. Serveradapter konstruieren Identität und Scope selbst;
 Clientfelder dürfen keine Berechtigungen erteilen.
 
 ## Ausführung und Zuverlässigkeit
 
 Hub führt keinen Modellloop aus. Lange Arbeit endet nicht an einem HTTP-Timeout.
-Research muss Annahme und Ausführungs-ID dauerhaft bestätigen und die Verbindung
+Execution muss Annahme und Ausführungs-ID dauerhaft bestätigen und die Verbindung
 zur nativen Hermes-Ausführung halten. Falls die installierte Hermes-Version das
-nicht zuverlässig anbietet, ist zunächst der Adapter zu ergänzen; die UI darf
-dann nur den expliziten Mockbetrieb verwenden.
+nicht zuverlässig anbietet, ist zunächst der Adapter zu ergänzen; die betroffenen Execution-Funktionen bleiben bis dahin ausdrücklich im
+Mockbetrieb. Capture und andere bereits verifizierte Fähigkeiten bleiben
+unabhängig nutzbar.
 
-Capture-Speicherung und spätere Research-Übernahme sind getrennte Schritte.
+Captures bleiben im Hub. Eine gezielte spätere Knowledge-Übernahme ist optional
+und benötigt einen unterstützten Fachbefehl; freie Gedanken brauchen kein Wissen.
 Eine kleine transaktionale Outbox in Hub ist ausschließlich Zustellmechanik,
 kein Forschungs-Scheduler und keine zweite Agentensteuerung. Ein eigener
 Delivery-Prozess aus demselben Image verarbeitet sie unabhängig von Webrequests
 und aktualisiert berechtigte Lesekopien. Neue Aufträge werden bei
-nicht erreichbarem Research nicht heimlich auf spätere Ausführung gesetzt.
+nicht erreichbarer Execution nicht heimlich auf spätere Ausführung gesetzt.
 Unklare Annahmen werden über Request-ID und Idempotenz abgeglichen.
 
 Freigegebene Artikel-/Audiorevisionen dürfen als private, unveränderliche
@@ -90,7 +101,7 @@ src/routes/                    UI-Routen und dünne HTTP-Handler
 src/lib/components/            wiederverwendbare UI
 src/lib/domain/                Hub-Regeln und erlaubte Zustandsübergänge
 src/lib/server/application/    Anwendungsfälle und Transaktionsgrenzen
-src/lib/server/adapters/       Research, Media, Storage, Auth, Operations
+src/lib/server/adapters/       Knowledge, Execution, Publication, Transcription, Media, Storage, Auth, Operations
 src/lib/server/persistence/    Hub-Tabellen und Migrationen
 src/app.css                    gesamtes App-Styling
 ```
