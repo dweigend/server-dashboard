@@ -1,12 +1,15 @@
 # Umsetzungsplan
 
-Aktueller Abschnitt: Konzept. Die folgenden Stufen sind noch nicht ausgeführt.
-Sie erzeugen jeweils einen prüfbaren Stand und keine große parallele Baustelle.
+Aktualisiert: 15. September 2026. Konzept, Bildbeispiele, SvelteKit-Grundgerüst
+und CI stehen. Fachfunktionen sind noch nicht implementiert. Die konkreten
+[14 Feature-Issues](feature-backlog.md) bilden jetzt die ausführbare Reihenfolge;
+die folgenden Stufen bleiben das übergeordnete Zielbild.
 
-**Aktuelle Priorität des Nutzers: zuerst das lokale Wissensfundament.** Dessen
-Reihenfolge ist Bewertungsregeln → Fachverträge → ein vollständiger lokaler
-Durchlauf mit Historie und Restore. Die nachfolgenden Nummern beschreiben den
-Hub-Ausbau; sie verlangen nicht, Hub vor der Wissensdatenbank zu implementieren.
+Das lokale Wissensfundament ist bereits teilweise implementiert. Seine nächste
+Priorität ist die isolierte Experimentieroberfläche zur überprüfbaren Verbesserung
+der Pipeline, siehe [Knowledge-Stand](knowledge-server-status.md). Der Hub-Ausbau
+ordnet diese Priorität nicht neu. Navigation, privater Eingang und Vertragsfixtures
+können unabhängig von der späteren Remote-Schnittstelle umgesetzt werden.
 Der [gemeinsame Abgleich](knowledge-integration.md) definiert die Abhängigkeiten.
 
 ## 0 · Konzept festhalten
@@ -19,10 +22,11 @@ Ergebnis: dieses Konzeptpaket. Die Auswahl ist keine Freigabe für Deployment.
 
 ## 1 · Durchgängiges UI mit Fixtures
 
-SvelteKit initialisieren, UI-Tokens in `src/app.css` überführen, Navigation und
-CaptureComposer bauen. Eingang, Auftrag, Jobdetail und Artikel mit synthetischen
+Das vorhandene SvelteKit-Grundgerüst nutzen, UI-Tokens in `src/app.css` überführen,
+Navigation und CaptureComposer bauen. Eingang, Auftrag, Jobdetail und Artikel mit synthetischen
 Daten verbinden. Fehler-/Leer-/Ladezustände ebenso bauen wie den Erfolgsfall.
-Erst hier Runtime-Abhängigkeiten und Lockfile anlegen.
+Lockfile und Build sind vorhanden; Runtime-Abhängigkeiten nur für konkret
+benötigte Funktionen ergänzen.
 
 Abnahme: Fokusregel und komplette Navigation auf 390, 360, 320 px sowie Desktop;
 Tastatur und Zoom; keine vorgetäuschte Backendverbindung. Build, Typprüfung,
@@ -39,9 +43,10 @@ Abnahme: P01/P02/P09; nach Timeout kein Datenverlust oder doppelter Capture.
 ## 3a · Wissens-Vertragspilot
 
 Zuvor den begrenzten Netzwerkpilot aus [deployment.md](deployment.md) durchführen.
-Die vorhandene Wissenskonzeption ist noch keine Research-API. Mit Capture-
-Übernahme beginnen. Der lokale Wissens-MVP selbst braucht diesen Netzwerkpilot
-nicht; er ist nur Voraussetzung für die spätere Hetzner-Anbindung.
+Der [implementierte Wissensstand](knowledge-server-status.md) enthält lokale
+Verträge und Leserouten, aber noch keine authentifizierte Remote-API. Mit
+Capture-Übernahme beginnen, sobald der referenzfreie Intake vereinbart ist.
+Der lokale Wissens-MVP selbst braucht diesen Netzwerkpilot nicht; er ist nur Voraussetzung für die spätere Hetzner-Anbindung.
 
 Installierte Dienste inventarisieren, Ports aus `contracts/integrations.md`
 zuordnen und schriftlich bestätigen. Einen Text-Capture ohne Anhänge übernehmen,

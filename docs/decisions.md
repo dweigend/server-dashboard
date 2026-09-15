@@ -1,6 +1,6 @@
 # Entscheidungen und offene Punkte
 
-Stand: 2026-09-14. „Arbeitsentscheidung“ ist eine begründete Vorgabe dieses
+Stand: 2026-09-15. „Arbeitsentscheidung“ ist eine begründete Vorgabe dieses
 Konzepts, keine nachträglich behauptete Zustimmung des Nutzers.
 
 ## Festgelegt durch den Nutzer oder bestehende Projektentscheidungen
@@ -16,7 +16,7 @@ Konzepts, keine nachträglich behauptete Zustimmung des Nutzers.
 | D07 | Aufgaben, Text/Foto/Stimme, Jobübersicht, tägliches Magazin lesen/hören |
 | D08 | Research nutzt Hermes; Wissensautorität PostgreSQL; Literatur Zotero |
 | D09 | Audioproduktion ist ein eigenständiges System |
-| D10 | Zuerst Specs, Designsystem und Verträge; noch keine App-Implementierung |
+| D10 | Zuerst Specs, Designsystem und Verträge; Grundgerüst inzwischen erstellt, Feature-Implementierung jetzt über Issues vorbereitet |
 | D11 | Als Nächstes lokales Wissensfundament; im separaten Task bestätigtes Behauptungs-/Evidenzregister berücksichtigen |
 
 ## Arbeitsentscheidungen dieses Konzepts
@@ -51,7 +51,7 @@ Konzepts, keine nachträglich behauptete Zustimmung des Nutzers.
 | O08 | Backupziel, Kapazität und getestete RPO/RTO | Produktionsfreigabe |
 | O09 | 24-Stunden-Rechtefenster für Lesekopien und Grenzen der Cloud-Ablage bestätigen | Magazin-Auslieferung bei Heimserverausfall |
 | O10 | Hetzner-Wartung, Managementports, Provider-Firewall und IPv6 prüfen | Produktionsfreigabe |
-| O11 | Gemeinsame Wissensschemas und Bewertungsrubrik: Notes, Claims, Evidence, Assessments, Review, Retrieval | echte Wissensansichten und Prüfaktionen |
+| O11 | Lokale Wissens-Pilotverträge vorhanden; externe Authentifizierung, referenzfreier Intake, Lesen/Suchen und Revisions-/Rechtevertrag abstimmen | echte Wissensintegration; siehe [Codeabgleich](knowledge-server-status.md) |
 
 Routineannahmen: 07:00 Europe/Berlin, Themen Design/Technik/Forschung, täglicher
 Entwurf. Budgetwerte in Bildern sind synthetisch, kein beschlossenes Ausgabenlimit.

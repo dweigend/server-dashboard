@@ -5,9 +5,11 @@ Hub-Routen dürfen stabil bleiben, während ein Adapter auf den tatsächlich
 installierten Dienst abgebildet wird. Niemals URLs aus Vorschlägen erraten.
 
 Transportziel ist jetzt die [private HTTPS-Strecke](../docs/hybrid-backend.md)
-von Hetzner zum MS-A2. Die read-only Inspektion hat keinen laufenden Research-
-API-Dienst nachgewiesen. Die hier genannten Operationen sind weiterhin
-Fachverträge, keine ausgerollten URL-Pfade.
+von Hetzner zum MS-A2. Im [Knowledge-Server-Repository](https://github.com/dweigend/knowledge-server)
+existieren inzwischen lokale JSON-Leserouten und Python-Fachoperationen.
+Der [Codeabgleich vom 15. September](../docs/knowledge-server-status.md)
+bestätigt jedoch keine authentifizierte Remote-API oder laufende private Strecke.
+Die hier genannten Operationen bleiben Zielverträge, keine ausgerollten URL-Pfade.
 
 ## ResearchPort
 
@@ -19,8 +21,9 @@ werden unabhängig von Recherchejobs, Publikation und Audio abgenommen.
 ### Wissensoperationen des ersten Piloten
 
 Die Namen sind fachliche Arbeitsbezeichnungen, keine festgelegten API-Pfade.
-Schemas und Bewertungswerte werden auf Produzentenseite spezifiziert und danach
-in den Hub-Vertrag übernommen. Nicht jede Operation braucht eine eigene UI-Seite.
+Pilot-Schemas und Bewertungswerte existieren auf Produzentenseite; der externe
+Vertrag wird dort abgestimmt und danach in den Hub-Vertrag übernommen.
+Nicht jede Operation braucht eine eigene UI-Seite.
 
 | Operation | Eingabe | Ausgabe / Pflichtnachweis |
 | --- | --- | --- |
@@ -35,8 +38,10 @@ in den Hub-Vertrag übernommen. Nicht jede Operation braucht eine eigene UI-Seit
 
 Manuelle Fachbefehle und Hermes-Werkzeuge verwenden dieselben Regeln. Ein
 Notiz-Edit oder eine Prüfentscheidung löst nicht automatisch Agentenarbeit aus.
-Der erste Capture-Vertrag überträgt keine Fotos, Audio oder PDFs. Hub darf eine
-Übernahme mit Anhängen nicht als vollständig melden, wenn nur Text übernommen
+Der erste Capture-Zielvertrag überträgt keine Fotos, Audio oder PDFs.
+Freie Texte ohne Wissensreferenz sind im aktuellen Note-Vertrag noch nicht
+unterstützt; vor capture.register muss die Produzentenseite diese Lücke lösen.
+Hub darf eine Übernahme mit Anhängen nicht als vollständig melden, wenn nur Text übernommen
 wurde. Auslieferungsrechte für konkrete Quellenstellen separat prüfen.
 
 ### Spätere Aufträge und Publikation

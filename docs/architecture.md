@@ -7,8 +7,9 @@ Die Web-App läuft künftig auf Hetzner, Research auf dem MS-A2. Der
 [Hybrid-Backend-Entwurf](hybrid-backend.md) konkretisiert private HTTPS-Verbindung,
 Containergrenzen, dauerhafte Zustellung und Verfügbarkeit bei Heimserverausfall.
 Der [Deployment-Audit](deployment-audit.md) trennt Livebefunde von diesem Zielbild.
-Der [Wissensabgleich](knowledge-integration.md) definiert den zuerst aufzubauenden
-lokalen MVP und dessen spätere Anbindung ohne Abhängigkeit von Recherchejobs.
+Der [Wissensabgleich](knowledge-integration.md) definiert die Anbindung ohne
+Abhängigkeit von Recherchejobs. Der [aktuelle Codeabgleich](knowledge-server-status.md)
+trennt vorhandene lokale Funktionen von noch fehlenden Remote-Verträgen.
 
 ```mermaid
 flowchart TD

@@ -29,6 +29,8 @@ Die Vorschau bindet nur an den eigenen Rechner.
 - [Konzeptübersicht](docs/README.md)
 - [Design-Brief aus Stitch](design.md) und [UI-System](design/ui-system.md)
 - [Wissenssystem und Dashboard](docs/knowledge-integration.md)
+- [Knowledge Server auf GitHub](https://github.com/dweigend/knowledge-server) und [geprüfter Integrationsstand](docs/knowledge-server-status.md)
+- [Feature-Issues und Reihenfolge](docs/feature-backlog.md)
 - [Entwicklung und Betrieb](docs/development.md)
 - [30 Mockups](design/portfolio/index.html)
 - [10 Referenzbilder](design/references/README.md) und [15 Stitch-Screenshots](design/stitch/README.md)

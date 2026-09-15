@@ -1,9 +1,12 @@
 # Abstimmung mit dem Wissens-MVP
 
-Stand: 14. September 2026. Grundlage ist das vom Nutzer bestätigte
-`docs/knowledge-mvp.md` im Serverprojekt und der Task „Konzept für Hermes
-Wissensdatenbank“. Diese Seite beschreibt Hub als Verbraucher der fachlichen
-Verträge. Detaillierte Schemas, Bewertungsregeln und Implementierung fehlen noch.
+Aktualisiert: 15. September 2026. Die Produzentenseite liegt jetzt im eigenen
+[Knowledge-Server-Repository](https://github.com/dweigend/knowledge-server).
+Pilotverträge, Bewertungsregeln und lokale Implementierung existieren inzwischen.
+Der [aktuelle Codeabgleich](knowledge-server-status.md) beschreibt die noch
+fehlende Remote-Authentifizierung, Textaufnahme ohne Referenz und JSON-Suche.
+Diese Seite definiert das Ziel der Integration, keine bereits bereitgestellte API.
+Die ursprüngliche Abstimmung vom 14. September bleibt unten als Historie erhalten.
 
 ## Gemeinsamer erster Ablauf
 
@@ -155,7 +158,7 @@ noch keine fertige Knowledge-CRUD-API. Der nächste Vertragsschritt ergänzt nac
 Abstimmung Notiz-/Behauptungsansichten, Suche und Prüfaktionen. Bis dahin sind
 diese Funktionen beschrieben, aber nicht implementierungsfertig behauptet.
 
-## Ergebnis der direkten Abstimmung
+## Historie: Ergebnis der direkten Abstimmung am 14. September
 
 Der Agent im Wissensdatenbank-Task hat die aktualisierten Hub-Dokumente geprüft
 und den producerseitigen Abgleich in `knowledge-mvp.md` ergänzt. Seine beiden
@@ -167,7 +170,8 @@ Zwei Präzisierungen wurden übernommen: Request-Abgleich gehört schon zum erst
 Wissenspilot; modellfreie Operationen setzen weder Run-ID noch Hermes-Ausführung
 voraus. Der Serverprojekt-Abgleich ist in Commit `963d647` festgehalten.
 
-Weiter offen bleiben die fachliche Bewertungsrubrik und genaue Schemas einschließlich
-Revision-/Rechte-/Fehlerregeln. Diese werden als nächster Schritt im Wissensprojekt
-ausgearbeitet. Die bestätigte Konzeptübereinstimmung ist keine API-Freigabe oder
+Zum damaligen Zeitpunkt fehlten Bewertungsrubrik und genaue Schemas. Inzwischen
+sind lokale Pilotverträge implementiert; offen bleibt deren externer
+Revision-/Rechte-/Fehlervertrag. Maßgeblich ist der [aktuelle Stand](knowledge-server-status.md).
+Die bestätigte Konzeptübereinstimmung ist keine API-Freigabe oder
 Behauptung einer bereits funktionierenden Integration.

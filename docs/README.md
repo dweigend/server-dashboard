@@ -13,8 +13,10 @@ vollständig erhalten. Der alte lokale Pfad ist eine Weiterleitung.
 5. [Deployment](deployment.md), [Audit](deployment-audit.md) und [Sicherheit](security.md).
 6. [Umsetzungsplan](implementation-plan.md), [Abnahme](acceptance.md),
    [Prüfstand](verification.md) und [Quellen](sources.md).
-7. [Entwicklungsbasis](development.md).
-8. [Referenzbilder](../design/references/README.md), [Stitch-Screenshots](../design/stitch/README.md)
+7. [Entwicklungsbasis](development.md) und [Feature-Issues](feature-backlog.md).
+8. [Knowledge-Server-Repository](https://github.com/dweigend/knowledge-server)
+   und [aktueller Abgleich](knowledge-server-status.md).
+9. [Referenzbilder](../design/references/README.md), [Stitch-Screenshots](../design/stitch/README.md)
    und [vollständiges Bildinventar](../design/image-inventory.json).
 
 Die älteren Dokumente beschreiben das Zielsystem. Aktuell implementiert sind
